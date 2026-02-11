@@ -39,6 +39,7 @@
     BR.conf.initialMapZoom = 5;
 
     BR.conf.profiles = [
+        'paddle',
         'trekking',
         'fastbike',
         'car-eco',
@@ -52,7 +53,6 @@
         'moped',
         'rail',
         'river',
-        'paddle',
         'vm-forum-liegerad-schnell',
         'vm-forum-velomobil-schnell',
         'fastbike-lowtraffic',

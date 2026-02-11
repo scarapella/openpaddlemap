@@ -40,6 +40,7 @@ i18next.t('navbar.profile.hiking-mountain');
 i18next.t('navbar.profile.moped');
 i18next.t('navbar.profile.rail');
 i18next.t('navbar.profile.river');
+i18next.t('navbar.profile.paddle');
 i18next.t('navbar.profile.safety');
 i18next.t('navbar.profile.shortest');
 i18next.t('navbar.profile.trekking');
