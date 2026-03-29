@@ -53,6 +53,7 @@ BR.Routing = L.Routing.extend({
         this.options.tooltips.segment = i18next.t('map.route-tooltip-segment');
 
         this._segmentsCasing = new L.FeatureGroup().addTo(map);
+        this._segmentHighlightGroup = new L.FeatureGroup().addTo(map);
         this._loadingTrailerGroup = new L.FeatureGroup().addTo(map);
 
         var container = L.Routing.prototype.onAdd.call(this, map);
@@ -255,11 +256,124 @@ BR.Routing = L.Routing.extend({
         const casing = L.polyline(e.layer.getLatLngs(), Object.assign({}, casingStyle, { interactive: false }));
         this._segmentsCasing.addLayer(casing);
         e.layer._casing = casing;
+
+        // hide native route polyline to show segment-based colors better
+        e.layer.setStyle({ color: 'transparent', opacity: 0, interactive: true });
+
+        this._addLineHighlights(e.layer);
+
         this._segments.bringToFront();
+        this._segmentsCasing.bringToFront();
+        this._segmentHighlightGroup.bringToFront();
+    },
+
+    _isPaddleProfile() {
+        var profileName = '';
+
+        if (this.profile) {
+            if (typeof this.profile.profileName === 'string') {
+                profileName = this.profile.profileName;
+            } else if (typeof this.profile.selectedProfileName === 'string') {
+                profileName = this.profile.selectedProfileName;
+            }
+        }
+
+        profileName = profileName.toLowerCase();
+        return profileName === 'paddle' || profileName.startsWith('paddle') || profileName.indexOf('paddle') !== -1;
+    },
+
+    _getColorFromWayTags(wayTags) {
+        //for now disable the paddle check as it is unreliable.
+        //if (!this._isPaddleProfile() || !wayTags) {
+        if (!wayTags) {
+            return null;
+        }
+
+        const data = new URLSearchParams(wayTags.replace(/\s+/g, '&')); // eslint-disable-line compat/compat
+        const isHighway = data.get('highway');
+        const isWaterway = data.get('waterway');
+
+        var trackStyle = this.options.styles?.track || {};
+
+        if (isHighway) {
+            return trackStyle.alt_colors.highway || trackStyle.color;
+        }
+        if (isWaterway) {
+            return trackStyle.alt_colors.waterway || trackStyle.color;
+        }
+
+        return null;
+    },
+
+    _splitLineToHighlights(line) {
+        const messages = line?.feature?.properties?.messages;
+        if (!messages || messages.length <= 1) {
+            return [];
+        }
+
+        const edges = new BR.TrackEdges([line]).edges;
+        if (!edges || edges.length === 0) {
+            return [];
+        }
+
+        const latLngs = line.getLatLngs();
+        const highlightSegments = [];
+
+        let start = 0;
+        for (let i = 0; i < edges.length; i++) {
+            const end = edges[i];
+            const segmentLatLngs = latLngs.slice(start, end + 1);
+            if (segmentLatLngs.length >= 2) {
+                const tagString = messages[i + 1]?.[9];
+                const color = this._getColorFromWayTags(tagString) || this.options.styles.track.color;
+                const highlight = L.polyline(
+                    segmentLatLngs,
+                    Object.assign({}, this.options.styles.track, { color, interactive: false })
+                );
+                highlightSegments.push(highlight);
+            }
+            start = end;
+        }
+
+        if (start < latLngs.length - 1) {
+            const segmentLatLngs = latLngs.slice(start);
+            if (segmentLatLngs.length >= 2) {
+                const tagString = messages[edges.length + 1]?.[9] || messages[edges.length]?.[9];
+                const color = this._getColorFromWayTags(tagString) || this.options.styles.track.color;
+                const highlight = L.polyline(
+                    segmentLatLngs,
+                    Object.assign({}, this.options.styles.track, { color, interactive: false })
+                );
+                highlightSegments.push(highlight);
+            }
+        }
+
+        return highlightSegments;
+    },
+
+    _addLineHighlights(line) {
+        this._removeLineHighlights(line);
+
+        const highlightSegments = this._splitLineToHighlights(line);
+        line._highlightSegments = highlightSegments;
+
+        highlightSegments.forEach((segment) => {
+            this._segmentHighlightGroup.addLayer(segment);
+        });
+    },
+
+    _removeLineHighlights(line) {
+        if (line._highlightSegments) {
+            line._highlightSegments.forEach((segment) => {
+                this._segmentHighlightGroup.removeLayer(segment);
+            });
+            line._highlightSegments = null;
+        }
     },
 
     _removeSegmentCasing(e) {
         this._segmentsCasing.removeLayer(e.layer._casing);
+        this._removeLineHighlights(e.layer);
     },
 
     setOpacity(opacity) {

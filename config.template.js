@@ -40,6 +40,7 @@
 
     BR.conf.profiles = [
         'paddle',
+        'waterway',
         'trekking',
         'fastbike',
         'car-eco',
@@ -98,6 +99,10 @@
             weight: 5,
             color: 'magenta',
             opacity: BR.conf.defaultOpacity,
+            alt_colors: {
+                highway: '#fd1c03',
+                waterway: '#0f02fa',
+            },
         },
         trackCasing: {
             weight: 8,
