@@ -54,6 +54,8 @@
     "hours-abbrev": "h",
     "kilometer": "kilometers",
     "kilometer-abbrev": "km",
+    "mile": "miles",
+    "mile-abbrev": "mi",
     "kilowatthour": "kilowatt hours",
     "kilowatthour-abbrev": "kWh",
     "mean-cost-factor": "Mean cost factor",
