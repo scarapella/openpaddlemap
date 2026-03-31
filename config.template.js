@@ -82,7 +82,7 @@
     BR.conf.defaultBaseLayerIndex = 0;
 
     // Initial route line transparency (0-1, overridden by stored slider setting)
-    BR.conf.defaultOpacity = 0.67;
+    BR.conf.defaultOpacity = 0.95;
 
     // Minimum transparency slider value on load, values between 0 and 1 (0=invisible).
     // 0 = no minimum, use stored setting; 1 = always reset to full visibility on load
