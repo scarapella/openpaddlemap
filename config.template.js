@@ -40,7 +40,7 @@
 
     BR.conf.profiles = [
         'paddle',
-        'waterway',
+        'river',
         'trekking',
         'fastbike',
         'car-eco',
