@@ -38,7 +38,7 @@ BR.Gpx = {
                         name: feature.properties.name,
                         link: {
                             '@href': location.href,
-                            text: BR.conf.appName || 'BRouter-Web',
+                            text: BR.conf.appName || 'openpaddlemap',
                         },
                     },
                     trk
@@ -54,7 +54,7 @@ BR.Gpx = {
         const gpxTransform = new GpxTransform(voiceHintsTransform);
 
         let gpx = togpx(geoJson, {
-            creator: (BR.conf.appName || 'BRouter-Web') + ' ' + BR.version,
+            creator: (BR.conf.appName || 'openpaddlemap') + ' ' + BR.version,
             featureTitle() {},
             featureDescription() {},
             featureCoordTimes() {},

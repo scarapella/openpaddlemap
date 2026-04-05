@@ -82,9 +82,9 @@ yarn test --verbose -t="2-locus"
 
 ### Vector Tiles / DEM
 
-[MapLibre GL JS](https://maplibre.org/projects/maplibre-gl-js/) and [MapLibre GL Leaflet](https://github.com/maplibre/maplibre-gl-leaflet) are used to render vector tile layers. Their bundles are [only loaded](https://github.com/nrenner/brouter-web/blob/master/js/util/MaplibreGlLazyLoader.js) if the first mvt layer is actually added to the map.
+[MapLibre GL JS](https://maplibre.org/projects/maplibre-gl-js/) and [MapLibre GL Leaflet](https://github.com/maplibre/maplibre-gl-leaflet) are used to render vector tile layers. Their bundles are [only loaded](https://github.com/scarapella/openpaddlemap/blob/master/js/util/MaplibreGlLazyLoader.js) if the first mvt layer is actually added to the map.
 
--   [layers/mvt](https://github.com/nrenner/brouter-web/tree/master/layers/mvt) folder for layer descriptions (\*.geojson) and local styles (not a requirement)
+-   [layers/mvt](https://github.com/scarapella/openpaddlemap/tree/master/layers/mvt) folder for layer descriptions (\*.geojson) and local styles (not a requirement)
 -   `"type": "mvt"` in layer description
 -   `"url": ` is for style.json (instead of tile URL), either as:
     -   file name of local style file without `.json` (= key in dist/layers.js bundle),
