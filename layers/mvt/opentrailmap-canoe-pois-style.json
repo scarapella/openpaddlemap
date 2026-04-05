@@ -382,14 +382,9 @@
             "minzoom": 10,
             "filter": [
                 "all",
-                [
-                    "has",
-                    "waterway"
-                ],
-                [
-                    "has",
-                    "rapids"
-                ]
+                ["has","waterway"],
+                ["has","rapids"],
+                ["!=", ["get", "rapids"], "no"]
             ],
             "layout": {
                 "symbol-placement": "line",
