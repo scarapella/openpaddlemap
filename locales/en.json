@@ -7,12 +7,13 @@
     "contact": "Contact:",
     "contact-language": "Preferred language is English, as we have both international contributors and users.",
     "data": "Data:",
-    "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated daily, see dates of <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
-    "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
+    "data-description": "The underlying data is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. </br>North America is usually updated daily and the rest of world occasionally.",
+    "description": "Open Paddle Map is a mapping and routing engine for paddlers of all sorts. Canoes, kaykas, SUPs and rubber duckies are welcome. The web front end is based on brouter-web it uses the <a href=\"https://brouter.de/\" target=\"_blank\">BRouter</a> routing engine.",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
     "support": "General discussions/questions, support",
     "title": "About",
-    "tooltip": "Show more information about BRouter-Web"
+    "tooltip": "Show more information about BRouter-Web",
+    "warning": "Paddling is inherently dangerous. You are using this tool at your own risk.  Always do your own reserach, follow appropriate safety guidelines."
   },
   "credits": {
     "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",

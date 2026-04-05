@@ -26,7 +26,7 @@
                 <span class="fa fa-bars"></span>
             </button>
             <a class="navbar-brand order-md-last" href="#" data-toggle="modal" data-target="#about"
-                >Open Paddle Map / BRouter-Web <sup class="version">0.18.1</sup></a
+                >Open Paddle Map<sup class="version">0.18.1</sup></a
             >
             <div class="collapse navbar-collapse" id="collapsingNavbar">
                 <div class="navbar-nav">
@@ -151,7 +151,7 @@
                         class="nav-item"
                         data-i18n="[title]keyboard.generic-shortcut"
                         data-i18n-options='{ "action": "$t(about.tooltip)", "key": "H" }'
-                        title="Show more information about BRouter-Web"
+                        title="Show more information about Open Paddle Map"
                     >
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#about"
                             ><span class="fa fa-lg fa-info-circle" aria-hidden="true"></span
@@ -321,11 +321,11 @@
                     </div>
                     <div class="modal-body">
                         <p data-i18n="[html]about.description">
-                            Online service of the BRouter routing engine. For the offline Android app and more
-                            information see
-                            <a href="https://brouter.de/" target="_blank">brouter.de</a>.
+                            Open Paddle Map is a mapping and routing engine for paddlers of all sorts. Canoes, kaykas,
+                            SUPs and rubber duckies are welcome. The web front end is based on brouter-web it uses the
+                            <a href="https://brouter.de/" target="_blank">BRouter</a> routing engine.
                         </p>
-                        <p><i data-i18n="about.contact">Contact:</i></p>
+                        <!--<p><i data-i18n="about.contact">Contact:</i></p>
 
                         <div id="about-contact-language" data-i18n="about.contact-language">
                             Preferred language is English, as we have both international contributors and users.
@@ -360,17 +360,17 @@
                                     </li>
                                 </ul>
                             </li>
-                        </ul>
+                        </ul>-->
                         <p>
-                            <i data-i18n="about.data">Data:</i>
+                            <b data-i18n="about.data">Data:</b>
                         </p>
 
                         <p data-i18n="[html]about.data-description">
-                            This is based on
-                            <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a>. It is usually
-                            updated daily, see dates of
-                            <a href="https://brouter.de/brouter/segments4/" target="_blank">data files</a>.
+                            The underlying data is based on
+                            <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a>. <br />North
+                            America is usually updated daily and the rest of world occasionally.
                         </p>
+                        <!--
                         <p id="aboutLinks" data-i18n="[html]about.details">
                             <i><a href="{{privacyPolicyUrl}}" target="_blank">Privacy Policy</a></i
                             >,
@@ -390,6 +390,11 @@
                             <i><a href="https://github.com/nrenner/brouter-web#readme" target="_blank">more info</a></i>
                             on the client.
                         </p>
+                        -->
+                        <p data-i18n="[html]about.warning" class="warning">
+                            Paddling is inherently dangerous. You are using this tool at your own risk. Always do your
+                            own reserach, follow appropriate safety guidelines.
+                        </p>
                     </div>
                     <div class="modal-footer">
                         <button
@@ -401,7 +406,7 @@
                         >
                             Help/Keyboard shortcuts
                         </button>
-                        <button
+                        <!--<button
                             type="button"
                             class="btn btn-secondary"
                             data-i18n="whatsnew.title"
@@ -409,7 +414,7 @@
                             data-target="#whatsnew"
                         >
                             What's new?
-                        </button>
+                        </button>-->
                         <button type="button" class="btn btn-primary" data-i18n="modal.close" data-dismiss="modal">
                             Close
                         </button>
@@ -1627,10 +1632,6 @@
             // global package prefix for BRouter web application
             BR = {};
             BR.version = '0.18.1';
-
-            console.log(
-                '\r\n###\r\n###  BRouter-Web\r\n###\r\n###  Please note that the routing API used here is not public!\r\n###\r\n'
-            );
         </script>
 
         <script src="dist/core-js-bundle.min.js"></script>
