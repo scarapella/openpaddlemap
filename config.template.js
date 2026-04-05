@@ -12,23 +12,9 @@
     //var params = new URLSearchParams(window.location.search.slice(1));
     //BR.conf.transit = params.has('transit') && (params.get('transit') === 'true');
 
-    if (hostname.endsWith('brouter.de')) {
-        // online service (brouter.de) configuration
-
-        BR.conf.host = origin;
-        BR.conf.profilesUrl = origin + '/brouter/profiles2/';
-    } else {
-        // desktop configuration
-
-        BR.conf.host = 'http://localhost:17777';
-
-        // Pre-loading selected profile disabled locally. Needs openpaddlemap to run on a
-        // local web server with the profiles in a subdirectory or allowing file access
-        // in the Browser (security!), see
-        // https://github.com/mrdoob/three.js/wiki/How-to-run-things-locally
-        BR.conf.profilesUrl = origin + '/profiles2/';
-        //BR.conf.profilesUrl = 'file://YOUR_PATH_TO/profiles2/';
-    }
+    // default localhost configuration
+    BR.conf.host = 'http://localhost:17777';
+    BR.conf.profilesUrl = origin + '/profiles2/';
 
     // name of the web app/instance, e.g. used as GPX creator and link text
     BR.conf.appName = 'openpaddlemap';

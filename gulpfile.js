@@ -220,7 +220,10 @@ gulp.task('watch', function () {
     gulp.watch(paths.styles, gulp.series('styles', 'reload'));
     gulp.watch(paths.layers, gulp.series('layers', 'reload'));
     gulp.watch(paths.layersConfig, gulp.series('layers_config', 'reload'));
-    gulp.watch(['./index.html'].concat(paths.images).concat(paths.fonts).concat(paths.locales), gulp.series('reload'));
+    gulp.watch(
+        ['./index.html'].concat('./config/').concat(paths.images).concat(paths.fonts).concat(paths.locales),
+        gulp.series('reload')
+    );
 });
 
 // Print paths to console, for manually debugging the gulp build

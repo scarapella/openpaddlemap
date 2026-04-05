@@ -7,6 +7,33 @@ BRouter is heavily based on the following libraries:
 -   [JQuery](https://jquery.com) javascript library.
 -   [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/en/).
 
+## Setup Local Configuration
+
+Instantiate `config/config.js` and `config/keys.js` files:
+
+```sh
+mkdir -p config
+cp config.template.js config/config.js
+cp keys.template.js config/keys.js
+```
+
+Modify the files:
+
+-   `config/config.js`-> cofirm URL of Brouter server, see `BR.conf.host`
+-   `config/keys.js` add your API keys
+
+## Get Brouter Profiles
+
+This step is optional, but if you skip it you will not be able to see or modify the routing profiles in the UI.
+
+Create a `profiles2/` directory:
+
+```sh
+mkdir -p profiles2
+```
+
+Copy the Brouter profiles ( `*.brf` files) in to the `profiles2/` - Default profiles for openpaddlemap can be found here: https://github.com/scarapella/openpaddlemap-profiles
+
 ## Install dependencies
 
 ```sh
@@ -29,6 +56,7 @@ yarn build
 yarn serve
 ```
 
+<!--
 ### Develop with Docker
 
 ```sh
@@ -41,7 +69,7 @@ docker-compose run --rm -p 3000:3000 serve
 #or
 docker-compose up serve
 ```
-
+-->
 <!--### How internationalization works
 
 BRouter is translated using [i18next](https://www.i18next.com/) library, via command `gulp i18next`. It extracts translatable elements into `locales/en.json` file (English version). (Note that unused translation keys or keys not referenced in `keys.js` might get removed automatically. Make sure to commit any changes first before running this, and only amend the previous commit after checking the diff carefully.)
@@ -92,7 +120,7 @@ yarn test --verbose -t="2-locus"
             (stored next to description `<layer-id>.geojson`)
     -   URL to remote style
 -   access token for tile URLs
-    -   configure in `keys.js` / `keys.template.js`:  
+    -   configure in `config/keys.js` / `keys.template.js`:  
         `<provider>: 'mykey'`
     -   add template to tile url in style source, e.g.:  
         `...?access_token={keys_<provider>}`

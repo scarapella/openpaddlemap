@@ -1,44 +1,86 @@
-## Running as Docker container (client only)
+# Installation Via Docker
 
 openpaddlemap can be run as a Docker container, making it easy for continous deployment or running locally
-without having to install any build tools.
+without having to install any build tools or for deploying on a container system of your choice.
+
+_For information on how to deploy in debug mode see [CONTRIBUTING.md](CONTRIBUTING.md)._
 
 The `Dockerfile` builds the application inside a NodeJS container and copies the built application into a
 separate Nginx based image. The application runs from a webserver only container serving only static files.
 
-### Prerequisites
+## Prerequisites
 
 -   Docker installed
 -   working directory is this repository
--   `config.template.js` copied to `config/config.js` and modified with a Brouter server, see `BR.conf.host`
--   `keys.template.js` to `config/keys.js` and add your API keys
--   Optionally create `profiles` directory with `brf` profile files and add path to `config.js`:
-    BR.conf.profilesUrl = 'profiles/';
 
-### Building Docker image
+## Setup Local Configuration
+
+Instantiate `config/config.js` and `config/keys.js` files:
+
+```sh
+mkdir -p config
+cp config.template.js config/config.js
+cp keys.template.js config/keys.js
+```
+
+Modify the files:
+
+-   `config/config.js`-> cofirm URL of Brouter server, see `BR.conf.host`
+-   `config/keys.js` add your API keys
+
+## Get Brouter Profiles
+
+This step is optional, but if you skip it you will not be able to see or modify the routing profiles in the UI.
+
+Create a `profiles2/` directory:
+
+```sh
+mkdir -p profiles2
+```
+
+Copy the Brouter profiles ( `*.brf` files) in to the `profiles2/` - Default profiles for openpaddlemap can be found here: https://github.com/scarapella/openpaddlemap-profiles
+
+## Building Docker image
+
+_NB: docker commands are shown by default, but podman will work equally well._
 
 To build the Docker container run:
 
-      docker build -t openpaddlemap .
+```sh
+docker build -t openpaddlemap .
+```
 
 This creates a Docker image with the name `openpaddlemap`.
 
-### Running Docker container
+## Running Docker container
 
 To run the previously build Docker image run:
 
-      docker run --rm --name openpaddlemap \
-        -p 127.0.0.1:8080:80 \
-        -v "`pwd`/config/config.js:/usr/share/nginx/html/config/config.js" \
-        -v "`pwd`/config/keys.js:/usr/share/nginx/html/config/keys.js" \
-        -v "`pwd`/profiles:/usr/share/nginx/html/profiles" \
-        openpaddlemap
+```sh
+docker run --rm --name openpaddlemap \
+      -p 127.0.0.1:8080:80 \
+      openpaddlemap
+```
 
 This command does the following:
 
 1. Runs a container with the name `openpaddlemap` and removes it automatically after stopping
 1. Binds port 80 of the container to the host interface 127.0.0.1 on port 8080
-1. Takes the absolute paths of `config.js`, `keys.js` and `profiles` and mounts them inside the container
-1. Uses the image `config` to run as a container
+1. Uses the image `openpaddlemap` to run as a container
+
+To substitute different `config.js`, `keys.js`, and `profiles2/` at runtime use the follow (with the paths updated as appropriate):
+
+```sh
+docker run --rm --name openpaddlemap \
+      -p 127.0.0.1:8080:80 \
+      -v "`pwd`/config/config.js:/usr/share/nginx/html/config/config.js" \
+      -v "`pwd`/config/keys.js:/usr/share/nginx/html/config/keys.js" \
+      -v "`pwd`/../brouter/misc/profiles2:/usr/share/nginx/html/profiles2" \
+      openpaddlemap
+```
+
+This command additionally does the following:
+
+1. Takes the absolute paths of `config.js`, `keys.js` and `profiles2` and mounts them inside the container
 
 openpaddlemap should be accessible at http://127.0.0.1:8080.
