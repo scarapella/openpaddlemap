@@ -79,6 +79,8 @@ BR.confLayers.tree = {
             'Waymarked_Trails-Cycling',
             'Waymarked_Trails-Hiking',
             'Waymarked_Trails-MTB',
+            'opentrailmap-canoe',
+            'opentrailmap-canoe-pois',
             'openrailwaymap',
             'mapillary-coverage',
             'osm-notes'

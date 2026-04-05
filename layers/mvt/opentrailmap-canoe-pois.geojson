@@ -1,0 +1,13 @@
+{
+    "geometry": null,
+    "properties": {
+        "id": "opentrailmap-canoe-pois",
+        "overlay": true,
+        "type": "mvt",
+        "url": "opentrailmap-canoe-pois-style",
+        "name": "OpenTrailMap Canoe POIs",
+        "nameShort": "Canoe POIs",
+        "attribution": "&copy; <a target=\"_blank\" href=\"https://opentrailmap.us/\">OpenTrailMap</a>, <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC-BY-SA 4.0</a>"
+    },
+    "type": "Feature"
+}

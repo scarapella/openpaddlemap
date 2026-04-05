@@ -15,9 +15,9 @@ BR.confLayers.languageDefaultLayers = [
 ];
 
 BR.confLayers.defaultOverlays =  [
-    'terrarium-hillshading',
-    'Waymarked_Trails-Cycling',
-    'Waymarked_Trails-Hiking'
+    'opentrailmap-canoe-pois',
+    'opentrailmap-canoe',
+    'terrarium-hillshading'
 ];
 
 BR.confLayers.legacyNameToIdMap = {

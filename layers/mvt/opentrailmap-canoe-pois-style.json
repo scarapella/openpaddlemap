@@ -1,0 +1,340 @@
+{
+    "version": 8,
+    "sources": {
+        "trails": {
+            "type": "vector",
+            "tiles": [
+                "https://tiles.openstreetmap.us/vector/trails/{z}/{x}/{y}.mvt"
+            ],
+            "minzoom": 0,
+            "maxzoom": 14
+        }
+    },
+    "sprite": "https://opentrailmap.us/style/sprites/opentrailmap",
+    "layers": [
+        {
+            "id": "poi-campsites",
+            "type": "symbol",
+            "source": "trails",
+            "source-layer": "trail_poi",
+            "minzoom": 10,
+            "filter": [
+                "==",
+                [
+                    "get",
+                    "tourism"
+                ],
+                "camp_site"
+            ],
+            "layout": {
+                "icon-image": "campground",
+                "icon-size": 0.8,
+                "icon-allow-overlap": false
+            }
+        },
+        {
+            "id": "poi-caravan-sites",
+            "type": "symbol",
+            "source": "trails",
+            "source-layer": "trail_poi",
+            "minzoom": 10,
+            "filter": [
+                "==",
+                [
+                    "get",
+                    "tourism"
+                ],
+                "caravan_site"
+            ],
+            "layout": {
+                "icon-image": "caravan_site",
+                "icon-size": 0.8,
+                "icon-allow-overlap": false
+            }
+        },
+        {
+            "id": "poi-shelters",
+            "type": "symbol",
+            "source": "trails",
+            "source-layer": "trail_poi",
+            "minzoom": 10,
+            "filter": [
+                "in",
+                [
+                    "get",
+                    "amenity"
+                ],
+                [
+                    "literal",
+                    [
+                        "shelter",
+                        "hut"
+                    ]
+                ]
+            ],
+            "layout": {
+                "icon-image": "lean_to",
+                "icon-size": 0.8,
+                "icon-allow-overlap": false
+            }
+        },
+        {
+            "id": "poi-access-points",
+            "type": "symbol",
+            "source": "trails",
+            "source-layer": "trail_poi",
+            "minzoom": 10,
+            "filter": [
+                "==",
+                [
+                    "get",
+                    "waterway"
+                ],
+                "access_point"
+            ],
+            "layout": {
+                "icon-image": "access_point",
+                "icon-size": 0.8,
+                "icon-allow-overlap": false
+            }
+        },
+        {
+            "id": "poi-slipways",
+            "type": "symbol",
+            "source": "trails",
+            "source-layer": "trail_poi",
+            "minzoom": 10,
+            "filter": [
+                "==",
+                [
+                    "get",
+                    "leisure"
+                ],
+                "slipway"
+            ],
+            "layout": {
+                "icon-image": "slipway-canoe",
+                "icon-size": 0.8,
+                "icon-allow-overlap": false
+            }
+        },
+        {
+            "id": "poi-beaver-dams",
+            "type": "symbol",
+            "source": "trails",
+            "source-layer": "trail_poi",
+            "minzoom": 10,
+            "filter": [
+                "==",
+                [
+                    "get",
+                    "natural"
+                ],
+                "beaver_dam"
+            ],
+            "layout": {
+                "icon-image": [
+                    "case",
+                    [
+                        "in",
+                        [
+                            "get",
+                            "canoe"
+                        ],
+                        [
+                            "literal",
+                            [
+                                "yes",
+                                "designated"
+                            ]
+                        ]
+                    ],
+                    "beaver_dam-canoeable",
+                    "beaver_dam-hazard"
+                ],
+                "icon-size": 0.8,
+                "icon-allow-overlap": false
+            }
+        },
+        {
+            "id": "poi-waterfalls",
+            "type": "symbol",
+            "source": "trails",
+            "source-layer": "trail_poi",
+            "minzoom": 10,
+            "filter": [
+                "==",
+                [
+                    "get",
+                    "natural"
+                ],
+                "waterfall"
+            ],
+            "layout": {
+                "icon-image": [
+                    "case",
+                    [
+                        "in",
+                        [
+                            "get",
+                            "canoe"
+                        ],
+                        [
+                            "literal",
+                            [
+                                "yes",
+                                "designated"
+                            ]
+                        ]
+                    ],
+                    "waterfall-canoeable",
+                    "waterfall-hazard"
+                ],
+                "icon-size": 0.8,
+                "icon-allow-overlap": false
+            }
+        },
+        {
+            "id": "poi-dams",
+            "type": "symbol",
+            "source": "trails",
+            "source-layer": "trail_poi",
+            "minzoom": 10,
+            "filter": [
+                "in",
+                [
+                    "get",
+                    "waterway"
+                ],
+                [
+                    "literal",
+                    [
+                        "dam",
+                        "weir"
+                    ]
+                ]
+            ],
+            "layout": {
+                "icon-image": [
+                    "case",
+                    [
+                        "in",
+                        [
+                            "get",
+                            "canoe"
+                        ],
+                        [
+                            "literal",
+                            [
+                                "yes",
+                                "designated"
+                            ]
+                        ]
+                    ],
+                    "dam-canoeable",
+                    "dam-hazard"
+                ],
+                "icon-size": 0.8,
+                "icon-allow-overlap": false
+            }
+        },
+        {
+            "id": "poi-locks",
+            "type": "symbol",
+            "source": "trails",
+            "source-layer": "trail_poi",
+            "minzoom": 10,
+            "filter": [
+                "==",
+                [
+                    "get",
+                    "lock"
+                ],
+                "yes"
+            ],
+            "layout": {
+                "icon-image": [
+                    "case",
+                    [
+                        "in",
+                        [
+                            "get",
+                            "canoe"
+                        ],
+                        [
+                            "literal",
+                            [
+                                "yes",
+                                "designated"
+                            ]
+                        ]
+                    ],
+                    "lock-canoeable",
+                    "lock-hazard"
+                ],
+                "icon-size": 0.8,
+                "icon-allow-overlap": false
+            }
+        },
+        {
+            "id": "poi-ranger-stations",
+            "type": "symbol",
+            "source": "trails",
+            "source-layer": "trail_poi",
+            "minzoom": 10,
+            "filter": [
+                "==",
+                [
+                    "get",
+                    "amenity"
+                ],
+                "ranger_station"
+            ],
+            "layout": {
+                "icon-image": "ranger_station",
+                "icon-size": 0.8,
+                "icon-allow-overlap": false
+            }
+        },
+        {
+            "id": "poi-stream-gages",
+            "type": "symbol",
+            "source": "trails",
+            "source-layer": "trail_poi",
+            "minzoom": 10,
+            "filter": [
+                "==",
+                [
+                    "get",
+                    "man_made"
+                ],
+                "monitoring_station"
+            ],
+            "layout": {
+                "icon-image": "streamgage",
+                "icon-size": 0.8,
+                "icon-allow-overlap": false
+            }
+        },
+        {
+            "id": "poi-ferries",
+            "type": "symbol",
+            "source": "trails",
+            "source-layer": "trail_poi",
+            "minzoom": 10,
+            "filter": [
+                "==",
+                [
+                    "get",
+                    "route"
+                ],
+                "ferry"
+            ],
+            "layout": {
+                "icon-image": "ferry",
+                "icon-size": 0.8,
+                "icon-allow-overlap": false
+            }
+        }
+    ]
+}
