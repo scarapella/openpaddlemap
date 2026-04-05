@@ -44,10 +44,7 @@
                 "line-join": "round"
             },
             "paint": {
-                "line-dasharray": [
-                    2,
-                    6
-                ],
+                "line-dasharray": [2,6],
                 "line-width": [
                     "interpolate",
                     [
@@ -96,6 +93,7 @@
                 "line-join": "round"
             },
             "paint": {
+                "line-dasharray": [2,6],
                 "line-width": [
                     "interpolate",
                     [
