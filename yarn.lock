@@ -3902,9 +3902,9 @@ caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
   integrity sha512-eGSpflaSYD3kwkFP7nx0s5h0dWZbqJ+6FLAISFb9BOPHwmDsQmj+Sb0DeiWg9BkM30BnUGXqOxXig6OaYgMmfQ==
 
 caniuse-lite@^1.0.30001304, caniuse-lite@^1.0.30001464, caniuse-lite@^1.0.30001503:
-  version "1.0.30001506"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001506.tgz#35bd814b310a487970c585430e9e80ee23faf14b"
-  integrity sha512-6XNEcpygZMCKaufIcgpQNZNf00GEqc7VQON+9Rd0K1bMYo8xhMZRAo5zpbnbMNizi4YNgIDAFrdykWsvY3H4Hw==
+  version "1.0.30001785"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001785.tgz"
+  integrity sha512-blhOL/WNR+Km1RI/LCVAvA73xplXA7ZbjzI4YkMK9pa6T/P3F2GxjNpEkyw5repTw9IvkyrjyHpwjnhZ5FOvYQ==
 
 caseless@~0.12.0:
   version "0.12.0"
