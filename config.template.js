@@ -31,40 +31,17 @@
     }
 
     // name of the web app/instance, e.g. used as GPX creator and link text
-    BR.conf.appName = 'BRouter-Web';
+    BR.conf.appName = 'openpaddlemap';
     BR.conf.privacyPolicyUrl = '/privacypolicy.html';
 
     // Set the initial position and zoom level of the map
     BR.conf.initialMapLocation = [50.99, 9.86];
     BR.conf.initialMapZoom = 5;
 
-    BR.conf.profiles = [
-        'paddle',
-        'river',
-        'trekking',
-        'fastbike',
-        'car-eco',
-        'car-fast',
-        'safety',
-        'shortest',
-        'trekking-ignore-cr',
-        'trekking-steep',
-        'trekking-noferries',
-        'trekking-nosteps',
-        'moped',
-        'rail',
-        'river',
-        'vm-forum-liegerad-schnell',
-        'vm-forum-velomobil-schnell',
-        'fastbike-lowtraffic',
-        'fastbike-asia-pacific',
-        'hiking-mountain',
-    ];
+    BR.conf.profiles = ['paddle', 'river'];
 
     // Map old, renamed legacy profile to new name (from hash of shared or bookmarked URLs)
-    BR.conf.profilesRename = {
-        'hiking-beta': 'hiking-mountain',
-    };
+    BR.conf.profilesRename = {};
 
     // Removes default base layers when 'true'. Useful for only having custom layers (see below).
     BR.conf.clearBaseLayers = false;

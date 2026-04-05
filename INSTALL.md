@@ -37,8 +37,8 @@ separate Nginx based image. The application runs from a webserver only container
 
 -   Docker installed
 -   working directory is this repository
--   `config.template.js` copied to `config.js` and modified with a Brouter server, see `BR.conf.host`
--   `keys.template.js` to `keys.js` and add your API keys
+-   `config.template.js` copied to `config/config.js` and modified with a Brouter server, see `BR.conf.host`
+-   `keys.template.js` to `config/keys.js` and add your API keys
 -   Optionally create `profiles` directory with `brf` profile files and add path to `config.js`:
     BR.conf.profilesUrl = 'profiles/';
 
@@ -46,26 +46,26 @@ separate Nginx based image. The application runs from a webserver only container
 
 To build the Docker container run:
 
-      docker build -t brouter-web .
+      docker build -t openpaddlemap .
 
-This creates a Docker image with the name `brouter-web`.
+This creates a Docker image with the name `openpaddlemap`.
 
 ### Running Docker container
 
 To run the previously build Docker image run:
 
-      docker run --rm --name brouter-web \
+      docker run --rm --name openpaddlemap \
         -p 127.0.0.1:8080:80 \
-        -v "`pwd`/config.js:/usr/share/nginx/html/config.js" \
-        -v "`pwd`/keys.js:/usr/share/nginx/html/keys.js" \
+        -v "`pwd`/config/config.js:/usr/share/nginx/html/config/config.js" \
+        -v "`pwd`/config/keys.js:/usr/share/nginx/html/config/keys.js" \
         -v "`pwd`/profiles:/usr/share/nginx/html/profiles" \
-        brouter-web
+        openpaddlemap
 
 This command does the following:
 
-1. Runs a container with the name `brouter-web` and removes it automatically after stopping
+1. Runs a container with the name `openpaddlemap` and removes it automatically after stopping
 1. Binds port 80 of the container to the host interface 127.0.0.1 on port 8080
 1. Takes the absolute paths of `config.js`, `keys.js` and `profiles` and mounts them inside the container
-1. Uses the image `brouter-web` to run as a container
+1. Uses the image `config` to run as a container
 
-brouter-web should be accessible at http://127.0.0.1:8080.
+openpaddlemap should be accessible at http://127.0.0.1:8080.
