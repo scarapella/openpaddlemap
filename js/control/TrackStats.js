@@ -16,6 +16,8 @@ BR.TrackStats = L.Class.extend({
             length3 = L.Util.formatNum(stats.trackLength / 1000, 3).toLocaleString(undefined, {
                 minimumFractionDigits: 3,
             }),
+            lengthMiles = L.Util.formatNum(stats.trackLength / 1609.344, 2).toLocaleString(),
+            lengthYards = L.Util.formatNum(stats.trackLength / 0.9144, 0).toLocaleString(),
             formattedAscend = stats.filteredAscend.toLocaleString(),
             formattedPlainAscend = stats.plainAscend.toLocaleString(),
             formattedCost = stats.cost.toLocaleString(),
@@ -31,8 +33,10 @@ BR.TrackStats = L.Class.extend({
                 : '0';
 
         $('#distance').html(length1);
+        $('#distance-miles').html(lengthMiles);
         // alternative 3-digit format down to meters as tooltip
         $('#distance').attr('title', length3 + ' km');
+        $('#distance-miles').attr('title', lengthYards + ' yd');
         $('#ascend').html(formattedAscend);
         $('#plainascend').html(formattedPlainAscend);
         $('#cost').html(formattedCost);

@@ -1,28 +1,17 @@
-# brouter-web
+# openpaddlemap
 
-Web client (by [@nrenner](https://github.com/nrenner) and [contributors](https://github.com/nrenner/brouter-web/graphs/contributors)) for the BRouter routing engine (by [@abrensch](https://github.com/abrensch)).
+http://openpaddlemap.org/
 
-![demo](https://user-images.githubusercontent.com/1451988/83979926-1f6d8c80-a912-11ea-8f21-b2ed60963501.gif)
+Mapping and routing web client for paddlers (canoes, kayaks, SUPs, dories, rubber duckies, wooden barrels, etc.) by [@scarapella](https://github.com/scarapella).
 
-Instances:
+openpaddlemap is based on [brouter-web] (https://github.com/nrenner/brouter-web)
 
--   [brouter.de/brouter-web](https://brouter.de/brouter-web/) _(provided by [@abrensch](https://github.com/abrensch))_
--   [brouter.damsy.net](https://brouter.damsy.net) _(provided by [@bagage](https://github.com/bagage))_
+**This repository is the front end web app**.
 
-**This repository is only about the frontend**.
-
-For the server/backend, BRouter routing engine, Android app, profiles, [brouter.de](https://brouter.de) site, see:  
-https://github.com/abrensch/brouter
+The backend is provided by the [BRouter](https://github.com/abrensch/brouter) routing engine.
 
 More information:  
 https://brouter.de
-
-## Contact
-
-General BRouter discussions/questions, support:
-
--   [Google Group](https://groups.google.com/group/osm-android-bikerouting)
--   [`#brouter` on Matrix](https://matrix.to/#/#_oftc_#brouter:matrix.org) ([Element](https://app.element.io/#/room/#_oftc_#brouter:matrix.org)).
 
 ## Translating
 
@@ -42,12 +31,14 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development documentation.
 
 ## License
 
-Copyright (c) 2018 Norbert Renner and [contributors](https://github.com/nrenner/brouter-web/graphs/contributors), licensed under the [MIT License (MIT)](LICENSE)
+Licensed under the [MIT License (MIT)](LICENSE)
 
 ### Credits and Licenses
 
 -   [BRouter](https://github.com/abrensch/brouter) (not included)  
     by abrensch; [MIT License](https://github.com/abrensch/brouter/blob/master/LICENSE)
+-   [brouter-web](https://github.com/nrenner/brouter-web)  
+    by nrenner; [MIT License](https://github.com/nrenner/brouter-web/blob/master/LICENSE)
 -   [Leaflet](https://leafletjs.com/)  
     Copyright (c) 2010-2014, Vladimir Agafonkin; Copyright (c) 2010-2011, CloudMade; [2-clause BSD License](https://github.com/Leaflet/Leaflet/blob/master/LICENSE)
 -   [leaflet-routing](https://github.com/Turistforeningen/leaflet-routing)  

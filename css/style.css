@@ -523,6 +523,16 @@ button.deactivate-beeline-active.disabled {
     margin: -6px 0 6px 20px;
 }
 
+.warning {
+    color: #d9534f; /* Bootstrap danger color */
+    font-weight: bold;
+    background-color: #f2dede; /* Light red background */
+    border: 1px solid #ebccd1;
+    border-radius: 4px;
+    padding: 8px;
+    margin: 10px 0;
+}
+
 /* help dialog */
 
 ul.keyboard-shortcuts {

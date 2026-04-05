@@ -26,43 +26,22 @@
         // local web server with the profiles in a subdirectory or allowing file access
         // in the Browser (security!), see
         // https://github.com/mrdoob/three.js/wiki/How-to-run-things-locally
-        BR.conf.profilesUrl = 'http://localhost:8000/profiles2/';
+        BR.conf.profilesUrl = origin + '/profiles2/';
         //BR.conf.profilesUrl = 'file://YOUR_PATH_TO/profiles2/';
     }
 
     // name of the web app/instance, e.g. used as GPX creator and link text
-    BR.conf.appName = 'BRouter-Web';
+    BR.conf.appName = 'openpaddlemap';
     BR.conf.privacyPolicyUrl = '/privacypolicy.html';
 
     // Set the initial position and zoom level of the map
     BR.conf.initialMapLocation = [50.99, 9.86];
     BR.conf.initialMapZoom = 5;
 
-    BR.conf.profiles = [
-        'trekking',
-        'fastbike',
-        'car-eco',
-        'car-fast',
-        'safety',
-        'shortest',
-        'trekking-ignore-cr',
-        'trekking-steep',
-        'trekking-noferries',
-        'trekking-nosteps',
-        'moped',
-        'rail',
-        'river',
-        'vm-forum-liegerad-schnell',
-        'vm-forum-velomobil-schnell',
-        'fastbike-lowtraffic',
-        'fastbike-asia-pacific',
-        'hiking-mountain',
-    ];
+    BR.conf.profiles = ['paddle', 'river'];
 
     // Map old, renamed legacy profile to new name (from hash of shared or bookmarked URLs)
-    BR.conf.profilesRename = {
-        'hiking-beta': 'hiking-mountain',
-    };
+    BR.conf.profilesRename = {};
 
     // Removes default base layers when 'true'. Useful for only having custom layers (see below).
     BR.conf.clearBaseLayers = false;
@@ -80,7 +59,7 @@
     BR.conf.defaultBaseLayerIndex = 0;
 
     // Initial route line transparency (0-1, overridden by stored slider setting)
-    BR.conf.defaultOpacity = 0.67;
+    BR.conf.defaultOpacity = 0.95;
 
     // Minimum transparency slider value on load, values between 0 and 1 (0=invisible).
     // 0 = no minimum, use stored setting; 1 = always reset to full visibility on load
@@ -97,6 +76,10 @@
             weight: 5,
             color: 'magenta',
             opacity: BR.conf.defaultOpacity,
+            alt_colors: {
+                highway: '#fd1c03',
+                waterway: '#0f02fa',
+            },
         },
         trackCasing: {
             weight: 8,
