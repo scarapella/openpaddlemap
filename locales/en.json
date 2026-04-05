@@ -1,18 +1,18 @@
 {
   "about": {
-    "bug-reports": "Bug reports and feature requests:",
+    "bug-reports": "Bug reports and feature requests",
     "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site",
     "bug-reports-front": "web client / frontend.",
     "chat": "Chat with users and developers",
     "contact": "Contact:",
-    "contact-language": "Preferred language is English, as we have both international contributors and users.",
+    "contact-language": "Preferred language is English.",
     "data": "Data:",
     "data-description": "The underlying data is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. </br>North America is usually updated daily and the rest of world occasionally.",
-    "description": "Open Paddle Map is a mapping and routing engine for paddlers of all sorts. Canoes, kaykas, SUPs and rubber duckies are welcome. The web front end is based on brouter-web it uses the <a href=\"https://brouter.de/\" target=\"_blank\">BRouter</a> routing engine.",
+    "description": "Open Paddle Map is a mapping and routing engine for paddlers of all sorts. Canoes, kaykas, SUPs, rubber duckies, wooden barrles, and others are welcome. <br /><br />Open Paddle Map relies on the <a href=\"https://brouter.de/\" target=\"_blank\">BRouter</a> routing engine.  <br /> Open Paddle Map is based on <a href=\"https://github.com/nrenner/brouter-web\" target=\"_blank\">brouter-web</a>.",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
     "support": "General discussions/questions, support",
     "title": "About",
-    "tooltip": "Show more information about BRouter-Web",
+    "tooltip": "Show more information about Open Paddle Map",
     "warning": "Paddling is inherently dangerous. You are using this tool at your own risk.  Always do your own reserach, follow appropriate safety guidelines."
   },
   "credits": {
