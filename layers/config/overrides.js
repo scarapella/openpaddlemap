@@ -248,6 +248,22 @@ BR.confLayers.getPropertyOverrides = function() {
             'nameShort': 'openptmap',
             'mapUrl': 'http://openptmap.org/?zoom={zoom}&lat={lat}&lon={lon}&layers=B0000TFT'
         },
+        'opentrailmap-canoe': {
+            'name': 'OpenTrailMap Canoe Trails',
+            'nameShort': 'Canoe Trails',
+            'attribution': {
+                'html': '&copy; <a target="_blank" href="https://opentrailmap.us/">OpenTrailMap</a>, <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>'
+            },
+            'mapUrl': 'https://opentrailmap.us/#map={zoom}/{lat}/{lon}&mode=canoe'
+        },
+        'opentrailmap-canoe-pois': {
+            'name': 'OpenTrailMap Canoe POIs',
+            'nameShort': 'Canoe POIs',
+            'attribution': {
+                'html': '&copy; <a target="_blank" href="https://opentrailmap.us/">OpenTrailMap</a>, <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>'
+            },
+            'mapUrl': 'https://opentrailmap.us/#map={zoom}/{lat}/{lon}&mode=canoe'
+        },
         'historic-place-contours': {
             'mapUrl': 'http://gk.historic.place/historische_objekte/?zoom={zoom}&lat={lat}&lon={lon}&pid=GhHaSaHe'
         },

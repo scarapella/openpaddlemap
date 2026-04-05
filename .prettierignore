@@ -15,3 +15,4 @@ resources/standalone/*.sh
 profiles2/
 tests/**/*.json
 tests/**/*.gpx
+layers/*style*.json
