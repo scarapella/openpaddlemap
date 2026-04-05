@@ -11,6 +11,7 @@
         }
     },
     "sprite": "https://opentrailmap.us/style/sprites/opentrailmap",
+    "glyphs": "https://font.americanamap.org/{fontstack}/{range}.pbf",
     "layers": [
         {
             "id": "poi-campsites",
@@ -297,23 +298,60 @@
             }
         },
         {
-            "id": "poi-stream-gages",
-            "type": "symbol",
+            "id": "floating_boom",
+            "type": "line",
             "source": "trails",
-            "source-layer": "trail_poi",
-            "minzoom": 10,
+            "source-layer": "barrier_line",
             "filter": [
                 "==",
-                [
-                    "get",
-                    "man_made"
-                ],
-                "monitoring_station"
+                "barrier",
+                "floating_boom"
             ],
             "layout": {
-                "icon-image": "streamgage",
-                "icon-size": 0.8,
-                "icon-allow-overlap": false
+                "line-cap": "round",
+                "line-join": "round"
+            },
+            "paint": {
+                "line-color": "#f29557",
+                "line-opacity": 0.5,
+                "line-width": 1
+            }
+        },
+        {
+            "id": "floating_boom_buoys",
+            "type": "line",
+            "source": "trails",
+            "source-layer": "barrier_line",
+            "filter": [
+                "==",
+                "barrier",
+                "floating_boom"
+            ],
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round"
+            },
+            "minzoom": 12,
+            "paint": {
+                "line-color": "#f29557",
+                "line-dasharray": [
+                    0.25,
+                    3
+                ],
+                "line-width": [
+                    "interpolate",
+                    [
+                        "exponential",
+                        2
+                    ],
+                    [
+                        "zoom"
+                    ],
+                    7,
+                    2,
+                    17,
+                    8
+                ]
             }
         },
         {
@@ -334,6 +372,56 @@
                 "icon-image": "ferry",
                 "icon-size": 0.8,
                 "icon-allow-overlap": false
+            }
+        },
+        {
+            "id": "waterways-rapids",
+            "type": "symbol",
+            "source": "trails",
+            "source-layer": "trail",
+            "minzoom": 10,
+            "filter": [
+                "all",
+                [
+                    "has",
+                    "waterway"
+                ],
+                [
+                    "has",
+                    "rapids"
+                ]
+            ],
+            "layout": {
+                "symbol-placement": "line",
+                "symbol-spacing": 70,
+                "icon-image": "waterfall",
+                "icon-size": 0.7,
+                "icon-allow-overlap": false,
+                "text-field": [
+                    "concat",
+                    "Class: ",
+                    [
+                        "case",
+                        ["==",["get","rapids"],"yes"], "?",
+                        ["get","rapids"]
+                    ]
+                ],
+                "text-optional": true,
+                "text-line-height": 1.1,
+                "text-font": ["Americana-Regular"],
+                "text-padding": 5,
+                "text-offset": [ 0, 1.2 ],
+                "text-size": 10,
+                "text-anchor": "top",
+                "text-allow-overlap": false
+            },
+            "paint": {
+                "text-color": "#426395",
+                "text-halo-width": 2,
+                "text-halo-blur": 1,
+                "text-halo-color": "#ffffff",
+                "icon-opacity": 0.8,
+                "text-opacity": 0.8
             }
         }
     ]

@@ -44,6 +44,10 @@
                 "line-join": "round"
             },
             "paint": {
+                "line-dasharray": [
+                    2,
+                    6
+                ],
                 "line-width": [
                     "interpolate",
                     [
@@ -57,7 +61,7 @@
                     22,
                     5
                 ],
-                "line-color": "#003b93"
+                "line-color": "#426395"
             }
         },
         {
