@@ -2,8 +2,8 @@ node_modules/
 nbproject/
 .idea/
 /.project
-config.js
-keys.js
+config/config.js
+config/keys.js
 /dist
 brouter-web*.zip
 yarn-error.log
