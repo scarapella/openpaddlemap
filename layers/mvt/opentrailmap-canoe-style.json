@@ -34,7 +34,10 @@
                         "literal",
                         [
                             "yes",
-                            "designated"
+                            "permit",
+                            "designated",
+                            "permissive",
+                            "customers"                        
                         ]
                     ]
                 ]
@@ -83,7 +86,10 @@
                         "literal",
                         [
                             "yes",
-                            "designated"
+                            "permit",
+                            "designated",
+                            "permissive",
+                            "customers"                        
                         ]
                     ]
                 ]

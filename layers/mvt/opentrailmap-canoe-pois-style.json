@@ -18,7 +18,7 @@
             "type": "symbol",
             "source": "trails",
             "source-layer": "trail_poi",
-            "minzoom": 10,
+            "minzoom": 13,
             "filter": [
                 "==",
                 [
@@ -38,7 +38,7 @@
             "type": "symbol",
             "source": "trails",
             "source-layer": "trail_poi",
-            "minzoom": 10,
+            "minzoom": 13,
             "filter": [
                 "==",
                 [
@@ -58,7 +58,7 @@
             "type": "symbol",
             "source": "trails",
             "source-layer": "trail_poi",
-            "minzoom": 10,
+            "minzoom": 13,
             "filter": [
                 "in",
                 [
@@ -124,7 +124,7 @@
             "type": "symbol",
             "source": "trails",
             "source-layer": "trail_poi",
-            "minzoom": 10,
+            "minzoom": 13,
             "filter": [
                 "==",
                 [
@@ -162,7 +162,7 @@
             "type": "symbol",
             "source": "trails",
             "source-layer": "trail_poi",
-            "minzoom": 10,
+            "minzoom": 12,
             "filter": [
                 "==",
                 [
@@ -200,7 +200,7 @@
             "type": "symbol",
             "source": "trails",
             "source-layer": "trail_poi",
-            "minzoom": 10,
+            "minzoom": 12,
             "filter": [
                 "in",
                 [
@@ -244,7 +244,7 @@
             "type": "symbol",
             "source": "trails",
             "source-layer": "trail_poi",
-            "minzoom": 10,
+            "minzoom": 12,
             "filter": [
                 "==",
                 [
@@ -282,7 +282,7 @@
             "type": "symbol",
             "source": "trails",
             "source-layer": "trail_poi",
-            "minzoom": 10,
+            "minzoom": 12,
             "filter": [
                 "==",
                 [
@@ -359,7 +359,7 @@
             "type": "symbol",
             "source": "trails",
             "source-layer": "trail_poi",
-            "minzoom": 10,
+            "minzoom": 12,
             "filter": [
                 "==",
                 [
@@ -379,7 +379,7 @@
             "type": "symbol",
             "source": "trails",
             "source-layer": "trail",
-            "minzoom": 10,
+            "minzoom": 12,
             "filter": [
                 "all",
                 ["has","waterway"],
