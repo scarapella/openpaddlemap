@@ -22,11 +22,14 @@
                 "all",
                 ["has","waterway"],
                 [
-                    "in",
-                    ["get","canoe"],
+                    "!",
                     [
-                        "literal",
-                        ["yes", "permit", "designated", "permissive", "customers"]
+                        "in",
+                        ["get","canoe"],
+                        [
+                            "literal",
+                            ["no","discouraged","private"]
+                        ]
                     ]
                 ]
             ],
@@ -37,27 +40,24 @@
             "paint": {
                 "line-dasharray": [2,6],
                 "line-width": ["interpolate",["linear"],["zoom"],12,1,22,5],
-                "line-color": "#426395"
+                "line-color": "#85a0c9"
             }
         },
         {
-            "id": "paths",
+            "id": "restricted-waterways",
             "type": "line",
             "source": "trails",
             "source-layer": "trail",
             "minzoom": 5,
             "filter": [
                 "all",
-                [
-                    "has",
-                    "highway"
-                ],
+                ["has","waterway"],
                 [
                     "in",
-                    ["get","portage"],
+                    ["get","canoe"],
                     [
                         "literal",
-                        ["yes", "permit", "designated", "permissive", "customers"]
+                        ["no","discouraged","private"]
                     ]
                 ]
             ],
@@ -67,8 +67,8 @@
             },
             "paint": {
                 "line-dasharray": [2,6],
-                "line-width": ["interpolate",["linear"],["zoom"],12,1,22,5 ],
-                "line-color": "#4f2e28"
+                "line-width": ["interpolate",["linear"],["zoom"],12,1,22,5],
+                "line-color": "#b1b5ba"
             }
         }
     ]

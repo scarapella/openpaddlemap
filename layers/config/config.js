@@ -15,8 +15,9 @@ BR.confLayers.languageDefaultLayers = [
 ];
 
 BR.confLayers.defaultOverlays =  [
-    'opentrailmap-canoe-pois',
+    'waterways',
     'opentrailmap-canoe',
+    'opentrailmap-canoe-pois',
     'terrarium-hillshading'
 ];
 
