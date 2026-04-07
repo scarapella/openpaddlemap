@@ -4,7 +4,7 @@
         "trails": {
             "type": "vector",
             "tiles": [
-                "https://openpaddlemap-tiles-770576063346.northamerica-northeast2.run.app/waterways/{z}/{x}/{y}.mvt"
+                "https://tiles.openstreetmap.us/vector/trails/{z}/{x}/{y}.mvt"
             ],
             "minzoom": 0,
             "maxzoom": 14
