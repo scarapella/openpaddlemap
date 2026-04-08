@@ -277,8 +277,12 @@ BR.LayersTab = BR.ControlLayers.extend({
             // id set in LayersConfig.createLayer
             var id = obj.layer.id;
 
-            // ignore built-in layers
-            if (id && this.layersConfig.builtInLayers.indexOf(id) === -1) {
+            // ignore built-in and permanent layers
+            if (
+                id &&
+                this.layersConfig.builtInLayers.indexOf(id) === -1 &&
+                !this.layersConfig.isPermanentLayer(id, obj.overlay)
+            ) {
                 if (obj.overlay) {
                     overlays.push(id);
                 } else {

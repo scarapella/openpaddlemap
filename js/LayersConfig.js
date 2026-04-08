@@ -1,7 +1,9 @@
 BR.LayersConfig = L.Class.extend({
     overpassFrontend: new OverpassFrontend(BR.conf.overpassBaseUrl || '//overpass-api.de/api/interpreter'),
-    defaultBaseLayers: BR.confLayers.defaultBaseLayers,
-    defaultOverlays: BR.confLayers.defaultOverlays,
+    permanentBaseLayers: BR.confLayers.permanentBaseLayers,
+    defaultBaseLayers: BR.confLayers.permanentBaseLayers.concat(BR.confLayers.defaultBaseLayers),
+    permanentOverlays: BR.confLayers.permanentOverlays,
+    defaultOverlays: BR.confLayers.permanentOverlays.concat(BR.confLayers.defaultOverlays),
     legacyNameToIdMap: BR.confLayers.legacyNameToIdMap,
     // hardcoded, built-in layers with an id set (for URL hash)
     builtInLayers: ['route-quality'],
@@ -22,8 +24,10 @@ BR.LayersConfig = L.Class.extend({
             var item = localStorage.getItem('map/defaultLayers');
             if (item) {
                 var defaultLayers = JSON.parse(item);
-                this.defaultBaseLayers = this._replaceLegacyIds(defaultLayers.baseLayers);
-                this.defaultOverlays = this._replaceLegacyIds(defaultLayers.overlays);
+                this.defaultBaseLayers = this.permanentBaseLayers.concat(
+                    this._replaceLegacyIds(defaultLayers.baseLayers)
+                );
+                this.defaultOverlays = this.permanentOverlays.concat(this._replaceLegacyIds(defaultLayers.overlays));
             }
         }
     },
@@ -120,6 +124,15 @@ BR.LayersConfig = L.Class.extend({
         }
     },
 
+    isPermanentLayer(id, overlay) {
+        var result = false;
+        if (overlay) {
+            result = this.permanentOverlays.indexOf(id) > -1;
+        } else {
+            result = this.permanentBaseLayers.indexOf(id) > -1;
+        }
+        return result;
+    },
     isDefaultLayer(id, overlay) {
         var result = false;
         if (overlay) {

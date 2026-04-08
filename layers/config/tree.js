@@ -1,7 +1,6 @@
 BR.confLayers.tree = {
     'base-layers': {
         'worldwide-international': [
-            'standard',
             'cyclosm',
             'OpenTopoMap',
             'Stamen.Terrain',
@@ -79,9 +78,6 @@ BR.confLayers.tree = {
             'Waymarked_Trails-Cycling',
             'Waymarked_Trails-Hiking',
             'Waymarked_Trails-MTB',
-            'waterways',
-            'opentrailmap-canoe',
-            'opentrailmap-canoe-pois',
             'openrailwaymap',
             'mapillary-coverage',
             'osm-notes'

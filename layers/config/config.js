@@ -1,7 +1,10 @@
 BR.confLayers = {};
 
+BR.confLayers.permanentBaseLayers = [
+    'standard'
+];
+
 BR.confLayers.defaultBaseLayers = [
-    'standard',
     'OpenTopoMap',
     'Stamen.Terrain',
     'Esri.WorldImagery'
@@ -14,10 +17,13 @@ BR.confLayers.languageDefaultLayers = [
     '1021' // sputnik.ru
 ];
 
-BR.confLayers.defaultOverlays =  [
+BR.confLayers.permanentOverlays = [
     'waterways',
     'opentrailmap-canoe',
-    'opentrailmap-canoe-pois',
+    'opentrailmap-canoe-pois'
+];
+
+BR.confLayers.defaultOverlays =  [
     'terrarium-hillshading'
 ];
 
