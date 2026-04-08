@@ -1,10 +1,10 @@
-# openpaddlemap
+# OpenPaddleMap
 
 http://openpaddlemap.org/
 
 Mapping and routing web client for paddlers (canoes, kayaks, SUPs, dories, rubber duckies, wooden barrels, etc.) by [@scarapella](https://github.com/scarapella).
 
-openpaddlemap is based on [brouter-web] (https://github.com/nrenner/brouter-web)
+OpenPaddleMap is based on [brouter-web] (https://github.com/nrenner/brouter-web)
 
 **This repository is the front end web app**.
 

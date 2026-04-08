@@ -1,6 +1,6 @@
 # Installation Via Docker
 
-openpaddlemap can be run as a Docker container, making it easy for continous deployment or running locally
+OpenPaddleMap can be run as a Docker container, making it easy for continous deployment or running locally
 without having to install any build tools or for deploying on a container system of your choice.
 
 _For information on how to deploy in debug mode see [CONTRIBUTING.md](CONTRIBUTING.md)._
@@ -38,7 +38,7 @@ Create a `profiles2/` directory:
 mkdir -p profiles2
 ```
 
-Copy the Brouter profiles ( `*.brf` files) in to the `profiles2/` - Default profiles for openpaddlemap can be found here: https://github.com/scarapella/openpaddlemap-profiles
+Copy the Brouter profiles ( `*.brf` files) in to the `profiles2/` - Default profiles for OpenPaddleMap can be found here: https://github.com/scarapella/openpaddlemap-profiles
 
 ## Building Docker image
 
@@ -83,4 +83,4 @@ This command additionally does the following:
 
 1. Takes the absolute paths of `config.js`, `keys.js` and `profiles2` and mounts them inside the container
 
-openpaddlemap should be accessible at http://127.0.0.1:8080.
+OpenPaddleMap should be accessible at http://127.0.0.1:8080.

@@ -8,6 +8,9 @@ RUN yarn run build
 
 FROM docker.io/library/nginx:alpine
 COPY --from=build /tmp/openpaddlemap/index.html /usr/share/nginx/html
+COPY --from=build /tmp/openpaddlemap/*.png /usr/share/nginx/html
+COPY --from=build /tmp/openpaddlemap/*.ico /usr/share/nginx/html
+COPY --from=build /tmp/openpaddlemap/site.webmanifest /usr/share/nginx/html
 COPY --from=build /tmp/openpaddlemap/dist /usr/share/nginx/html/dist
 COPY --from=build /tmp/openpaddlemap/config/config.js /usr/share/nginx/html/config/config.js
 COPY --from=build /tmp/openpaddlemap/config/keys.js /usr/share/nginx/html/config/keys.js

@@ -8,11 +8,11 @@
     "contact-language": "Preferred language is English.",
     "data": "Data:",
     "data-description": "The underlying data is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. </br>North America is usually updated daily and the rest of world occasionally.",
-    "description": "Open Paddle Map is a mapping and routing engine for paddlers of all sorts. Canoes, kaykas, SUPs, rubber duckies, wooden barrles, and others are welcome. <br /><br />Open Paddle Map relies on the <a href=\"https://brouter.de/\" target=\"_blank\">BRouter</a> routing engine.  <br /> Open Paddle Map is based on <a href=\"https://github.com/nrenner/brouter-web\" target=\"_blank\">brouter-web</a>.",
+    "description": "OpenPaddleMap is a mapping and routing engine for paddlers of all sorts. Canoes, kaykas, SUPs, rubber duckies, wooden barrles, and others are welcome. <br /><br />OpenPaddleMap relies on the <a href=\"https://brouter.de/\" target=\"_blank\">BRouter</a> routing engine.  <br /> OpenPaddleMap is based on <a href=\"https://github.com/nrenner/brouter-web\" target=\"_blank\">brouter-web</a>.",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
     "support": "General discussions/questions, support",
     "title": "About",
-    "tooltip": "Show more information about Open Paddle Map",
+    "tooltip": "Show more information about OpenPaddleMap",
     "warning": "Paddling is inherently dangerous. You are using this tool at your own risk.  Always do your own reserach, follow appropriate safety guidelines."
   },
   "credits": {
@@ -416,7 +416,7 @@
     },
     "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
   },
-  "title": "Open Paddle Map",
+  "title": "OpenPaddleMap",
   "trackasroute": {
     "browse": "Browse",
     "explainpoi": "(show waypoints as POI's)",

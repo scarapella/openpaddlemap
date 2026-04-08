@@ -32,7 +32,7 @@ Create a `profiles2/` directory:
 mkdir -p profiles2
 ```
 
-Copy the Brouter profiles ( `*.brf` files) in to the `profiles2/` - Default profiles for openpaddlemap can be found here: https://github.com/scarapella/openpaddlemap-profiles
+Copy the Brouter profiles ( `*.brf` files) in to the `profiles2/` - Default profiles for OpenPaddleMap can be found here: https://github.com/scarapella/openpaddlemap-profiles
 
 ## Install dependencies
 
@@ -82,7 +82,7 @@ From time to time (eg. when preparing releases), we can update translated conten
 
 ## License
 
-openpaddlemap is licensed under [MIT](LICENSE). Please make sure before adding any library that it is compatible with that. (GPL licenses are incompatible for instance).
+OpenPaddleMap is licensed under [MIT](LICENSE). Please make sure before adding any library that it is compatible with that. (GPL licenses are incompatible for instance).
 
 ## Tests
 

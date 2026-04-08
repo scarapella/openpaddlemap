@@ -6,10 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta
             name="description"
-            content="Open Paddle Map is a worldwide canoe trip planner with detailed canoe routes, portages, and interactive maps. Explore top paddling destinations like Algonquin Park, BWCA, and Maine."
+            content="OpenPaddleMap is a worldwide canoe trip planner with detailed canoe routes, portages, and interactive maps. Explore top paddling destinations like Algonquin Park, BWCA, and Maine."
         />
 
-        <title data-i18n="title">Open Paddle Map</title>
+        <title data-i18n="title">OpenPaddleMap</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
 
         <!-- inject:css -->
         <link rel="stylesheet" href="dist/brouter-web.css" />
@@ -29,9 +33,6 @@
             >
                 <span class="fa fa-bars"></span>
             </button>
-            <a class="navbar-brand order-md-last" href="#" data-toggle="modal" data-target="#about"
-                >Open Paddle Map<sup class="version">0.0.2</sup></a
-            >
             <div class="collapse navbar-collapse" id="collapsingNavbar">
                 <div class="navbar-nav">
                     <form class="form-inline" id="profile-alternative-form">
@@ -155,7 +156,7 @@
                         class="nav-item"
                         data-i18n="[title]keyboard.generic-shortcut"
                         data-i18n-options='{ "action": "$t(about.tooltip)", "key": "H" }'
-                        title="Show more information about Open Paddle Map"
+                        title="Show more information about OpenPaddleMap"
                     >
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#about"
                             ><span class="fa fa-lg fa-info-circle" aria-hidden="true"></span
@@ -164,6 +165,13 @@
                     </div>
                 </div>
             </div>
+            <a class="navbar-brand order-md-last" href="#" data-toggle="modal" data-target="#about"
+                ><img
+                    src="favicon-32x32.png"
+                    alt="OpenPaddleMap icon"
+                    style="height: 32px; margin-right: 8px"
+                />OpenPaddleMap<sup class="version">0.0.3</sup></a
+            >
         </nav>
 
         <!-- Credits modal window -->
@@ -325,11 +333,11 @@
                     </div>
                     <div class="modal-body">
                         <p data-i18n="[html]about.description">
-                            Open Paddle Map is a mapping and routing engine for paddlers of all sorts. Canoes, kaykas,
-                            SUPs, rubber duckies, wooden barrles, and others are welcome. <br /><br />Open Paddle Map
+                            OpenPaddleMap is a mapping and routing engine for paddlers of all sorts. Canoes, kaykas,
+                            SUPs, rubber duckies, wooden barrles, and others are welcome. <br /><br />OpenPaddleMap
                             relies on the <a href="https://brouter.de/" target="_blank">BRouter</a> routing engine.
                             <br />
-                            Open Paddle Map is based on
+                            OpenPaddleMap is based on
                             <a href="https://github.com/nrenner/brouter-web" target="_blank">brouter-web</a>.
                         </p>
                         <p><b data-i18n="about.contact">Contact:</b></p>
@@ -1626,7 +1634,7 @@
         <script>
             // global package prefix for BRouter web application
             BR = {};
-            BR.version = '0.0.2';
+            BR.version = '0.0.3';
         </script>
 
         <script src="dist/core-js-bundle.min.js"></script>
