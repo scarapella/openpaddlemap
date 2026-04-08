@@ -13,26 +13,29 @@
     "sprite": "https://opentrailmap.us/style/sprites/opentrailmap",
     "layers": [
         {
-            "id": "waterways",
+            "id": "unrestricted-waterways",
             "type": "line",
             "source": "trails",
             "source-layer": "trail",
             "minzoom": 5,
             "filter": [
-                "all",
-                ["has","waterway"],
+                "any",
                 [
-                    "!",
+                    "all",
+                    ["in",["get","waterway"],["literal",["river","flowline","fairway","link","canal","canoe_pass","tidal_channel"]]],
+                    ["!",["in",["get","canoe"],["literal",["no","discouraged","private"]]]]
+                ],
+                [
+                    "all",
+                    ["in",["get","waterway"],["literal",["stream","ditch","drain"]]],
                     [
-                        "in",
-                        ["get","canoe"],
-                        [
-                            "literal",
-                            ["no","discouraged","private"]
-                        ]
+                        "any",
+                        ["in",["get","canoe"],["literal",["yes", "permit", "designated", "permissive", "customers"]]],
+                        ["in",["get","portage"],["literal",["yes", "permit", "designated", "permissive", "customers"]]]
                     ]
-                ]
-            ],
+                ]   
+                    
+            ], 
             "layout": {
                 "line-cap": "round",
                 "line-join": "round"
@@ -52,13 +55,23 @@
             "filter": [
                 "all",
                 ["has","waterway"],
-                [
-                    "in",
-                    ["get","canoe"],
+                [                
+                    "case",
                     [
-                        "literal",
-                        ["no","discouraged","private"]
-                    ]
+                        "in",
+                        ["get","canoe"],["literal",["no","discouraged","private"]]
+                    ],true,
+                    [
+                        "all",
+                        ["!",["in",["get","canoe"],["literal",["no","discouraged","private"]]]],
+                        ["in",["get","boat"],["literal",["no","discouraged","private"]]]
+                    ], true,
+                    [
+                        "all",
+                        ["!",["in",["get","boat"],["literal",["no","discouraged","private"]]]],
+                        ["in",["get","access"],["literal",["no","discouraged","private"]]]
+                    ], true,
+                    false
                 ]
             ],
             "layout": {

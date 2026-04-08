@@ -21,14 +21,7 @@
             "filter": [
                 "all",
                 ["has","waterway"],
-                [
-                    "in",
-                    ["get","canoe"],
-                    [
-                        "literal",
-                        ["yes", "permit", "designated", "permissive", "customers"]
-                    ]
-                ]
+                ["in",["get","canoe"],["literal", ["yes", "permit", "designated", "permissive", "customers"]]]
             ],
             "layout": {
                 "line-cap": "round",
@@ -48,18 +41,8 @@
             "minzoom": 5,
             "filter": [
                 "all",
-                [
-                    "has",
-                    "highway"
-                ],
-                [
-                    "in",
-                    ["get","portage"],
-                    [
-                        "literal",
-                        ["yes", "permit", "designated", "permissive", "customers"]
-                    ]
-                ]
+                ["has","highway"],
+                ["in",["get","portage"],["literal",["yes", "permit", "designated", "permissive", "customers"]]]
             ],
             "layout": {
                 "line-cap": "round",
