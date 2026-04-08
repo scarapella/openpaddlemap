@@ -483,6 +483,18 @@ BR.LayersTab = BR.ControlLayers.extend({
         }
     },
 
+    loadDefaultActiveLayers() {
+        var defaultActiveOverlays = ['waterways', 'opentrailmap-canoe-pois'];
+        defaultActiveOverlays = this.layersConfig.defaultActiveOverlays;
+        for (var i = 0; i < defaultActiveOverlays.length; i++) {
+            var obj = this.getLayerFromString(defaultActiveOverlays[i]);
+
+            if (obj) {
+                this.activateLayer(obj);
+            }
+        }
+    },
+
     updateOpacityLabel() {
         var slider = $('#leaflet-control-layers-overlays-opacity-slider');
         var overlaysCount = this.getActiveLayers().length - 1;

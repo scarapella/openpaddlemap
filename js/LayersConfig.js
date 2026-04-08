@@ -4,6 +4,7 @@ BR.LayersConfig = L.Class.extend({
     defaultBaseLayers: BR.confLayers.permanentBaseLayers.concat(BR.confLayers.defaultBaseLayers),
     permanentOverlays: BR.confLayers.permanentOverlays,
     defaultOverlays: BR.confLayers.permanentOverlays.concat(BR.confLayers.defaultOverlays),
+    defaultActiveOverlays: BR.confLayers.defaultActiveOverlays,
     legacyNameToIdMap: BR.confLayers.legacyNameToIdMap,
     // hardcoded, built-in layers with an id set (for URL hash)
     builtInLayers: ['route-quality'],

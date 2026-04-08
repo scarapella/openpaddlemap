@@ -432,6 +432,8 @@
             // restore active layers from local storage when called without hash
             layersControl.loadActiveLayers();
         }
+        //TODO: for now we always load the default default active layers. we shoudl allow users to set preference
+        layersControl.loadDefaultActiveLayers();
 
         var onHashChangeCb = function (url) {
             var url2params = function (s = '') {
