@@ -51,22 +51,25 @@
     "distance": "Distance",
     "elevation-chart": "Toggle elevation chart",
     "energy-per-100km": "Energy per 100 km",
+    "feet": "feet",
+    "feet-abbrev": "ft",
     "hours": "hours",
     "hours-abbrev": "h",
     "kilometer": "kilometers",
     "kilometer-abbrev": "km",
-    "mile": "miles",
-    "mile-abbrev": "mi",
     "kilowatthour": "kilowatt hours",
     "kilowatthour-abbrev": "kWh",
     "mean-cost-factor": "Mean cost factor",
     "meter": "meters",
     "meter-abbrev": "m",
+    "mile": "miles",
+    "mile-abbrev": "mi",
     "no-elevation-data": "No elevation data available for this route.",
     "plain-ascend": "Plain ascend",
     "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Total Energy",
-    "travel-time": "Travel time"
+    "travel-time": "Travel time",
+    "unit-toggle-tooltip": "Toggle between miles and kilometers"
   },
   "help": {
     "keyboard-shortcuts": "Keyboard Shortcuts",
@@ -293,14 +296,14 @@
         "highway": {
           "footway": "Footway",
           "path": "Path",
-          "residential": "Residential",
+          "residential": "Residential Road",
           "cycleway": "Cycleway",
           "track": "Track",
-          "service": "Service",
-          "tertiary": "Tertiary",
-          "secondary": "Secondary",
-          "primary": "Primary",
-          "trunk": "Trunk",
+          "service": "Service Road",
+          "tertiary": "Tertiary Highway",
+          "secondary": "Secondary Highway",
+          "primary": "Primary Highway",
+          "trunk": "Highway",
           "motorway": "Motorway",
           "motorway_link": "Motorway Link",
           "primary_link": "Primary Link",
@@ -308,13 +311,13 @@
           "tertiary_link": "Tertiary Link",
           "trunk_link": "Trunk Link",
           "living_street": "Living Street",
-          "pedestrian": "Pedestrian",
+          "pedestrian": "Pedestrian Way",
           "road": "Road",
           "bridleway": "Bridleway",
           "steps": "Steps",
           "sidewalk": "Sidewalk",
           "crossing": "Crossing",
-          "unclassified": "Unclassified"
+          "unclassified": "Minor Road"
         },
         "surface": {
           "asphalt": "Asphalt",
@@ -343,13 +346,31 @@
           "very_horrible": "Very Horrible",
           "impassable": "Impassable"
         },
+        "waterway": {
+          "river": "River",
+          "stream": "Stream",
+          "ditch": "Ditch",
+          "drain": "Drain",
+          "flowline": "Flowline",
+          "fairway": "Fairway",
+          "link": "Link",
+          "canal": "Canal",
+          "canoe_pass": "Canoe Pass",
+          "tidal_channel": "Tidal Channel"
+        },
+        "openpaddlemap_primarytag": {
+          "highway": "Portage",
+          "waterway": "Paddle"
+        },
         "maxspeed": "{{maxspeed}} km/h"
       },
       "header": {
-        "highway": "Highway",
-        "smoothness": "Smoothness",
+        "highway": "Portage Way Type",
+        "smoothness": "Portage Way Smoothness",
         "surface": "Surface",
-        "maxspeed": "Maximum Speed"
+        "maxspeed": "Maximum Speed",
+        "waterway": "Waterway Type",
+        "openpaddlemap_primarytag": "Travel Mode"
       },
       "table": {
         "category": "Category",

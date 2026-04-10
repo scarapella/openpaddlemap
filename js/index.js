@@ -35,7 +35,8 @@
             deleteRouteButton,
             pois,
             circlego,
-            urlHash;
+            urlHash,
+            unitToggle;
         // By default bootstrap-select use glyphicons
         $('.selectpicker').selectpicker({
             iconBase: 'fa',
@@ -365,6 +366,22 @@
 
             exportRoute.update(latLngs, segments);
         }
+
+        // Initialize unit toggle control
+        unitToggle = new BR.UnitToggle({
+            onUpdate: function () {
+                // Refresh displays when unit system changes
+                var track = routing.toPolyline(),
+                    segments = routing.getSegments();
+
+                if (BR.conf.transit) {
+                    itinerary.update(track, segments);
+                } else {
+                    stats.update(track, segments);
+                }
+                trackAnalysis.update(track, segments);
+            },
+        });
 
         routing.addTo(map);
 

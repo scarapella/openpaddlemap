@@ -1518,6 +1518,30 @@
                     <span data-i18n="footer.stats-info">Start drawing a route to get stats.</span>
                 </div>
             </div>
+            <div
+                id="unit-toggle-container"
+                data-i18n="[title]footer.unit-toggle-tooltip"
+                title="Toggle between miles and kilometers"
+            >
+                <button
+                    type="button"
+                    id="unit-toggle-mi"
+                    class="unit-toggle-option active"
+                    data-unit="imperial"
+                    aria-label="Switch to miles"
+                >
+                    MI
+                </button>
+                <button
+                    type="button"
+                    id="unit-toggle-km"
+                    class="unit-toggle-option"
+                    data-unit="metric"
+                    aria-label="Switch to kilometers"
+                >
+                    KM
+                </button>
+            </div>
             <div id="stats-container" class="flexrow flexgrow">
                 <ul id="stats">
                     <li id="beeline-warning" hidden>
@@ -1534,19 +1558,10 @@
                         <div class="text-muted small d-none d-md-block" data-i18n="footer.distance">Distance</div>
                         <p class="stats-label">
                             <span id="distance">-</span>&#8239;<abbr
+                                id="distance-unit"
                                 data-i18n="[title]footer.kilometer;footer.kilometer-abbrev"
                                 title="kilometers"
                                 >km</abbr
-                            >
-                        </p>
-                    </li>
-                    <li>
-                        <div class="text-muted small d-none d-md-block" data-i18n="footer.distance">Distance</div>
-                        <p class="stats-label">
-                            <span id="distance-miles">-</span>&#8239;<abbr
-                                data-i18n="[title]footer.mile;footer.mile-abbrev"
-                                title="miles"
-                                >mi</abbr
                             >
                         </p>
                     </li>
@@ -1560,7 +1575,7 @@
                             >
                         </p>
                     </li>
-                    <li>
+                    <!--<li>
                         <div class="text-muted small d-none d-md-block">
                             <span data-i18n="footer.total-energy">Total Energy</span>&#8239;|&#8239;<span
                                 data-i18n="footer.energy-per-100km"
@@ -1580,7 +1595,7 @@
                                 >kWh</abbr
                             >
                         </p>
-                    </li>
+                    </li>-->
                     <li>
                         <div class="text-muted small d-none d-md-block">
                             <span data-i18n="footer.ascend">Ascend</span>&#8239;|&#8239;<span
@@ -1591,11 +1606,14 @@
                         <p class="stats-label">
                             <span id="ascend">-</span><span class="d-none d-md-inline">&#8239;</span
                             ><abbr
-                                class="d-none d-md-inline"
+                                id="ascend-unit"
+                                class="d-none d-md-inline elevation-unit"
                                 data-i18n="[title]footer.meter;footer.meter-abbrev"
                                 title="meters"
                                 >m</abbr
                             >&#8239;|&#8239;<span id="plainascend">-</span>&#8239;<abbr
+                                id="plainascend-unit"
+                                class="elevation-unit"
                                 data-i18n="[title]footer.meter;footer.meter-abbrev"
                                 title="meters"
                                 >m</abbr
