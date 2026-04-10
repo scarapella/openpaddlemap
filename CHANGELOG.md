@@ -1,5 +1,11 @@
 # OpenPaddleMap Changelog
 
+## 1.0.0 (2026-04-10)
+
+-   Updated Analysis tab to have relevent metrics on portage vs. paddle, waterway type, etc.
+-   Implemented metric and imperial switch (claude)
+-   Conformed to semantic versioning
+
 ## 0.0.3 (2026-04-10)
 
 -   Added overlays for waterways

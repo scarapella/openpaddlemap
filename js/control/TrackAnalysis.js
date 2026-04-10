@@ -135,6 +135,7 @@ BR.TrackAnalysis = L.Class.extend({
             maxspeed: {},
             surface: {},
             smoothness: {},
+            waterway: {},
         };
 
         this.totalRouteDistance = 0.0;
@@ -176,6 +177,7 @@ BR.TrackAnalysis = L.Class.extend({
                                 segments[segmentIndex].feature.properties.messages[messageIndex][3]
                             );
                             break;
+                        case 'waterway':
                         case 'maxspeed':
                         case 'surface':
                         case 'smoothness':
@@ -369,6 +371,10 @@ BR.TrackAnalysis = L.Class.extend({
         const $content = $('#track_statistics');
 
         $content.html('');
+        //content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.travel_mode')}</h4>`));
+        //$content.append(this.renderTable('travel_mode', analysis.travel_mode));
+        $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.waterway')}</h4>`));
+        $content.append(this.renderTable('waterway', analysis.waterway));
         $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.highway')}</h4>`));
         $content.append(this.renderTable('highway', analysis.highway));
         $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.surface')}</h4>`));
@@ -377,8 +383,8 @@ BR.TrackAnalysis = L.Class.extend({
             $(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.smoothness')}</h4>`)
         );
         $content.append(this.renderTable('smoothness', analysis.smoothness));
-        $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.maxspeed')}</h4>`));
-        $content.append(this.renderTable('maxspeed', analysis.maxspeed));
+        //$content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.maxspeed')}</h4>`));
+        //$content.append(this.renderTable('maxspeed', analysis.maxspeed));
     },
 
     /**

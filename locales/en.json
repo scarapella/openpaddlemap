@@ -1,6 +1,6 @@
 {
   "about": {
-    "bug-reports": "Bug reports and feature requests",
+    "openpaddlemap-github": "Github: Software, bug reports, and feature requests",
     "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site",
     "bug-reports-front": "web client / frontend.",
     "chat": "Chat with users and developers",
