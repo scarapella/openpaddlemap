@@ -450,11 +450,15 @@ BR.TrackAnalysis = L.Class.extend({
                 data-subtype="${data[index].subtype}" \
                 data-distance="${data[index].distance}"></tr>`);
             $row.append(`<td class="track-analysis-title">${data[index].formatted_name}</td>`);
-            $row.append(`<td class="track-analysis-distance">${this.formatDistance(data[index].distance)} km</td>`);
+            $row.append(
+                `<td class="track-analysis-distance">${this.formatDistance(
+                    data[index].distance
+                )} <span class="distance-unit">${BR.UnitSystem.getDistanceUnit()}</span></td>`
+            );
             $tbody.append($row);
             totalDistance += data[index].distance;
         }
-        totalRouteDistance =
+        const totalRouteDistance =
             totalDistanceMode === null
                 ? this.totalRouteDistance
                 : this.travelModeTotalRouteDistances[totalDistanceMode];
@@ -467,7 +471,7 @@ BR.TrackAnalysis = L.Class.extend({
                         $(
                             `<td class="track-analysis-distance">${this.formatDistance(
                                 totalRouteDistance - totalDistance
-                            )} km</td>`
+                            )} <span class="distance-unit">${BR.UnitSystem.getDistanceUnit()}</span></td>`
                         )
                     )
             );
@@ -483,7 +487,7 @@ BR.TrackAnalysis = L.Class.extend({
                     $(
                         `<td class="track-analysis-distance track-analysis-distance-total">${this.formatDistance(
                             totalDistance
-                        )} km</td>`
+                        )} <span class="distance-unit">${BR.UnitSystem.getDistanceUnit()}</span></td>`
                     )
                 )
         );
@@ -498,7 +502,7 @@ BR.TrackAnalysis = L.Class.extend({
      * @returns {string}
      */
     formatDistance(meters) {
-        return (meters / 1000).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        return BR.UnitSystem.formatDistanceAnalysis(meters);
     },
 
     handleHover(event) {
