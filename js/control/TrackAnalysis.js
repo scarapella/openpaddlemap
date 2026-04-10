@@ -135,9 +135,12 @@ BR.TrackAnalysis = L.Class.extend({
             maxspeed: {},
             surface: {},
             smoothness: {},
+            waterway: {},
+            openpaddlemap_primarytag: {},
         };
 
         this.totalRouteDistance = 0.0;
+        this.travelModeTotalRouteDistances = {};
 
         for (let segmentIndex = 0; segments && segmentIndex < segments.length; segmentIndex++) {
             for (
@@ -145,65 +148,73 @@ BR.TrackAnalysis = L.Class.extend({
                 messageIndex < segments[segmentIndex].feature.properties.messages.length;
                 messageIndex++
             ) {
-                this.totalRouteDistance += parseFloat(
-                    segments[segmentIndex].feature.properties.messages[messageIndex][3]
-                );
+                let segmentDistance = parseFloat(segments[segmentIndex].feature.properties.messages[messageIndex][3]);
+                this.totalRouteDistance += segmentDistance;
                 let wayTags = segments[segmentIndex].feature.properties.messages[messageIndex][9].split(' ');
-                wayTags = this.normalizeWayTags(wayTags, 'cycling');
-                for (let wayTagIndex = 0; wayTagIndex < wayTags.length; wayTagIndex++) {
-                    let wayTagParts = wayTags[wayTagIndex].split('=');
+                let wayObject = this.normalizeWayTags(wayTags, 'paddling');
+                let normalizedWayTags = wayObject.wayTags;
+                let primaryTag = wayObject.primaryTag;
+                //add a dummy travel mode tag for the calculation
+                switch (primaryTag) {
+                    case 'highway':
+                    case 'waterway':
+                        normalizedWayTags.push('openpaddlemap_primarytag=' + primaryTag);
+                        if (typeof this.travelModeTotalRouteDistances[primaryTag] === 'undefined') {
+                            this.travelModeTotalRouteDistances[primaryTag] = segmentDistance;
+                        } else {
+                            this.travelModeTotalRouteDistances[primaryTag] += segmentDistance;
+                        }
+                        break;
+                }
+                for (let wayTagIndex = 0; wayTagIndex < normalizedWayTags.length; wayTagIndex++) {
+                    let wayTagParts = normalizedWayTags[wayTagIndex].split('=');
                     let tagName = wayTagParts[0];
+                    let tagValue = wayTagParts[1];
+                    let subType;
+                    //special handling for tagValues
                     switch (tagName) {
                         case 'highway':
-                            let highwayType = wayTagParts[1];
                             let trackType = '';
-                            if (highwayType === 'track') {
+                            if (tagValue === 'track') {
                                 trackType = this.getTrackType(wayTags);
-                                highwayType = 'Track ' + trackType;
+                                tagValue = 'Track ' + trackType;
+                                subType = trackType;
                             }
-                            if (typeof analysis.highway[highwayType] === 'undefined') {
-                                analysis.highway[highwayType] = {
-                                    formatted_name: i18next.t(
-                                        'sidebar.analysis.data.highway.' + highwayType,
-                                        highwayType
-                                    ),
-                                    name: wayTagParts[1],
-                                    subtype: trackType,
-                                    distance: 0.0,
-                                };
-                            }
-                            analysis.highway[highwayType].distance += parseFloat(
-                                segments[segmentIndex].feature.properties.messages[messageIndex][3]
-                            );
                             break;
                         case 'maxspeed':
                         case 'surface':
                         case 'smoothness':
-                            if (typeof analysis[tagName][wayTagParts[1]] === 'undefined') {
-                                let formattedName;
-
-                                if (tagName.indexOf('maxspeed') === 0) {
-                                    formattedName = i18next.t('sidebar.analysis.data.maxspeed', {
-                                        maxspeed: wayTagParts[1],
-                                    });
-                                } else {
-                                    formattedName = i18next.t([
-                                        'sidebar.analysis.data.' + tagName + '.' + wayTagParts[1],
-                                        wayTagParts[1],
-                                    ]);
-                                }
-
-                                analysis[tagName][wayTagParts[1]] = {
-                                    formatted_name: formattedName,
-                                    name: wayTagParts[1],
-                                    subtype: '',
-                                    distance: 0.0,
-                                };
-                            }
-                            analysis[tagName][wayTagParts[1]].distance += parseFloat(
-                                segments[segmentIndex].feature.properties.messages[messageIndex][3]
-                            );
+                        case 'waterway':
+                        case 'openpaddlemap_primarytag':
                             break;
+                        default:
+                            //any other tag we don't want to analyze
+                            continue;
+                    }
+                    //only add to analysis if the tag is one of the examined categories, belt and suspenders with the default:continue; above...
+                    if (typeof analysis[tagName] !== 'undefined') {
+                        if (typeof analysis[tagName][tagValue] === 'undefined') {
+                            let formattedName;
+                            if (tagName.indexOf('maxspeed') === 0) {
+                                formattedName = i18next.t('sidebar.analysis.data.maxspeed', {
+                                    maxspeed: tagValue,
+                                });
+                            } else {
+                                formattedName = i18next.t([
+                                    'sidebar.analysis.data.' + tagName + '.' + tagValue,
+                                    tagValue,
+                                ]);
+                            }
+                            analysis[tagName][tagValue] = {
+                                formatted_name: formattedName,
+                                name: tagValue,
+                                subtype: subType,
+                                distance: 0.0,
+                            };
+                        }
+                        analysis[tagName][tagValue].distance += parseFloat(
+                            segments[segmentIndex].feature.properties.messages[messageIndex][3]
+                        );
                     }
                 }
             }
@@ -226,17 +237,32 @@ BR.TrackAnalysis = L.Class.extend({
      * we can select the correct value.
      *
      * @param wayTags - tags + values for a way segment
-     * @param routingType - currently only 'cycling' is supported, can be extended in the future (walking, driving, etc.)
+     * @param routingType
      * @returns {*[]}
      */
     normalizeWayTags(wayTags, routingType) {
         let normalizedWayTags = {};
         let surfaceTags = {};
         let smoothnessTags = {};
+        let primaryTag;
         for (let wayTagIndex = 0; wayTagIndex < wayTags.length; wayTagIndex++) {
             let wayTagParts = wayTags[wayTagIndex].split('=');
             const tagName = wayTagParts[0];
             const tagValue = wayTagParts[1];
+            if (routingType === 'paddling') {
+                switch (tagName) {
+                    case 'highway':
+                    case 'waterway':
+                        if (primaryTag === undefined) {
+                            primaryTag = tagName;
+                        } else {
+                            //this should never happen that we have two primary tags.
+                            //TODO: something smarter?
+                            primaryTag = 'multiple';
+                        }
+                        break;
+                }
+            }
 
             if (tagName === 'surface') {
                 surfaceTags.default = tagValue;
@@ -295,8 +321,8 @@ BR.TrackAnalysis = L.Class.extend({
                     normalizedWayTags.smoothness = smoothnessTags.default;
                 }
         }
-
-        return this.wayTagsToArray(normalizedWayTags);
+        //i am not proud of doing this to return the primaryTag, but it's not the thing i'm least proud of.
+        return { primaryTag: primaryTag, wayTags: this.wayTagsToArray(normalizedWayTags) };
     },
 
     /**
@@ -369,16 +395,26 @@ BR.TrackAnalysis = L.Class.extend({
         const $content = $('#track_statistics');
 
         $content.html('');
+        $content.append(
+            $(
+                `<h4 class="track-analysis-heading">${i18next.t(
+                    'sidebar.analysis.header.openpaddlemap_primarytag'
+                )}</h4>`
+            )
+        );
+        $content.append(this.renderTable('openpaddlemap_primarytag', analysis.openpaddlemap_primarytag, true));
+        $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.waterway')}</h4>`));
+        $content.append(this.renderTable('waterway', analysis.waterway, false, 'waterway'));
         $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.highway')}</h4>`));
-        $content.append(this.renderTable('highway', analysis.highway));
-        $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.surface')}</h4>`));
-        $content.append(this.renderTable('surface', analysis.surface));
+        $content.append(this.renderTable('highway', analysis.highway, false, 'highway'));
+        //$content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.surface')}</h4>`));
+        //$content.append(this.renderTable('surface', analysis.surface));
         $content.append(
             $(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.smoothness')}</h4>`)
         );
-        $content.append(this.renderTable('smoothness', analysis.smoothness));
-        $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.maxspeed')}</h4>`));
-        $content.append(this.renderTable('maxspeed', analysis.maxspeed));
+        $content.append(this.renderTable('smoothness', analysis.smoothness, false, 'highway'));
+        //$content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.maxspeed')}</h4>`));
+        //$content.append(this.renderTable('maxspeed', analysis.maxspeed));
     },
 
     /**
@@ -388,7 +424,7 @@ BR.TrackAnalysis = L.Class.extend({
      * @param {Array} data
      * @returns {jQuery}
      */
-    renderTable(type, data) {
+    renderTable(type, data, suppressUnknown = false, totalDistanceMode = null) {
         let index;
         const $table = $(`<table data-type="${type}" class="mini stripe dataTable track-analysis-table"></table>`);
         const $thead = $('<thead></thead>');
@@ -418,15 +454,19 @@ BR.TrackAnalysis = L.Class.extend({
             $tbody.append($row);
             totalDistance += data[index].distance;
         }
+        totalRouteDistance =
+            totalDistanceMode === null
+                ? this.totalRouteDistance
+                : this.travelModeTotalRouteDistances[totalDistanceMode];
 
-        if (totalDistance < this.totalRouteDistance) {
+        if (!suppressUnknown && totalDistance < totalRouteDistance) {
             $tbody.append(
-                $(`<tr data-name="internal-unknown" data-distance="${this.totalRouteDistance - totalDistance}"></tr>`)
+                $(`<tr data-name="internal-unknown" data-distance="${totalRouteDistance - totalDistance}"></tr>`)
                     .append($(`<td class="track-analysis-title">${i18next.t('sidebar.analysis.table.unknown')}</td>`))
                     .append(
                         $(
                             `<td class="track-analysis-distance">${this.formatDistance(
-                                this.totalRouteDistance - totalDistance
+                                totalRouteDistance - totalDistance
                             )} km</td>`
                         )
                     )
