@@ -12,14 +12,13 @@ BR.TrackStats = L.Class.extend({
         document.getElementById('beeline-warning').hidden = !BR.Routing.hasBeeline(segments);
 
         var stats = this.calcStats(polyline, segments),
-            length1 = L.Util.formatNum(stats.trackLength / 1000, 1).toLocaleString(),
-            length3 = L.Util.formatNum(stats.trackLength / 1000, 3).toLocaleString(undefined, {
-                minimumFractionDigits: 3,
-            }),
-            lengthMiles = L.Util.formatNum(stats.trackLength / 1609.344, 2).toLocaleString(),
+            length1 = BR.UnitSystem.formatDistance(stats.trackLength, 1),
+            length3 = BR.UnitSystem.formatDistancePrecise(stats.trackLength),
+            distanceUnit = BR.UnitSystem.getDistanceUnit(),
             lengthYards = L.Util.formatNum(stats.trackLength / 0.9144, 0).toLocaleString(),
-            formattedAscend = stats.filteredAscend.toLocaleString(),
-            formattedPlainAscend = stats.plainAscend.toLocaleString(),
+            formattedAscend = BR.UnitSystem.formatElevation(stats.filteredAscend),
+            formattedPlainAscend = BR.UnitSystem.formatElevation(stats.plainAscend),
+            elevationUnit = BR.UnitSystem.getElevationUnit(),
             formattedCost = stats.cost.toLocaleString(),
             meanCostFactor = stats.trackLength
                 ? L.Util.formatNum(stats.cost / stats.trackLength, 2).toLocaleString()
@@ -33,12 +32,13 @@ BR.TrackStats = L.Class.extend({
                 : '0';
 
         $('#distance').html(length1);
-        $('#distance-miles').html(lengthMiles);
-        // alternative 3-digit format down to meters as tooltip
-        $('#distance').attr('title', length3 + ' km');
-        $('#distance-miles').attr('title', lengthYards + ' yd');
+        // alternative 3-digit format with current unit as tooltip
+        $('#distance').attr('title', length3 + ' ' + distanceUnit);
         $('#ascend').html(formattedAscend);
         $('#plainascend').html(formattedPlainAscend);
+        // Update unit labels
+        $('#distance-unit').html(distanceUnit);
+        $('.elevation-unit').html(elevationUnit);
         $('#cost').html(formattedCost);
         $('#meancostfactor').html(meanCostFactor);
         $('#totaltime').html(formattedTime);
