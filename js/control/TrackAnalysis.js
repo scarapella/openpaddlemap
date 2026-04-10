@@ -136,11 +136,11 @@ BR.TrackAnalysis = L.Class.extend({
             surface: {},
             smoothness: {},
             waterway: {},
-            reversedirection: {},
             openpaddlemap_primarytag: {},
         };
 
         this.totalRouteDistance = 0.0;
+        this.travelModeTotalRouteDistances = {};
 
         for (let segmentIndex = 0; segments && segmentIndex < segments.length; segmentIndex++) {
             for (
@@ -148,9 +148,8 @@ BR.TrackAnalysis = L.Class.extend({
                 messageIndex < segments[segmentIndex].feature.properties.messages.length;
                 messageIndex++
             ) {
-                this.totalRouteDistance += parseFloat(
-                    segments[segmentIndex].feature.properties.messages[messageIndex][3]
-                );
+                let segmentDistance = parseFloat(segments[segmentIndex].feature.properties.messages[messageIndex][3]);
+                this.totalRouteDistance += segmentDistance;
                 let wayTags = segments[segmentIndex].feature.properties.messages[messageIndex][9].split(' ');
                 let wayObject = this.normalizeWayTags(wayTags, 'paddling');
                 let normalizedWayTags = wayObject.wayTags;
@@ -160,6 +159,11 @@ BR.TrackAnalysis = L.Class.extend({
                     case 'highway':
                     case 'waterway':
                         normalizedWayTags.push('openpaddlemap_primarytag=' + primaryTag);
+                        if (typeof this.travelModeTotalRouteDistances[primaryTag] === 'undefined') {
+                            this.travelModeTotalRouteDistances[primaryTag] = segmentDistance;
+                        } else {
+                            this.travelModeTotalRouteDistances[primaryTag] += segmentDistance;
+                        }
                         break;
                 }
                 for (let wayTagIndex = 0; wayTagIndex < normalizedWayTags.length; wayTagIndex++) {
@@ -183,9 +187,6 @@ BR.TrackAnalysis = L.Class.extend({
                         case 'waterway':
                         case 'openpaddlemap_primarytag':
                             break;
-                        case 'reversedirection':
-                            if (primaryTag === 'waterway') break;
-                            else continue;
                         default:
                             //any other tag we don't want to analyze
                             continue;
@@ -403,15 +404,15 @@ BR.TrackAnalysis = L.Class.extend({
         );
         $content.append(this.renderTable('openpaddlemap_primarytag', analysis.openpaddlemap_primarytag, true));
         $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.waterway')}</h4>`));
-        $content.append(this.renderTable('waterway', analysis.waterway, true));
+        $content.append(this.renderTable('waterway', analysis.waterway, false, 'waterway'));
         $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.highway')}</h4>`));
-        $content.append(this.renderTable('highway', analysis.highway, true));
+        $content.append(this.renderTable('highway', analysis.highway, false, 'highway'));
         //$content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.surface')}</h4>`));
         //$content.append(this.renderTable('surface', analysis.surface));
         $content.append(
             $(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.smoothness')}</h4>`)
         );
-        $content.append(this.renderTable('smoothness', analysis.smoothness, true));
+        $content.append(this.renderTable('smoothness', analysis.smoothness, false, 'highway'));
         //$content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.maxspeed')}</h4>`));
         //$content.append(this.renderTable('maxspeed', analysis.maxspeed));
     },
@@ -423,7 +424,7 @@ BR.TrackAnalysis = L.Class.extend({
      * @param {Array} data
      * @returns {jQuery}
      */
-    renderTable(type, data, suppressUnknown = false) {
+    renderTable(type, data, suppressUnknown = false, totalDistanceMode = null) {
         let index;
         const $table = $(`<table data-type="${type}" class="mini stripe dataTable track-analysis-table"></table>`);
         const $thead = $('<thead></thead>');
@@ -453,15 +454,19 @@ BR.TrackAnalysis = L.Class.extend({
             $tbody.append($row);
             totalDistance += data[index].distance;
         }
+        totalRouteDistance =
+            totalDistanceMode === null
+                ? this.totalRouteDistance
+                : this.travelModeTotalRouteDistances[totalDistanceMode];
 
-        if (!suppressUnknown && totalDistance < this.totalRouteDistance) {
+        if (!suppressUnknown && totalDistance < totalRouteDistance) {
             $tbody.append(
-                $(`<tr data-name="internal-unknown" data-distance="${this.totalRouteDistance - totalDistance}"></tr>`)
+                $(`<tr data-name="internal-unknown" data-distance="${totalRouteDistance - totalDistance}"></tr>`)
                     .append($(`<td class="track-analysis-title">${i18next.t('sidebar.analysis.table.unknown')}</td>`))
                     .append(
                         $(
                             `<td class="track-analysis-distance">${this.formatDistance(
-                                this.totalRouteDistance - totalDistance
+                                totalRouteDistance - totalDistance
                             )} km</td>`
                         )
                     )
