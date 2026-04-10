@@ -481,11 +481,13 @@ BR.LayersTab = BR.ControlLayers.extend({
                 }
             }
         }
+        //load the default active layers as well
+        //this may get annoying to users but for now, i leave it.
+        this.loadDefaultActiveLayers();
     },
 
     loadDefaultActiveLayers() {
-        var defaultActiveOverlays = ['waterways', 'opentrailmap-canoe-pois'];
-        defaultActiveOverlays = this.layersConfig.defaultActiveOverlays;
+        var defaultActiveOverlays = this.layersConfig.defaultActiveOverlays;
         for (var i = 0; i < defaultActiveOverlays.length; i++) {
             var obj = this.getLayerFromString(defaultActiveOverlays[i]);
 
