@@ -50,7 +50,7 @@ To build the Docker container run:
 docker build -t openpaddlemap .
 ```
 
-This creates a Docker image with the name `openpaddlemap`.
+This creates a Docker image with the name `openpaddlemap`. If you previously copied profiles into `profiles2/` these will be included in the docker image. Otherwise, the image will contain the default profiles from https://github.com/scarapella/openpaddlemap-profiles/
 
 ## Running Docker container
 

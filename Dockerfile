@@ -2,7 +2,12 @@ FROM node:lts AS build
 RUN mkdir /tmp/openpaddlemap
 WORKDIR /tmp/openpaddlemap
 COPY . .
-RUN mkdir -p /tmp/openpaddlemap/profiles2
+#if you didn't copy the profiles into ./profiles2/ clone them from the interwebs
+RUN if [ ! -f /tmp/openpaddlemap/profiles2/paddle.brf ]; then \
+    mkdir -p /tmp/openpaddlemap/profiles2; \
+    git clone https://github.com/scarapella/openpaddlemap-profiles.git /tmp/openpaddlemap-profiles/; \
+    mv /tmp/openpaddlemap-profiles/profiles2/*.brf /tmp/openpaddlemap/profiles2/; \
+fi
 RUN yarn install
 RUN yarn run build
 
