@@ -1,0 +1,343 @@
+{
+    "data_format": 1,
+    "data_url": "https://openpaddlemap.org/taginfo.json",
+    "project": {
+        "name": "OpenPaddleMap",
+        "description": "OpenPaddleMap is a mapping and routing tool for canoes, kayaks, and other paddlers.",
+        "project_url": "https://openpaddlemap.org/",
+        "icon_url": "https://openpaddlemap.org/favicon-16x16.png",
+        "contact_name": "Sean P. Carapella",
+        "contact_email": "sean@openpaddlemap.org"
+    },
+    "tags": [
+        {
+            "key": "waterway",
+            "value": "access_point",
+            "object_types": ["node"],
+            "description": "Used to indicate places to access waterways (e.g. put ins and take outs)"
+        },
+        {
+            "key": "leisure",
+            "value": "slipway",
+            "object_types": ["node"],
+            "description": "Used to indicate boat ramps to access waterways (e.g. put ins and take outs)"
+        },
+        {
+            "key": "natural",
+            "value": "beaver_dam",
+            "object_types": ["node"],
+            "description": "Used to indicate beaver dams that may be obstacles for paddlers."
+        },
+        {
+            "key": "backcountry",
+            "value": "yes",
+            "object_types": ["node"],
+            "description": "Influences the display of waterway access points on the map to indicate they are not accessible by motor vehicles (e.g. remote portage locations)."
+        },
+        {
+            "key": "backcountry",
+            "value": "no",
+            "object_types": ["node"],
+            "description": "Influences the display of waterway access points on the map to indicate they are accessible by motor vehicles."
+        },
+        {
+            "key": "waterway",
+            "value": "waterfall",
+            "object_types": ["node"],
+            "description": "Used to indicate hazards and used in routing to avoid sending unsuspecting paddlers over the brink."
+        },
+        {
+            "key": "waterway",
+            "value": "dam",
+            "object_types": ["node", "way", "area"],
+            "description": "Used to indicate dams as paddling hazards."
+        },
+        {
+            "key": "waterway",
+            "value": "weir",
+            "object_types": ["node", "way", "area"],
+            "description": "Used to indicate weirs as paddling hazards."
+        },
+        {
+            "key": "amenity",
+            "value": "ranger_station",
+            "object_types": ["node", "area"],
+            "description": "Used to indicate ranger stations as a points of interest to paddlers"
+        },
+        {
+            "key": "tourism",
+            "value": "camp_site",
+            "object_types": ["node", "area"],
+            "description": "Used to indicate campsites as points of interest to paddlers"
+        },
+        {
+            "key": "tourism",
+            "value": "caravan_site",
+            "object_types": ["node", "area"],
+            "description": "Used to indicate caravan sites as points of interest to paddlers"
+        },
+        {
+            "key": "rapids",
+            "object_types": ["node", "way"],
+            "description": "Used to indicate rapids as hazards to paddlers and used to influence the routing of paddlers based on their whitewater skill and preference."
+        },
+        {
+            "key": "barrier",
+            "value": "floating_boom",
+            "object_types": ["way"],
+            "description": "Used to indicate floating booms as hazards to paddlers."
+        },
+        {
+            "key": "waterway",
+            "value": "river",
+            "object_types": ["way"],
+            "description": "Assumed to be navigable by canoe unless otherwise indicated and to indicate possible paddle routes."
+        },
+        {
+            "key": "waterway",
+            "value": "flowline",
+            "object_types": ["way"],
+            "description": "Assumed to be navigable by canoe unless otherwise indicated and to indicate possible paddle routes."
+        },
+        {
+            "key": "waterway",
+            "value": "fairway",
+            "object_types": ["way"],
+            "description": "Assumed to be navigable by canoe unless otherwise indicated and to indicate possible paddle routes."
+        },
+        {
+            "key": "fairway",
+            "value": "link",
+            "object_types": ["way"],
+            "description": "Assumed to be navigable by canoe unless otherwise indicatedand to incidate possible paddle routes."
+        },
+        {
+            "key": "fairway",
+            "value": "canal",
+            "object_types": ["way"],
+            "description": "Assumed to be navigable by canoe unless otherwise indicated and to indicate possible paddle routes."
+        },
+        {
+            "key": "fairway",
+            "value": "canoe_pass",
+            "object_types": ["way"],
+            "description": "Assumed to be navigable by canoe unless otherwise indicated and to indicate possible paddle routes."
+        },
+        {
+            "key": "fairway",
+            "value": "tidal_channel",
+            "object_types": ["way"],
+            "description": "Assumed to be navigable by canoe unless otherwise indicated and to indicate possible paddle routes."
+        },
+        {
+            "key": "fairway",
+            "value": "stream",
+            "object_types": ["way"],
+            "description": "Assumed to not be navigable by canoe unless otherwise indicated and to indicate possible paddle routes."
+        },
+        {
+            "key": "fairway",
+            "value": "drain",
+            "object_types": ["way"],
+            "description": "Assumed to not be navigable by canoe unless otherwise indicated and to indicate possible paddle routes."
+        },
+        {
+            "key": "fairway",
+            "value": "ditch",
+            "object_types": ["way"],
+            "description": "Assumed to not be navigable by canoe unless otherwise indicated and to indicate possible paddle routes."
+        },
+        {
+            "key": "canoe",
+            "value": "yes",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways, access points, and slipways that are suitable for paddling."
+        },
+        {
+            "key": "canoe",
+            "value": "designated",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways, access points, and slipways that are especially suitable for paddling."
+        },
+        {
+            "key": "canoe",
+            "value": "permit",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways, access points, and slipways that require a permit for paddling."
+        },
+        {
+            "key": "canoe",
+            "value": "permissive",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways, access points, and slipways where paddling is allowed."
+        },
+        {
+            "key": "canoe",
+            "value": "customers",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways, access points, and slipways that are only suitable for customers of a business (e.g. a canoe rental)."
+        },
+        {
+            "key": "canoe",
+            "value": "no",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways, access points, and slipways that are not suitable for paddling."
+        },
+        {
+            "key": "canoe",
+            "value": "discouraged",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways, access points, and slipways that are not suitable for paddling."
+        },
+        {
+            "key": "canoe",
+            "value": "private",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways, access points, and slipways that are available for paddling."
+        },
+        {
+            "key": "boat",
+            "value": "yes",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways, access points, and slipways that are suitable for boating."
+        },
+        {
+            "key": "boat",
+            "value": "designated",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways, access points, and slipways that are especially suited to boating."
+        },
+        {
+            "key": "boat",
+            "value": "permit",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways, access points, and slipways that require a permit for boating."
+        },
+        {
+            "key": "boat",
+            "value": "permissive",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways, access points, and slipways where boating is allowed, but may be removed at any time."
+        },
+        {
+            "key": "boat",
+            "value": "no",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways, access points, and slipways that are not suitable for boating."
+        },
+        {
+            "key": "boat",
+            "value": "discouraged",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways, access points, and slipways that are not suitable for boating."
+        },
+        {
+            "key": "boat",
+            "value": "private",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways, access points, and slipways that are available for boating by the general public."
+        },
+        {
+            "key": "portage",
+            "value": "yes",
+            "object_types": ["node", "way"],
+            "description": "Used to identify roads and paths that are suitable for portaging."
+        },
+        {
+            "key": "portage",
+            "value": "designated",
+            "object_types": ["node", "way"],
+            "description": "Used to identify roads and paths that are suitable for portaging."
+        },
+        {
+            "key": "portage",
+            "value": "permit",
+            "object_types": ["node", "way"],
+            "description": "Used to identify roads and paths that require a permit for portaging."
+        },
+        {
+            "key": "portage",
+            "value": "permissive",
+            "object_types": ["node", "way"],
+            "description": "Used to identify roads and paths where portaging is allowed, but may be removed at any time."
+        },
+        {
+            "key": "portage",
+            "value": "customers",
+            "object_types": ["node", "way"],
+            "description": "Used to identify roads and paths that are only suitable for customers of a business (e.g. a canoe rental)."
+        },
+        {
+            "key": "portage",
+            "value": "no",
+            "object_types": ["node", "way"],
+            "description": "Used to identify roads and paths that are not suitable for portaging."
+        },
+        {
+            "key": "portage",
+            "value": "discouraged",
+            "object_types": ["node", "way"],
+            "description": "Used to identify roads and paths that are not suitable for portaging."
+        },
+        {
+            "key": "portage",
+            "value": "private",
+            "object_types": ["node", "way"],
+            "description": "Used to identify roads and paths that are available for portaging by the general public."
+        },
+        {
+            "key": "hand_cart",
+            "value": "yes",
+            "object_types": ["node", "way"],
+            "description": "Used to identify roads and paths that are suitable for hand carts."
+        },
+        {
+            "key": "hand_cart",
+            "value": "no",
+            "object_types": ["node", "way"],
+            "description": "Used to identify roads and paths that are not suitable for hand carts."
+        },
+        {
+            "key": "oneway:canoe",
+            "value": "no",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways where paddling against the current is trivial."
+        },
+        {
+            "key": "oneway:canoe",
+            "value": "yes",
+            "object_types": ["node", "way"],
+            "description": "Used to identify waterways where paddling against the current is not trivial."
+        },
+        {
+            "key": "foot",
+            "object_types": ["node", "way"],
+            "description": "Used to identify roads and path where foot traffic is or is not permitted."
+        },
+        {
+            "key": "motor_vehicle",
+            "object_types": ["way"],
+            "description": "Used to identify paths where hand carts might be usable."
+        },
+        {
+            "key": "smoothness",
+            "object_types": ["way"],
+            "description": "Used to identify paths and roads where hand carts might, or might not, be usable."
+        },
+        {
+            "key": "tidal",
+            "object_types": ["way"],
+            "description": "Used to identify tidal waterways as a possible hazard to paddling."
+        },
+        {
+            "key": "open_water",
+            "object_types": ["way"],
+            "description": "Used to identify waterways with open water as a possible hazard to paddling."
+        },
+        {
+            "key": "intermittent",
+            "object_types": ["way"],
+            "description": "Used to identify waterways that are intermittently not waterways and may poze a hazard to paddling."
+        }
+    ]
+}
