@@ -2,7 +2,7 @@ name: build
 
 on:
     push:
-        branches-ignore: 
+        branches-ignore:
             - 'renovate/**'
     pull_request:
 
@@ -15,8 +15,8 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
+            - uses: actions/checkout@v5
+            - uses: actions/setup-node@v5
               with:
                   node-version: '16'
             - run: yarn --frozen-lockfile
