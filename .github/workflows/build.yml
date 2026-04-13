@@ -2,9 +2,11 @@ name: build
 
 on:
     push:
+        branches: ['none']
         branches-ignore:
             - 'renovate/**'
     pull_request:
+        branches: ['none']
 
 concurrency:
     group: ${{ github.head_ref || github.ref_name }}
