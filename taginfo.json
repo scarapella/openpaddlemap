@@ -196,6 +196,18 @@
             "description": "Used to identify waterways, access points, and slipways that are available for paddling."
         },
         {
+            "key": "canoe:egress",
+            "value": "private",
+            "object_types": ["node"],
+            "description": "Used to identify access points, and slipways where the mapper had strong opinions about whether the paddler should enter or leave the water."
+        },
+        {
+            "key": "canoe:put_in",
+            "value": "private",
+            "object_types": ["node"],
+            "description": "Used to identify access points, and slipways where the mapper had strong opinions about whether the paddler should enter or leave the water."
+        },
+        {
             "key": "boat",
             "value": "yes",
             "object_types": ["node", "way"],
