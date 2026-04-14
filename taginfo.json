@@ -106,43 +106,43 @@
             "description": "Assumed to be navigable by canoe unless otherwise indicated and to indicate possible paddle routes."
         },
         {
-            "key": "fairway",
+            "key": "waterway",
             "value": "link",
             "object_types": ["way"],
             "description": "Assumed to be navigable by canoe unless otherwise indicatedand to incidate possible paddle routes."
         },
         {
-            "key": "fairway",
+            "key": "waterway",
             "value": "canal",
             "object_types": ["way"],
             "description": "Assumed to be navigable by canoe unless otherwise indicated and to indicate possible paddle routes."
         },
         {
-            "key": "fairway",
+            "key": "waterway",
             "value": "canoe_pass",
             "object_types": ["way"],
             "description": "Assumed to be navigable by canoe unless otherwise indicated and to indicate possible paddle routes."
         },
         {
-            "key": "fairway",
+            "key": "waterway",
             "value": "tidal_channel",
             "object_types": ["way"],
             "description": "Assumed to be navigable by canoe unless otherwise indicated and to indicate possible paddle routes."
         },
         {
-            "key": "fairway",
+            "key": "waterway",
             "value": "stream",
             "object_types": ["way"],
             "description": "Assumed to not be navigable by canoe unless otherwise indicated and to indicate possible paddle routes."
         },
         {
-            "key": "fairway",
+            "key": "waterway",
             "value": "drain",
             "object_types": ["way"],
             "description": "Assumed to not be navigable by canoe unless otherwise indicated and to indicate possible paddle routes."
         },
         {
-            "key": "fairway",
+            "key": "waterway",
             "value": "ditch",
             "object_types": ["way"],
             "description": "Assumed to not be navigable by canoe unless otherwise indicated and to indicate possible paddle routes."
