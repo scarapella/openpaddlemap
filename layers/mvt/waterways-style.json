@@ -74,12 +74,8 @@
                     false
                 ]
             ],
-            "layout": {
-                "line-cap": "round",
-                "line-join": "round"
-            },
             "paint": {
-                "line-dasharray": [2,6],
+                "line-dasharray": [1,5],
                 "line-width": ["interpolate",["linear"],["zoom"],12,1,22,5],
                 "line-color": "#b1b5ba"
             }
