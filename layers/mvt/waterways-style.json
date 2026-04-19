@@ -13,6 +13,40 @@
     "sprite": "https://opentrailmap.us/style/sprites/opentrailmap",
     "layers": [
         {
+            "id": "restricted-waterways",
+            "type": "line",
+            "source": "trails",
+            "source-layer": "trail",
+            "minzoom": 5,
+            "filter": [
+                "all",
+                ["has","waterway"],
+                [                
+                    "any",
+                    [
+                        "in",
+                        ["get","canoe"],["literal",["no","discouraged","private"]]
+                    ],
+                    [
+                        "all",
+                        ["!",["in",["get","canoe"],["literal",["no","discouraged","private"]]]],
+                        ["in",["get","boat"],["literal",["no","discouraged","private"]]]
+                    ], 
+                    [
+                        "all",
+                        ["!",["in",["get","boat"],["literal",["no","discouraged","private"]]]],
+                        ["in",["get","access"],["literal",["no","discouraged","private"]]]
+                    ],
+                    ["in",["get","tunnel"],"flooded"]
+                ]
+            ],
+            "paint": {
+                "line-dasharray": [1,7],
+                "line-width": ["interpolate",["linear"],["zoom"],12,1,22,5],
+                "line-color": "#b1b5ba"
+            }
+        },
+        {
             "id": "unrestricted-waterways",
             "type": "line",
             "source": "trails",
@@ -23,7 +57,8 @@
                 [
                     "all",
                     ["in",["get","waterway"],["literal",["river","flowline","fairway","link","canal","canoe_pass","tidal_channel"]]],
-                    ["!",["in",["get","canoe"],["literal",["no","discouraged","private"]]]]
+                    ["!",["in",["get","canoe"],["literal",["no","discouraged","private"]]]],
+                    ["!",["in",["get","tunnel"],"flooded"]]
                 ],
                 [
                     "all",
@@ -44,40 +79,6 @@
                 "line-dasharray": [2,6],
                 "line-width": ["interpolate",["linear"],["zoom"],12,1,22,5],
                 "line-color": "#85a0c9"
-            }
-        },
-        {
-            "id": "restricted-waterways",
-            "type": "line",
-            "source": "trails",
-            "source-layer": "trail",
-            "minzoom": 5,
-            "filter": [
-                "all",
-                ["has","waterway"],
-                [                
-                    "case",
-                    [
-                        "in",
-                        ["get","canoe"],["literal",["no","discouraged","private"]]
-                    ],true,
-                    [
-                        "all",
-                        ["!",["in",["get","canoe"],["literal",["no","discouraged","private"]]]],
-                        ["in",["get","boat"],["literal",["no","discouraged","private"]]]
-                    ], true,
-                    [
-                        "all",
-                        ["!",["in",["get","boat"],["literal",["no","discouraged","private"]]]],
-                        ["in",["get","access"],["literal",["no","discouraged","private"]]]
-                    ], true,
-                    false
-                ]
-            ],
-            "paint": {
-                "line-dasharray": [1,5],
-                "line-width": ["interpolate",["linear"],["zoom"],12,1,22,5],
-                "line-color": "#b1b5ba"
             }
         }
     ]
