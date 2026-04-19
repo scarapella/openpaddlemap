@@ -1,6 +1,6 @@
 {
   "about": {
-    "openpaddlemap-github": "Github: Software, bug reports, and feature requests",
+    "paddlemap-github": "Github: Software, bug reports, and feature requests",
     "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site",
     "bug-reports-front": "web client / frontend.",
     "chat": "Chat with users and developers",
@@ -8,11 +8,11 @@
     "contact-language": "Preferred language is English.",
     "data": "Data:",
     "data-description": "The underlying data is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. </br>North America is usually updated daily and the rest of world occasionally.",
-    "description": "OpenPaddleMap is a mapping and routing engine for paddlers of all sorts. Canoes, kaykas, SUPs, rubber duckies, wooden barrles, and others are welcome. <br /><br />OpenPaddleMap relies on the <a href=\"https://brouter.de/\" target=\"_blank\">BRouter</a> routing engine.  <br /> OpenPaddleMap is based on <a href=\"https://github.com/nrenner/brouter-web\" target=\"_blank\">brouter-web</a>.",
+    "description": "PaddleMap is a mapping and routing engine for paddlers of all sorts. Canoes, kaykas, SUPs, rubber duckies, wooden barrles, and others are welcome. <br /><br />PaddleMap relies on the <a href=\"https://brouter.de/\" target=\"_blank\">BRouter</a> routing engine.  <br /> PaddleMap is based on <a href=\"https://github.com/nrenner/brouter-web\" target=\"_blank\">brouter-web</a>.",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
     "support": "General discussions/questions, support",
     "title": "About",
-    "tooltip": "Show more information about OpenPaddleMap",
+    "tooltip": "Show more information about PaddleMap",
     "warning": "Paddling is inherently dangerous. You are using this tool at your own risk.  Always do your own reserach, follow appropriate safety guidelines."
   },
   "credits": {
@@ -358,7 +358,7 @@
           "canoe_pass": "Canoe Pass",
           "tidal_channel": "Tidal Channel"
         },
-        "openpaddlemap_primarytag": {
+        "paddlemap_primarytag": {
           "highway": "Portage",
           "waterway": "Paddle"
         },
@@ -370,7 +370,7 @@
         "surface": "Surface",
         "maxspeed": "Maximum Speed",
         "waterway": "Waterway Type",
-        "openpaddlemap_primarytag": "Travel Mode"
+        "paddlemap_primarytag": "Travel Mode"
       },
       "table": {
         "category": "Category",
@@ -437,7 +437,7 @@
     },
     "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
   },
-  "title": "OpenPaddleMap",
+  "title": "PaddleMap",
   "trackasroute": {
     "browse": "Browse",
     "explainpoi": "(show waypoints as POI's)",

@@ -17,7 +17,7 @@
     BR.conf.profilesUrl = origin + '/profiles2/';
 
     // name of the web app/instance, e.g. used as GPX creator and link text
-    BR.conf.appName = 'openpaddlemap';
+    BR.conf.appName = 'paddlemap';
     BR.conf.privacyPolicyUrl = '/privacypolicy.html';
 
     // Set the initial position and zoom level of the map

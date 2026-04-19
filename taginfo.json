@@ -1,13 +1,13 @@
 {
     "data_format": 1,
-    "data_url": "https://openpaddlemap.org/taginfo.json",
+    "data_url": "https://paddlemap.net/taginfo.json",
     "project": {
-        "name": "OpenPaddleMap",
-        "description": "OpenPaddleMap is a mapping and routing tool for canoes, kayaks, and other paddlers.",
-        "project_url": "https://openpaddlemap.org/",
-        "icon_url": "https://openpaddlemap.org/favicon-16x16.png",
+        "name": "PaddleMap",
+        "description": "PaddleMap is a mapping and routing tool for canoes, kayaks, and other paddlers.",
+        "project_url": "https://paddlemap.net/",
+        "icon_url": "https://paddlemap.net/favicon-16x16.png",
         "contact_name": "Sean P. Carapella",
-        "contact_email": "sean@openpaddlemap.org"
+        "contact_email": "sean@paddlemap.net"
     },
     "tags": [
         {
