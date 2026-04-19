@@ -4,22 +4,13 @@ http://paddlemap.net/
 
 Mapping and routing web client for paddlers (canoes, kayaks, SUPs, dories, rubber duckies, wooden barrels, etc.) by [@scarapella](https://github.com/scarapella).
 
-PaddleMap is based on [brouter-web] (https://github.com/nrenner/brouter-web)
+PaddleMap is based on [brouter-web](https://github.com/nrenner/brouter-web)
+
+
 
 **This repository is the front end web app**.
 
 The backend is provided by the [BRouter](https://github.com/abrensch/brouter) routing engine.
-
-More information:  
-https://brouter.de
-
-## Translating
-
-Translations are managed using the
-[Transifex](https://www.transifex.com/openstreetmap/brouter-web/) platform. After
-signing up, you can go to [BRouter's project
-page](https://www.transifex.com/openstreetmap/brouter-web/dashboard/), select a language and
-click **Translate** to start translating.
 
 ## Installation
 
