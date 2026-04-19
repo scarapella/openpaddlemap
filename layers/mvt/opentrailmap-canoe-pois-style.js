@@ -1,4 +1,8 @@
-{
+const tourism= ["get", "tourism"];
+const getLeisure= ["get", "leisure"];
+
+
+const style = {
     "version": 8,
     "sources": {
         "trails": {
@@ -21,7 +25,7 @@
             "minzoom": 13,
             "filter": [
                 "==",
-                ["get", "tourism"],
+                tourism,
                 "camp_site"
             ],
             "layout": {
@@ -94,7 +98,7 @@
             "minzoom": 10,
             "filter": [
                 "==",
-                ["get", "leisure"],
+                getLeisure,
                 "slipway"
             ],
             "layout": {
@@ -334,4 +338,6 @@
             }
         }
     ]
-}
+};
+
+module.exports = style;

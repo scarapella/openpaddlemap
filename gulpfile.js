@@ -30,6 +30,7 @@ var merge = require('merge-stream');
 var babel = require('gulp-babel');
 var { marked } = require('marked');
 var fs = require('fs');
+var through = require('through2');
 
 const server = browserSync.create();
 
@@ -89,7 +90,7 @@ var paths = {
     fonts: mainNpmFiles().filter((f) => RegExp('font-awesome/fonts/.*', 'i').test(f)),
     changelog: 'CHANGELOG.md',
     locales: 'locales/*.json',
-    layers: ['layers/**/*.geojson', 'layers/**/*.json'],
+    layers: ['layers/**/*.geojson', 'layers/**/*.json', 'layers/mvt/*.js'],
     layersDestName: 'layers.js',
     layersConfig: [
         'layers/config/config.js',
@@ -208,7 +209,7 @@ gulp.task('reload', function (done) {
 
 gulp.task('watch', function () {
     debug = true;
-    var watcher = gulp.watch(paths.scripts, gulp.series('scripts', 'reload'));
+    var watcher = gulp.watch(paths.scripts, gulp.series('scripts', 'reload', 'layers'));
     watcher.on('change', function (event) {
         if (event.type === 'deleted') {
             delete cached.caches.scripts[event.path];
@@ -342,7 +343,29 @@ gulp.task('layers', function () {
     return (
         gulp
             .src(paths.layers)
-            // Workaround to get file extension removed from the dictionary key
+            // 1. Convert .js files to JSON strings on the fly
+            .pipe(
+                gulpif(
+                    (file) => file.path.endsWith('.js'),
+                    through.obj(function (file, enc, cb) {
+                        try {
+                            // Clear node's require cache to pick up latest changes
+                            delete require.cache[require.resolve(file.path)];
+                            const style = require(file.path);
+                            gutil.log(file.path);
+
+                            // Overwrite contents with stringified JSON
+                            file.contents = Buffer.from(JSON.stringify(style, null, 2));
+
+                            this.push(file);
+                            cb();
+                        } catch (err) {
+                            cb(new Error(`Failed to convert ${file.path}: ${err.message}`));
+                        }
+                    })
+                )
+            )
+            // 2. Ensure all files have .json extension for jsonConcat's naming logic
             .pipe(rename({ extname: '.json' }))
             .pipe(
                 jsonConcat(paths.layersDestName, function (data) {
