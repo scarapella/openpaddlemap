@@ -38,7 +38,7 @@ Create a `profiles2/` directory:
 mkdir -p profiles2
 ```
 
-Copy the Brouter profiles ( `*.brf` files) in to the `profiles2/` - Default profiles for PaddleMap can be found here: https://github.com/scarapella/openpaddlemap-profiles
+Copy the Brouter profiles ( `*.brf` files) in to the `profiles2/` - Default profiles for PaddleMap can be found here: https://github.com/scarapella/paddlemap-profiles
 
 ## Building Docker image
 
@@ -50,7 +50,7 @@ To build the Docker container run:
 docker build -t paddlemap .
 ```
 
-This creates a Docker image with the name `paddlemap`. If you previously copied profiles into `profiles2/` these will be included in the docker image. Otherwise, the image will contain the default profiles from https://github.com/scarapella/openpaddlemap-profiles/
+This creates a Docker image with the name `paddlemap`. If you previously copied profiles into `profiles2/` these will be included in the docker image. Otherwise, the image will contain the default profiles from https://github.com/scarapella/paddlemap-profiles/
 
 ## Running Docker container
 

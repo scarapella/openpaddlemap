@@ -32,7 +32,7 @@ Create a `profiles2/` directory:
 mkdir -p profiles2
 ```
 
-Copy the Brouter profiles ( `*.brf` files) in to the `profiles2/` - Default profiles for PaddleMap can be found here: https://github.com/scarapella/openpaddlemap-profiles
+Copy the Brouter profiles ( `*.brf` files) in to the `profiles2/` - Default profiles for PaddleMap can be found here: https://github.com/scarapella/paddlemap-profiles
 
 ## Install dependencies
 
