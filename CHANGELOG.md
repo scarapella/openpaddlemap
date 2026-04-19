@@ -2,6 +2,8 @@
 
 ## 2026-04-18
 
+-   Add distinction for minor, backcountry waterway access points (e.g. portages) vs. normal front country waterway access points
+-   Distinguish non-routeable from routeable waterways on the map more clearly
 -   Versions #s are so 2005
 
 ## 2026-04-10
