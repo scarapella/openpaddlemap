@@ -543,7 +543,7 @@
             urlHash
         );
 
-        BR.WhatsNew.init();
+        //BR.WhatsNew.init();
 
         $('.modal').on('shown.bs.modal', function (e) {
             $('input:visible:enabled:first', e.target).focus();
