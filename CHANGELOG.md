@@ -1,20 +1,28 @@
-# OpenPaddleMap Changelog
+# Paddle Map Changelog
 
-## 1.0.0 (2026-04-10)
+## 2026-04-19
+
+-   Rebrand from OpenPaddleMap to PaddleMap
+-   Make flooded tunnels non-routeable by default as drowning seems a bad idea.
+-   Add distinction for minor, backcountry waterway access points (e.g. portages) vs. normal front country waterway access points
+-   Distinguish non-routeable from routeable waterways on the map more clearly
+-   Versions #s are so 2005
+
+## 2026-04-10
 
 -   Updated Analysis tab to have relevent metrics on portage vs. paddle, waterway type, etc.
 -   Implemented metric and imperial switch (claude)
 -   Conformed to semantic versioning
 
-## 0.0.3 (2026-04-10)
+## 2026-04-10
 
 -   Added overlays for waterways
 -   Branding/icon updates
 
-## 0.0.2 (2026-04-06)
+## 2026-04-06
 
 -   Added overlays for canoe/portage routes and paddle related POI
 
-## 0.0.1 (2026-04-05)
+## 2026-04-05
 
 -   Initial version forked from brouter-web

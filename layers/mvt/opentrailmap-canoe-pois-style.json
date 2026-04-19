@@ -4,7 +4,7 @@
         "trails": {
             "type": "vector",
             "tiles": [
-                "https://openpaddlemap-tiles-770576063346.northamerica-northeast2.run.app/waterways/{z}/{x}/{y}.mvt"
+                "https://paddlemap-tiles-770576063346.northamerica-northeast2.run.app/waterways/{z}/{x}/{y}.mvt"
             ],
             "minzoom": 0,
             "maxzoom": 14
@@ -21,10 +21,7 @@
             "minzoom": 13,
             "filter": [
                 "==",
-                [
-                    "get",
-                    "tourism"
-                ],
+                ["get", "tourism"],
                 "camp_site"
             ],
             "layout": {
@@ -41,10 +38,7 @@
             "minzoom": 13,
             "filter": [
                 "==",
-                [
-                    "get",
-                    "tourism"
-                ],
+                ["get", "tourism"],
                 "caravan_site"
             ],
             "layout": {
@@ -61,17 +55,8 @@
             "minzoom": 13,
             "filter": [
                 "in",
-                [
-                    "get",
-                    "amenity"
-                ],
-                [
-                    "literal",
-                    [
-                        "shelter",
-                        "hut"
-                    ]
-                ]
+                ["get", "amenity"],
+                ["literal", ["shelter", "hut"]]
             ],
             "layout": {
                 "icon-image": "lean_to",
@@ -87,14 +72,16 @@
             "minzoom": 10,
             "filter": [
                 "==",
-                [
-                    "get",
-                    "waterway"
-                ],
+                ["get", "waterway"],    
                 "access_point"
             ],
             "layout": {
-                "icon-image": "access_point",
+                "icon-image": [
+                    "case",        
+                    ["==", ["get", "backcountry"], "yes"], 
+                    ["image", "access_point-minor"],
+                    ["image", "access_point"]
+                ],
                 "icon-size": 0.8,
                 "icon-allow-overlap": false
             }
@@ -107,10 +94,7 @@
             "minzoom": 10,
             "filter": [
                 "==",
-                [
-                    "get",
-                    "leisure"
-                ],
+                ["get", "leisure"],
                 "slipway"
             ],
             "layout": {
@@ -127,10 +111,7 @@
             "minzoom": 13,
             "filter": [
                 "==",
-                [
-                    "get",
-                    "natural"
-                ],
+                ["get","natural"],
                 "beaver_dam"
             ],
             "layout": {
@@ -138,17 +119,8 @@
                     "case",
                     [
                         "in",
-                        [
-                            "get",
-                            "canoe"
-                        ],
-                        [
-                            "literal",
-                            [
-                                "yes",
-                                "designated"
-                            ]
-                        ]
+                        ["get", "canoe"],
+                        ["literal", ["yes", "designated"] ]
                     ],
                     "beaver_dam-canoeable",
                     "beaver_dam-hazard"
@@ -165,10 +137,7 @@
             "minzoom": 12,
             "filter": [
                 "==",
-                [
-                    "get",
-                    "waterway"
-                ],
+                ["get", "waterway"],
                 "waterfall"
             ],
             "layout": {
@@ -176,17 +145,8 @@
                     "case",
                     [
                         "in",
-                        [
-                            "get",
-                            "canoe"
-                        ],
-                        [
-                            "literal",
-                            [
-                                "yes",
-                                "designated"
-                            ]
-                        ]
+                        ["get", "canoe"],
+                        ["literal", ["yes", "designated"] ]
                     ],
                     "waterfall-canoeable",
                     "waterfall-hazard"
@@ -203,34 +163,16 @@
             "minzoom": 12,
             "filter": [
                 "in",
-                [
-                    "get",
-                    "waterway"
-                ],
-                [
-                    "literal",
-                    [
-                        "dam",
-                        "weir"
-                    ]
-                ]
+                ["get", "waterway"],
+                ["literal", ["dam", "weir"]]
             ],
             "layout": {
                 "icon-image": [
                     "case",
                     [
                         "in",
-                        [
-                            "get",
-                            "canoe"
-                        ],
-                        [
-                            "literal",
-                            [
-                                "yes",
-                                "designated"
-                            ]
-                        ]
+                        ["get", "canoe"],
+                        ["literal", ["yes", "designated"] ]
                     ],
                     "dam-canoeable",
                     "dam-hazard"
@@ -247,10 +189,7 @@
             "minzoom": 12,
             "filter": [
                 "==",
-                [
-                    "get",
-                    "lock"
-                ],
+                ["get","lock"],
                 "yes"
             ],
             "layout": {
@@ -258,17 +197,8 @@
                     "case",
                     [
                         "in",
-                        [
-                            "get",
-                            "canoe"
-                        ],
-                        [
-                            "literal",
-                            [
-                                "yes",
-                                "designated"
-                            ]
-                        ]
+                        ["get", "canoe"],
+                        ["literal",["yes","designated"]]
                     ],
                     "lock-canoeable",
                     "lock-hazard"
@@ -285,10 +215,7 @@
             "minzoom": 12,
             "filter": [
                 "==",
-                [
-                    "get",
-                    "amenity"
-                ],
+                ["get","amenity"],
                 "ranger_station"
             ],
             "layout": {
@@ -340,17 +267,7 @@
                 ],
                 "line-width": [
                     "interpolate",
-                    [
-                        "exponential",
-                        2
-                    ],
-                    [
-                        "zoom"
-                    ],
-                    7,
-                    2,
-                    17,
-                    8
+                    ["exponential",2],["zoom"],7,2,17,8
                 ]
             }
         },
@@ -362,10 +279,7 @@
             "minzoom": 12,
             "filter": [
                 "==",
-                [
-                    "get",
-                    "route"
-                ],
+                ["get","route"],
                 "ferry"
             ],
             "layout": {

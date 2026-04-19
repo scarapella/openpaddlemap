@@ -204,7 +204,7 @@ L.BRouter = L.Class.extend({
             const actualBRouterVersion = creator.replace(/^BRouter-/, '');
             if (!compareVersions.satisfies(actualBRouterVersion, L.BRouter.SUPPORTED_BROUTER_VERSIONS)) {
                 console.warn(
-                    'openpaddlemap ' +
+                    'paddlemap ' +
                         BR.version +
                         ' requires BRouter versions ' +
                         L.BRouter.SUPPORTED_BROUTER_VERSIONS +

@@ -1,7 +1,7 @@
 {
-    "name": "openpaddlemap",
+    "name": "paddlemap",
     "version": "1.0.0",
-    "description": "Open Trail Map",
+    "description": "PaddleMap",
     "private": true,
     "main": "js/index.js",
     "scripts": {

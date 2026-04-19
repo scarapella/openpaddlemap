@@ -136,7 +136,7 @@ BR.TrackAnalysis = L.Class.extend({
             surface: {},
             smoothness: {},
             waterway: {},
-            openpaddlemap_primarytag: {},
+            paddlemap_primarytag: {},
         };
 
         this.totalRouteDistance = 0.0;
@@ -158,7 +158,7 @@ BR.TrackAnalysis = L.Class.extend({
                 switch (primaryTag) {
                     case 'highway':
                     case 'waterway':
-                        normalizedWayTags.push('openpaddlemap_primarytag=' + primaryTag);
+                        normalizedWayTags.push('paddlemap_primarytag=' + primaryTag);
                         if (typeof this.travelModeTotalRouteDistances[primaryTag] === 'undefined') {
                             this.travelModeTotalRouteDistances[primaryTag] = segmentDistance;
                         } else {
@@ -186,7 +186,7 @@ BR.TrackAnalysis = L.Class.extend({
                         case 'surface':
                         case 'smoothness':
                         case 'waterway':
-                        case 'openpaddlemap_primarytag':
+                        case 'paddlemap_primarytag':
                             break;
                         default:
                             //any other tag we don't want to analyze
@@ -397,13 +397,9 @@ BR.TrackAnalysis = L.Class.extend({
 
         $content.html('');
         $content.append(
-            $(
-                `<h4 class="track-analysis-heading">${i18next.t(
-                    'sidebar.analysis.header.openpaddlemap_primarytag'
-                )}</h4>`
-            )
+            $(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.paddlemap_primarytag')}</h4>`)
         );
-        $content.append(this.renderTable('openpaddlemap_primarytag', analysis.openpaddlemap_primarytag, true));
+        $content.append(this.renderTable('paddlemap_primarytag', analysis.paddlemap_primarytag, true));
         $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.waterway')}</h4>`));
         $content.append(this.renderTable('waterway', analysis.waterway, false, 'waterway'));
         $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.highway')}</h4>`));

@@ -4,6 +4,6 @@ ENGINE=podman
 #    -v "`pwd`/../brouter/misc/profiles2:/usr/share/nginx/html/profiles2" \
 
 $ENGINE run --rm \
-    --name openpaddlemap \
+    --name paddlemap \
     -p 8080:80 \
-    openpaddlemap
+    paddlemap
