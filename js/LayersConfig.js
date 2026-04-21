@@ -7,7 +7,8 @@ BR.LayersConfig = L.Class.extend({
     defaultActiveOverlays: BR.confLayers.defaultActiveOverlays,
     legacyNameToIdMap: BR.confLayers.legacyNameToIdMap,
     // hardcoded, built-in layers with an id set (for URL hash)
-    builtInLayers: ['route-quality'],
+    // builtInLayers: ['route-quality'], // Hidden for now - uncomment to re-enable route quality overlay
+    builtInLayers: [],
 
     initialize(map) {
         this._map = map;

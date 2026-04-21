@@ -297,7 +297,7 @@
             requestUpdate,
         });
 
-        routingPathQuality = new BR.RoutingPathQuality(map, layersControl);
+        // routingPathQuality = new BR.RoutingPathQuality(map, layersControl); // Hidden for now - uncomment to re-enable
 
         routing = new BR.Routing(profile, {
             routing: {
@@ -355,7 +355,7 @@
                 segmentsLayer = routing._segments;
 
             elevation.update(track, segmentsLayer);
-            routingPathQuality.update(track, segmentsLayer);
+            // routingPathQuality.update(track, segmentsLayer); // Hidden for now - uncomment to re-enable
             if (BR.conf.transit) {
                 itinerary.update(track, segments);
             } else {
@@ -424,19 +424,20 @@
         BR.routeLoader(map, layersControl, routing, pois);
 
         pois.addTo(map);
-        routingPathQuality.addTo(map);
+        // routingPathQuality.addTo(map); // Hidden for now - uncomment to re-enable
 
-        map.addControl(
-            new BR.OpacitySliderControl({
-                id: 'route',
-                title: i18next.t('map.opacity-slider-shortcut', {
-                    action: '$t(map.opacity-slider)',
-                    key: 'M',
-                }),
-                muteKeyCode: 77, // m
-                callback: L.bind(routing.setOpacity, routing),
-            })
-        );
+        // Route track transparency slider hidden for now - uncomment to re-enable
+        // map.addControl(
+        //     new BR.OpacitySliderControl({
+        //         id: 'route',
+        //         title: i18next.t('map.opacity-slider-shortcut', {
+        //             action: '$t(map.opacity-slider)',
+        //             key: 'M',
+        //         }),
+        //         muteKeyCode: 77, // m
+        //         callback: L.bind(routing.setOpacity, routing),
+        //     })
+        // );
 
         // initial option settings (after controls are added and initialized with onAdd)
         router.setOptions(nogos.getOptions());

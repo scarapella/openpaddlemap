@@ -15,7 +15,7 @@ BR.LayersTab = BR.ControlLayers.extend({
 
         L.DomUtil.get('layers-control-wrapper').appendChild(this._section);
 
-        this.initOpacitySlider(map);
+        // this.initOpacitySlider(map); // Overlay transparency slider hidden for now - uncomment to re-enable
         this.initButtons();
         // this.initJsTree(); // Optional layers removed
 
@@ -26,14 +26,14 @@ BR.LayersTab = BR.ControlLayers.extend({
         BR.ControlLayers.prototype.onAdd.call(this, map);
 
         map.on('baselayerchange overlayadd overlayremove', this.storeActiveLayers, this);
-        map.on('overlayadd overlayremove', this.updateOpacityLabel, this);
+        // map.on('overlayadd overlayremove', this.updateOpacityLabel, this); // Disabled since opacity slider is hidden
     },
 
     onRemove(map) {
         BR.ControlLayers.prototype.onRemove.call(this, map);
 
         map.off('baselayerchange overlayadd overlayremove', this.storeActiveLayers, this);
-        map.off('overlayadd overlayremove', this.updateOpacityLabel, this);
+        // map.off('overlayadd overlayremove', this.updateOpacityLabel, this); // Disabled since opacity slider is hidden
     },
 
     initOpacitySlider(map) {

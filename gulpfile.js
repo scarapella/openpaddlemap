@@ -352,7 +352,6 @@ gulp.task('layers', function () {
                             // Clear node's require cache to pick up latest changes
                             delete require.cache[require.resolve(file.path)];
                             const style = require(file.path);
-                            gutil.log(file.path);
 
                             // Overwrite contents with stringified JSON
                             file.contents = Buffer.from(JSON.stringify(style, null, 2));
@@ -420,18 +419,18 @@ gulp.task(
 );
 
 gulp.task('release:zip', function () {
-    gutil.log(gutil.colors.green('Build brouter-web.' + nextVersion + '.zip'));
+    gutil.log(gutil.colors.green('Build paddlemap.' + nextVersion + '.zip'));
     return gulp
         .src(paths.zip, {
             base: '.',
         })
-        .pipe(zip('brouter-web.' + nextVersion + '.zip'))
+        .pipe(zip('paddlemap.' + nextVersion + '.zip'))
         .pipe(gulp.dest('.'));
 });
 
 gulp.task('release:zip_standalone', function () {
     var version = pkg.version;
-    var destName = 'brouter-web-standalone.' + version + '.zip';
+    var destName = 'paddlemap-standalone.' + version + '.zip';
 
     gutil.log(gutil.colors.green('Build ' + destName));
 
@@ -441,7 +440,7 @@ gulp.task('release:zip_standalone', function () {
         })
         .pipe(
             rename(function (path) {
-                path.dirname = 'brouter-web/' + path.dirname;
+                path.dirname = 'paddlemap/' + path.dirname;
             })
         );
 
