@@ -433,15 +433,16 @@ BR.Editable = L.Editable.extend({
     initialize(map, options) {
         L.Editable.prototype.initialize.call(this, map, options);
 
-        if (!this.map.tap) {
+        // L.Map.Tap was removed in Leaflet 1.8+ (tap events handled natively by browsers)
+        if (!this.map.tap && L.Map.Tap) {
             this.map.addHandler('tap', L.Map.Tap);
             this.map.tap.disable();
         }
     },
 
     registerForDrawing(editor) {
-        this._tapEnabled = this.map.tap.enabled();
-        if (!this._tapEnabled) {
+        this._tapEnabled = this.map.tap && this.map.tap.enabled();
+        if (this.map.tap && !this._tapEnabled) {
             this.map.tap.enable();
         }
 
@@ -449,7 +450,7 @@ BR.Editable = L.Editable.extend({
     },
 
     unregisterForDrawing(editor) {
-        if (!this._tapEnabled) {
+        if (this.map.tap && !this._tapEnabled) {
             this.map.tap.disable();
         }
 
