@@ -1,6 +1,19 @@
-const tourism= ["get", "tourism"];
-const getLeisure= ["get", "leisure"];
-
+const noaccessValsLiteral = ["literal", ["no", "private", "discouraged"]]; 
+const canoeNoaccessExpression = [
+    "any",
+    ["in", ["get", "canoe"], noaccessValsLiteral],
+    [
+        "all",
+        ["!", ["has", "canoe"]],
+        ["in", ["get", "boat"], noaccessValsLiteral]
+    ],
+    [
+        "all",
+        ["!", ["has", "canoe"]],
+        ["!", ["has", "boat"]],
+        ["in", ["get", "access"], noaccessValsLiteral]
+    ]
+];
 
 const style = {
     "version": 8,
@@ -25,7 +38,7 @@ const style = {
             "minzoom": 13,
             "filter": [
                 "==",
-                tourism,
+                ["get", "tourism"],
                 "camp_site"
             ],
             "layout": {
@@ -80,12 +93,12 @@ const style = {
                 "access_point"
             ],
             "layout": {
-                "icon-image": [
-                    "case",        
-                    ["==", ["get", "backcountry"], "yes"], 
-                    ["image", "access_point-minor"],
-                    ["image", "access_point"]
-                ],
+                "icon-image": //[
+                    // "case",        
+                    // ["==", ["get", "backcountry"], "yes"], 
+                    // ["image", "access_point-minor"],
+                    ["image", "access_point"],
+                //],
                 "icon-size": 0.8,
                 "icon-allow-overlap": false
             }
@@ -98,7 +111,7 @@ const style = {
             "minzoom": 10,
             "filter": [
                 "==",
-                getLeisure,
+                ["get", "leisure"],
                 "slipway"
             ],
             "layout": {

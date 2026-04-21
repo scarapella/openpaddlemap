@@ -1,8 +1,8 @@
 const noaccessValsLiteral = ["literal", ["no", "private", "discouraged"]]; 
 const accessValsLiteral = ["literal", ["yes", "permit", "designated", "permissive", "customers"]];
-const bigWaterwayValsLiteral = ["literal",["river","flowline","fairway","link","canal","canoe_pass","tidal_channel"]]; 
-const smallWaterwayValsLiteral = ["literal",["stream","ditch","drain"]]; 
-
+const isBigWaterwayExpression = ["in", ["get", "waterway"], ["literal",["river","flowline","fairway","link","canal","canoe_pass","tidal_channel"]]]; 
+const isSmallWaterwayExpression = ["in", ["get", "waterway"], ["literal",["stream","ditch","drain"]]]; 
+const isWaterwayExpression = ["any", isBigWaterwayExpression, isSmallWaterwayExpression];
 
 const canoeNoaccessExpression = [
     "any",
@@ -23,7 +23,7 @@ const canoeNoaccessExpression = [
         ["!", ["has", "canoe"]],
         ["!", ["has", "boat"]],
         ["!", ["has", "access"]],
-        ["in",["get", "tunnel"], "flooded"]
+        ["in",["get", "tunnel"], "flooded"]  // we treat flooded tunnels as an access restriction, but I'm not convinced by that implementation.  
     ]
 ];
 
@@ -75,17 +75,17 @@ const style = {
                 "any",
                [
                    "all",
-                    ["has", "waterway"],
+                    isWaterwayExpression,
                     canoeNoaccessExpression
                 ],
                 [
                     "all",
-                    ["has","waterway"],
+                    isWaterwayExpression,
                     ["!", canoeAccessExpression],
                     [
                         "any",
                         ["==", ["get", "intermittent"], "yes"],
-                        ["in", ["get", "waterway"], smallWaterwayValsLiteral]
+                        isSmallWaterwayExpression
                     ]
                 ]
             ],
@@ -105,20 +105,13 @@ const style = {
                 "any",
                 [
                     "all",
-                    ["in", ["get", "waterway"], bigWaterwayValsLiteral],
+                    isBigWaterwayExpression,
                     ["!", canoeNoaccessExpression ],
-                    [
-                        "!",
-                        [
-                            "any",
-                            ["==", ["get", "intermittent"], "yes"],
-                            ["in", ["get", "waterway"], smallWaterwayValsLiteral]
-                        ]
-                    ]
+                    ["!", ["==", ["get", "intermittent"], "yes"]]
                 ],
                 [
                     "all",
-                    ["has", "waterway"],
+                    isWaterwayExpression,
                     canoeAccessExpression
                 ]   
             ], 
