@@ -214,12 +214,7 @@
                             </dd>
                             <dd data-i18n="[html]credits.boundaries">
                                 Administrative Boundaries:
-                                <a href="https://osm-boundaries.com" target="_blank">OSM-Boundaries</a>,
-                                <a href="https://overpass-api.de/" class="overpass-url" target="_blank">Overpass API</a>
-                            </dd>
-                            <dd data-i18n="[html]credits.pois">
-                                Locations (POIs):
-                                <a href="https://overpass-api.de/" class="overpass-url" target="_blank">Overpass API</a>
+                                <a href="https://osm-boundaries.com" target="_blank">OSM-Boundaries</a>
                             </dd>
                             <dt data-i18n="credits.elevation-data">Elevation data</dt>
                             <dd>
@@ -270,9 +265,6 @@
                             <p class="help-block">
                                 <span data-i18n="layers.custom-layer-url-helptext-normal"
                                     >URL for normal layers, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png</span
-                                ><br />
-                                <span data-i18n="layers.custom-layer-url-helptext-overpass"
-                                    >Overpass Query, ex: nwr[shop]['diet:vegan']['diet:vegan'!=no];</span
                                 >
                             </p>
                         </div>
@@ -292,14 +284,6 @@
                             data-i18n="layers.add-overlay"
                         >
                             Add overlay
-                        </button>
-                        <button
-                            type="button"
-                            id="custom_layers_add_overpass"
-                            class="btn btn-success"
-                            data-i18n="layers.add-overpass"
-                        >
-                            Add overpass query
                         </button>
                         <button
                             type="button"
@@ -1305,7 +1289,6 @@
                     <div id="notification_jar">
                         <div id="message"></div>
                         <div id="whats_new_message"></div>
-                        <div id="overpass_loading_indicator"></div>
                     </div>
                     <div id="preview" hidden data-i18n="map.preview">Preview</div>
                 </div>
@@ -1325,39 +1308,7 @@
                             </div>
                             <div class="leaflet-control-layers-separator"></div>
                             <div id="layers-button-group">
-                                <div hidden id="tree-button-group">
-                                    <button
-                                        type="button"
-                                        id="expand_tree_button"
-                                        class="btn btn-light btn-sm"
-                                        data-i18n="[title]sidebar.layers.expand"
-                                        title="Expand all"
-                                    >
-                                        <span class="fa fa-plus-square-o"></span>
-                                    </button>
-                                    <button
-                                        type="button"
-                                        id="collapse_tree_button"
-                                        class="btn btn-light btn-sm"
-                                        data-i18n="[title]sidebar.layers.collapse"
-                                        title="Collapse all"
-                                    >
-                                        <span class="fa fa-minus-square-o"></span>
-                                    </button>
-                                </div>
-                                <!-- empty dummy to keep following buttons right-aligned when previous hidden -->
-                                <div></div>
                                 <div>
-                                    <button
-                                        type="button"
-                                        id="optional_layers_button"
-                                        class="btn btn-light btn-sm"
-                                        data-i18n="[title]sidebar.layers.optional"
-                                        title="Add or remove optional layers"
-                                    >
-                                        <span class="fa fa-cogs"></span>
-                                        <span data-i18n="sidebar.layers.optional-layers">More</span>
-                                    </button>
                                     <button
                                         type="button"
                                         id="custom_layers_button"
@@ -1369,10 +1320,6 @@
                                         <span data-i18n="sidebar.layers.custom-layers">Custom layers</span>
                                     </button>
                                 </div>
-                            </div>
-                            <div hidden id="optional-layers">
-                                <div class="help-block" data-i18n="sidebar.layers.optional"></div>
-                                <div id="optional-layers-tree"></div>
                             </div>
                         </div>
 

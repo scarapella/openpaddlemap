@@ -34,9 +34,6 @@
     ],
     "dependencies": {
         "@bagage/leaflet.restoreview": "1.0.1",
-        "@fortawesome/fontawesome-free": "6.4.0",
-        "@ideditor/temaki": "5.2.0",
-        "@mapbox/maki": "8.0.1",
         "@mapbox/polyline": "1.1.1",
         "@mapbox/togeojson": "0.16.2",
         "@maplibre/maplibre-gl-leaflet": "0.0.20",
@@ -80,7 +77,6 @@
         "leaflet.stravasegments": "2.3.2",
         "mapbbcode": "MapBBCode/mapbbcode#v1.2.0",
         "maplibre-gl": "2.4.0",
-        "overpass-layer": "3.4.0",
         "popper.js": "1.16.1",
         "qrcodejs": "^1.0.0",
         "regenerator-runtime": "0.13.11",
@@ -295,11 +291,6 @@
                 "tokml.js"
             ]
         },
-        "overpass-layer": {
-            "main": [
-                "dist/overpass-layer.js"
-            ]
-        },
         "qrcodejs": {
             "main": [
                 "qrcode.js"
@@ -313,78 +304,6 @@
         "compare-versions": {
             "main": [
                 "lib/umd/index.js"
-            ]
-        },
-        "@mapbox/maki": {
-            "main": [
-                "icons/art-gallery.svg",
-                "icons/bakery.svg",
-                "icons/bank.svg",
-                "icons/bar.svg",
-                "icons/bbq.svg",
-                "icons/beer.svg",
-                "icons/bicycle.svg",
-                "icons/cafe.svg",
-                "icons/campsite.svg",
-                "icons/car.svg",
-                "icons/car-rental.svg",
-                "icons/drinking-water.svg",
-                "icons/entrance-alt1.svg",
-                "icons/fast-food.svg",
-                "icons/fuel.svg",
-                "icons/grocery.svg",
-                "icons/hospital.svg",
-                "icons/information.svg",
-                "icons/lodging.svg",
-                "icons/picnic-site.svg",
-                "icons/restaurant.svg",
-                "icons/shelter.svg",
-                "icons/shop.svg",
-                "icons/star.svg",
-                "icons/toilet.svg",
-                "icons/water.svg"
-            ]
-        },
-        "@ideditor/temaki": {
-            "main": [
-                "icons/bench.svg",
-                "icons/shower.svg",
-                "icons/bicycle_rental.svg",
-                "icons/bicycle_repair.svg",
-                "icons/boat_rental.svg",
-                "icons/bus.svg",
-                "icons/sign_and_car.svg",
-                "icons/car_wash.svg",
-                "icons/ferry.svg",
-                "icons/car_parked.svg",
-                "icons/parking_space.svg",
-                "icons/bottles.svg",
-                "icons/cleaver.svg",
-                "icons/coffee.svg",
-                "icons/camper_trailer.svg",
-                "icons/cabin.svg",
-                "icons/bunk_beds.svg",
-                "icons/museum.svg",
-                "icons/spotting_scope.svg",
-                "icons/cabin.svg",
-                "icons/picnic_shelter.svg",
-                "icons/train.svg"
-            ]
-        },
-        "@fortawesome/fontawesome-free": {
-            "main": [
-                "svgs/solid/basket-shopping.svg",
-                "svgs/solid/cart-shopping.svg",
-                "svgs/solid/ice-cream.svg",
-                "svgs/solid/carrot.svg",
-                "svgs/solid/cheese.svg",
-                "svgs/solid/bell-concierge.svg",
-                "svgs/solid/motorcycle.svg",
-                "svgs/solid/charging-station.svg",
-                "svgs/solid/box.svg",
-                "svgs/solid/taxi.svg",
-                "svgs/solid/phone-flip.svg",
-                "svgs/solid/beer.svg"
             ]
         },
         "maplibre-gl": {

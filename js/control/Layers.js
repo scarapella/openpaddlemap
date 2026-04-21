@@ -18,7 +18,7 @@ BR.Layers = L.Class.extend({
                             name: a,
                             overlay: layers[a].isOverlay,
                             dataSource: layers[a].dataSource,
-                            query: layers[a].dataSource === 'OverpassAPI' ? layers[a].layer : undefined,
+                            // query: layers[a].dataSource === 'OverpassAPI' ? layers[a].layer : undefined,
                             url: layers[a].layer,
                         },
                     };
@@ -32,18 +32,18 @@ BR.Layers = L.Class.extend({
         var layersData = [];
         for (layer in this._customLayers) {
             var layerProps = this._customLayers[layer].layerData.properties;
-            if (layerProps.dataSource === 'OverpassAPI') {
-                layersData.push([layer, layerProps.query, i18next.t('sidebar.layers.table.type_overpass_query')]);
-            } else {
-                var isOverlay = layerProps.overlay;
-                layersData.push([
-                    layer,
-                    layerProps.url,
-                    isOverlay
-                        ? i18next.t('sidebar.layers.table.type_overlay')
-                        : i18next.t('sidebar.layers.table.type_layer'),
-                ]);
-            }
+            // if (layerProps.dataSource === 'OverpassAPI') {
+            //     layersData.push([layer, layerProps.query, i18next.t('sidebar.layers.table.type_overpass_query')]);
+            // } else {
+            var isOverlay = layerProps.overlay;
+            layersData.push([
+                layer,
+                layerProps.url,
+                isOverlay
+                    ? i18next.t('sidebar.layers.table.type_overlay')
+                    : i18next.t('sidebar.layers.table.type_layer'),
+            ]);
+            // }
         }
         if (this._layersTable != null) {
             this._layersTable.destroy();
@@ -74,7 +74,7 @@ BR.Layers = L.Class.extend({
 
         L.DomUtil.get('custom_layers_add_base').onclick = L.bind(this._addBaseLayer, this);
         L.DomUtil.get('custom_layers_add_overlay').onclick = L.bind(this._addOverlay, this);
-        L.DomUtil.get('custom_layers_add_overpass').onclick = L.bind(this._addOverpassQuery, this);
+        // L.DomUtil.get('custom_layers_add_overpass').onclick = L.bind(this._addOverpassQuery, this);
         L.DomUtil.get('custom_layers_remove').onclick = L.bind(this._remove, this);
 
         this._loadLayers();
@@ -138,14 +138,14 @@ BR.Layers = L.Class.extend({
         };
         this._addFromInput(layerProps);
     },
-    _addOverpassQuery(evt) {
-        var layerProps = {
-            overlay: true,
-            dataSource: 'OverpassAPI',
-            query: L.DomUtil.get('layer_url').value,
-        };
-        this._addFromInput(layerProps);
-    },
+    // _addOverpassQuery(evt) {
+    //     var layerProps = {
+    //         overlay: true,
+    //         dataSource: 'OverpassAPI',
+    //         query: L.DomUtil.get('layer_url').value,
+    //     };
+    //     this._addFromInput(layerProps);
+    // },
 
     _createTmsProps(props) {
         var tmsProps = {
