@@ -653,7 +653,8 @@ BR.TrackAnalysis = L.Class.extend({
                 }
                 return typeof parsed.waterway === 'string' && parsed.waterway === dataName;
             case 'paddlemap_primarytag':
-                return typeof parsed.paddlemap_primarytag === 'string' && parsed.paddlemap_primarytag === dataName;
+                //return typeof parsed.paddlemap_primarytag === 'string' && parsed.paddlemap_primarytag === dataName;
+                return this.singleWayTagMatchesData('paddlemap_primarytag', parsed, dataName);
             case 'surface':
                 return this.singleWayTagMatchesData('surface', parsed, dataName);
             case 'smoothness':
@@ -693,9 +694,16 @@ BR.TrackAnalysis = L.Class.extend({
         }
 
         // if the special handling for `maxspeed` didn't find a result,
-        // check wayTags for matching property:
-        if (foundValue === null && parsedData.hasOwnProperty(category)) {
-            foundValue = parsedData[category];
+        if (foundValue === null) {
+            // check wayTags for matching property:
+            if (parsedData.hasOwnProperty(category)) {
+                foundValue = parsedData[category];
+            }
+            //for paddlemap_primarytag we have special handler where we only check if the lookupValue has an entry
+            //that is because paddlemap_primarytag the normal primaryTag is made the loopkupValue in  calcStats()
+            else if (category === 'paddlemap_primarytag' && parsedData.hasOwnProperty(lookupValue)) {
+                foundValue = lookupValue;
+            }
         }
 
         if (lookupValue === 'internal-unknown' && foundValue === null) {
