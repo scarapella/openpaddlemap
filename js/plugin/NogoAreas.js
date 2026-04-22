@@ -509,10 +509,13 @@ BR.EditingTooltip = L.Handler.extend({
         // works better with zooming than updating offset to match radius
         layer.openTooltip = function (layer, latlng) {
             if (!latlng && layer instanceof L.Layer) {
-                latlng = L.latLng(
-                    layer.getBounds().getSouth(),
-                    0.5 * (layer.getBounds().getWest() + layer.getBounds().getEast())
-                );
+                var bounds = layer.getBounds();
+                if (bounds && bounds.isValid()) {
+                    latlng = L.latLng(bounds.getSouth(), 0.5 * (bounds.getWest() + bounds.getEast()));
+                } else {
+                    // Fallback to center if bounds are not valid
+                    latlng = layer.getLatLng();
+                }
             }
             L.Layer.prototype.openTooltip.call(this, layer, latlng);
         };

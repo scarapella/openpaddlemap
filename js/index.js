@@ -415,10 +415,6 @@
         L.easyBar(buttons).addTo(map);
         nogos.preventRoutePointOnCreate(routing);
 
-        if (BR.keys.strava) {
-            BR.stravaSegments(map, layersControl);
-        }
-
         BR.tracksLoader(map, layersControl, routing, pois);
 
         BR.routeLoader(map, layersControl, routing, pois);
