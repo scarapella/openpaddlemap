@@ -138,7 +138,7 @@ gulp.task('scripts', function () {
         .pipe(gulpif(!debug, babel({ caller: { supportsDynamicImport: true } })))
         .pipe(gulpif(!debug, uglify()))
         .pipe(remember('scripts'))
-        .pipe(concat(paths.destName + '.js'))
+        .pipe(concat(paths.destName + '.js', { newLine: ';\n' }))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(paths.dest));
 });
@@ -147,7 +147,7 @@ gulp.task('scripts', function () {
 gulp.task('concat', function () {
     return gulp
         .src(paths.scripts)
-        .pipe(concat(paths.destName + '.src.js'))
+        .pipe(concat(paths.destName + '.src.js', { newLine: ';\n' }))
         .pipe(gulp.dest(paths.dest));
 });
 

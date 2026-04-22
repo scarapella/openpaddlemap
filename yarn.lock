@@ -1514,13 +1514,6 @@
   resolved "https://registry.yarnpkg.com/@mapbox/point-geometry/-/point-geometry-0.1.0.tgz#8a83f9335c7860effa2eeeca254332aa0aeed8f2"
   integrity sha512-6j56HdLTwWGO0fJPlrZtdU/B13q8Uwmo18Ck2GnGgN9PCFyKTZ3UbXeEdRFh18i9XQ92eH2VdtpJHpBD3aripQ==
 
-"@mapbox/polyline@^1.0.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@mapbox/polyline/-/polyline-1.2.0.tgz#11f7481968a83bd9dde36273a50b8037af24a86b"
-  integrity sha512-sIIi9clVZiTmXYqbXpSAoG+ZLsvQn7j9FJLqiNOG85KnXN8tz11MEhuW2M7NDEDIKi4hIMaSI1CKwH8oLuVxPQ==
-  dependencies:
-    meow "^6.1.1"
-
 "@mapbox/polyline@^1.1.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@mapbox/polyline/-/polyline-1.2.1.tgz#1eecce5e8c0d9e6dfc718b225e8e9f03591ea636"
@@ -3908,7 +3901,7 @@ camelcase@^3.0.0:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-3.0.0.tgz#32fc4b9fcdaf845fcdf7e73bb97cac2261f0ab0a"
   integrity sha512-4nhGqUkc4BqbBBB4Q6zLuD7lzzrHYrjKGeYaEji/3tFR5VdJu9v+LilhGIVe8wxEJPPOeWo7eg8dwY13TZ1BNg==
 
-camelcase@^5.0.0, camelcase@^5.3.1:
+camelcase@^5.3.1:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.3.1.tgz#e3c9b31569e106811df242f715725a1f4c494320"
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
@@ -5461,7 +5454,7 @@ follow-redirects@^1.0.0, follow-redirects@^1.14.0:
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
   integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
 
-font-awesome@4, font-awesome@4.7.0:
+font-awesome@4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
   integrity sha512-U6kGnykA/6bFmg1M/oT9EkFeIYv7JlX3bozwQJWiiLz6L0w3F5vBVPxHlwyX/vtNq1ckcpRKOB9f2Qal/VtFpg==
@@ -7579,7 +7572,7 @@ leaflet-control-geocoder@^2.4.0:
   optionalDependencies:
     open-location-code "^1.0.0"
 
-leaflet-easybutton@*, leaflet-easybutton@^2.3.0:
+leaflet-easybutton@*:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/leaflet-easybutton/-/leaflet-easybutton-2.4.0.tgz#3ad8ad31c9cf6d5ca7a6a1988f82eed13ff2c1af"
   integrity sha512-O+qsQq4zTF6ds8VClnytobTH/MKalctlPpiA8L+bNKHP14J3lgJpvEd/jSpq9mHTI6qOzRAvbQX6wS6qNwThvg==
@@ -7607,11 +7600,6 @@ leaflet-hotline@tbsmark86/Leaflet.hotline#25b2457:
   version "0.4.0"
   resolved "https://codeload.github.com/tbsmark86/Leaflet.hotline/tar.gz/25b24572b99ac66203d857e0fb27f430e2f68448"
 
-leaflet-plugins@3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/leaflet-plugins/-/leaflet-plugins-3.4.0.tgz#72435a07098c1b850eca01f525fe54a93a2ff3f4"
-  integrity sha512-CjsQKaW545tNY4JVm4v3WhbFcUa2QzWQQzEysQ0eY/ThYYMqIL5DnQNgcHCvAFZtEwlj7MlTtI7BFuKiNuqyJA==
-
 leaflet-providers@1.13.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/leaflet-providers/-/leaflet-providers-1.13.0.tgz#10c843a23d5823a65096d40ad53f27029e13434b"
@@ -7624,11 +7612,6 @@ leaflet-routing@nrenner/leaflet-routing#2ad0176:
 leaflet-sidebar-v2@nrenner/leaflet-sidebar-v2#dev:
   version "3.0.2"
   resolved "https://codeload.github.com/nrenner/leaflet-sidebar-v2/tar.gz/e9d094b01cb782b86be9038faadc17406c6cdf16"
-
-leaflet-triangle-marker@1.0.2, leaflet-triangle-marker@^1.0.1:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/leaflet-triangle-marker/-/leaflet-triangle-marker-1.0.2.tgz#e4c5f1d09d10ae078f8fba87aa32e5884017ad96"
-  integrity sha512-J2Xa5UgUV6rU04bcwAdQRptnLm7nSxDtxqfX0Nzb+tz6p3buyEEBkXdOvEgzD6ghuII6BVSXFb4QP8cyVKigXg==
 
 leaflet.heightgraph@nrenner/Leaflet.Heightgraph#0757b2a:
   version "1.3.4-fork.2"
@@ -7646,18 +7629,7 @@ leaflet.snogylop@0.4.0:
   resolved "https://registry.yarnpkg.com/leaflet.snogylop/-/leaflet.snogylop-0.4.0.tgz#bc373432edc1da63a8efbcc5a681d398deebd0d3"
   integrity sha512-kpjBM3dWBdLyBEUJc1u+2HVYEJifVGnsrOGSeHGChxLP1In/GShmOSgbkHD6uXcK+y9w58SOsEtK+K7/bwEHCg==
 
-leaflet.stravasegments@2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/leaflet.stravasegments/-/leaflet.stravasegments-2.3.2.tgz#4086e8a5f0ea7dd256edbcb7d2ca7ab1deabc669"
-  integrity sha512-AKzvkPZfSGKYZP54dK6jDRkerlJlqThkaFKFd857S1LLvYr/ViuKmVVTVZBZSoBccF5jXrZUt9UDgOcjKLofeg==
-  dependencies:
-    "@mapbox/polyline" "^1.0.0"
-    font-awesome "4"
-    leaflet "^1.3.4"
-    leaflet-easybutton "^2.3.0"
-    leaflet-triangle-marker "^1.0.1"
-
-leaflet@^1.0.1, leaflet@^1.3.4, leaflet@^1.5.0, leaflet@^1.6.0, leaflet@^1.7.1:
+leaflet@^1.0.1, leaflet@^1.5.0, leaflet@^1.6.0, leaflet@^1.7.1:
   version "1.9.4"
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.9.4.tgz#23fae724e282fa25745aff82ca4d394748db7d8d"
   integrity sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==
@@ -8072,23 +8044,6 @@ meow@^3.1.0, meow@^3.3.0:
     redent "^1.0.0"
     trim-newlines "^1.0.0"
 
-meow@^6.1.1:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/meow/-/meow-6.1.1.tgz#1ad64c4b76b2a24dfb2f635fddcadf320d251467"
-  integrity sha512-3YffViIt2QWgTy6Pale5QpopX/IvU3LPL03jOTqp6pGj3VjesdO/U8CuHMKpnQr4shCNCM5fd5XFFvIIl6JBHg==
-  dependencies:
-    "@types/minimist" "^1.2.0"
-    camelcase-keys "^6.2.2"
-    decamelize-keys "^1.1.0"
-    hard-rejection "^2.1.0"
-    minimist-options "^4.0.2"
-    normalize-package-data "^2.5.0"
-    read-pkg-up "^7.0.1"
-    redent "^3.0.0"
-    trim-newlines "^3.0.0"
-    type-fest "^0.13.1"
-    yargs-parser "^18.1.3"
-
 meow@^9.0.0:
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/meow/-/meow-9.0.0.tgz#cd9510bc5cac9dee7d03c73ee1f9ad959f4ea364"
@@ -8191,7 +8146,7 @@ minimatch@^3.0.2, minimatch@^3.0.3, minimatch@^3.0.4, minimatch@^3.0.5, minimatc
   dependencies:
     brace-expansion "^1.1.7"
 
-minimist-options@4.1.0, minimist-options@^4.0.2:
+minimist-options@4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/minimist-options/-/minimist-options-4.1.0.tgz#c0655713c53a8a2ebd77ffa247d342c40f010619"
   integrity sha512-Q4r8ghd80yhO/0j1O3B2BjweX3fiHg9cdOwjJd2J76Q135c+NDxGCqdYKQ1SKBuFfgWbAUzBfvYjPUEeNgqN1A==
@@ -10717,11 +10672,6 @@ type-detect@4.0.8:
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
   integrity sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==
 
-type-fest@^0.13.1:
-  version "0.13.1"
-  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.13.1.tgz#0172cb5bce80b0bd542ea348db50c7e21834d934"
-  integrity sha512-34R7HTnG0XIJcBSn5XhDd7nNFPRcXYRZrBB2O2jdKqYODldSzBAqzsWoZYYvduky73toYS/ESqxPvkDf/F0XMg==
-
 type-fest@^0.18.0:
   version "0.18.1"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.18.1.tgz#db4bc151a4a2cf4eebf9add5db75508db6cc841f"
@@ -11306,14 +11256,6 @@ yargs-parser@>=5.0.0-security.0, yargs-parser@^21.1.1:
   version "21.1.1"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-21.1.1.tgz#9096bceebf990d21bb31fa9516e0ede294a77d35"
   integrity sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==
-
-yargs-parser@^18.1.3:
-  version "18.1.3"
-  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-18.1.3.tgz#be68c4975c6b2abf469236b0c870362fab09a7b0"
-  integrity sha512-o50j0JeToy/4K6OZcaQmW6lyXXKhq7csREXcDwk2omFPJEwUNOVtJKvmDr9EI1fAJZUyZcRF7kxGBWmRXudrCQ==
-  dependencies:
-    camelcase "^5.0.0"
-    decamelize "^1.2.0"
 
 yargs-parser@^20.2.2, yargs-parser@^20.2.3:
   version "20.2.9"
