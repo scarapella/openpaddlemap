@@ -1,5 +1,6 @@
 BR.confLayers = {};
 
+//TODO: consolidate permenenant and default layers as they probably do the same thing now
 BR.confLayers.permanentBaseLayers = [
     'standard'
 ];
@@ -23,7 +24,9 @@ BR.confLayers.defaultActiveOverlays = [
     'opentrailmap-canoe-pois'
 ];
 
-BR.confLayers.defaultOverlays =  [];
+BR.confLayers.defaultOverlays =  [
+    'terrarium-hillshading'
+];
 
 BR.confLayers.legacyNameToIdMap = {
     'OpenStreetMap': 'standard',

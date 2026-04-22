@@ -43,6 +43,9 @@ BR.confLayers.getPropertyOverrides = function() {
                 'html': '&copy; <a target="_blank" href="https://opentrailmap.us/">OpenTrailMap</a>, <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>'
             },
             'mapUrl': 'https://opentrailmap.us/#map={zoom}/{lat}/{lon}&mode=canoe'
+        },
+        'terrarium-hillshading': {
+            'name': i18next.t('map.layer.hillshading')
         }
     };
 };
