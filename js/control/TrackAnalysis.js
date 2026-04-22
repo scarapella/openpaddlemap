@@ -38,6 +38,12 @@ BR.TrackAnalysis = L.Class.extend({
     initialize(map, options) {
         this.map = map;
         L.setOptions(this, options);
+
+        // Ensure the routingQualityPane exists, or fall back to overlayPane
+        if (!map.getPane('routingQualityPane')) {
+            // If the pane doesn't exist, don't use it
+            this.options.overlayStyle.pane = 'overlayPane';
+        }
     },
 
     /**
@@ -49,6 +55,21 @@ BR.TrackAnalysis = L.Class.extend({
      * @type {?L.Polyline}
      */
     trackPolyline: null,
+
+    /**
+     * @type {?L.LayerGroup}
+     */
+    highlightedSegments: null,
+
+    /**
+     * @type {?L.LayerGroup}
+     */
+    highlightedSegment: null,
+
+    /**
+     * @type {?HTMLElement}
+     */
+    selectedTableRow: null,
 
     /**
      * true when tab is shown, false when hidden
@@ -511,11 +532,17 @@ BR.TrackAnalysis = L.Class.extend({
 
         const polylinesForDataType = this.getPolylinesForDataType(dataType, dataName, trackType);
 
-        this.highlightedSegments = L.layerGroup(polylinesForDataType).addTo(this.map);
+        // Only create layer group if we have polylines to display
+        if (polylinesForDataType && polylinesForDataType.length > 0) {
+            this.highlightedSegments = L.layerGroup(polylinesForDataType).addTo(this.map);
+        }
     },
 
     handleHoverOut() {
-        this.map.removeLayer(this.highlightedSegments);
+        if (this.highlightedSegments) {
+            this.map.removeLayer(this.highlightedSegments);
+            this.highlightedSegments = null;
+        }
     },
 
     toggleSelected(event) {
@@ -528,17 +555,22 @@ BR.TrackAnalysis = L.Class.extend({
         if (tableRow.classList.toggle('selected')) {
             if (this.highlightedSegment) {
                 this.map.removeLayer(this.highlightedSegment);
-                this.selectedTableRow.classList.remove('selected');
+                if (this.selectedTableRow) {
+                    this.selectedTableRow.classList.remove('selected');
+                }
             }
-            this.highlightedSegment = L.layerGroup(this.getPolylinesForDataType(dataType, dataName, trackType)).addTo(
-                this.map
-            );
-            this.selectedTableRow = tableRow;
+            const polylinesForDataType = this.getPolylinesForDataType(dataType, dataName, trackType);
+            if (polylinesForDataType && polylinesForDataType.length > 0) {
+                this.highlightedSegment = L.layerGroup(polylinesForDataType).addTo(this.map);
+                this.selectedTableRow = tableRow;
+            }
 
             return;
         }
 
-        this.map.removeLayer(this.highlightedSegment);
+        if (this.highlightedSegment) {
+            this.map.removeLayer(this.highlightedSegment);
+        }
         this.selectedTableRow = null;
         this.highlightedSegment = null;
     },
@@ -561,15 +593,23 @@ BR.TrackAnalysis = L.Class.extend({
         const trackLatLngs = this.trackPolyline.getLatLngs();
 
         for (let i = 0; i < this.trackEdges.edges.length; i++) {
-            if (this.wayTagsMatchesData(trackLatLngs[this.trackEdges.edges[i]], dataType, dataName, trackType)) {
+            const edgeIndex = this.trackEdges.edges[i];
+            const trackLatLng = trackLatLngs[edgeIndex];
+
+            // Skip if the trackLatLng is undefined or doesn't have the required structure
+            if (!trackLatLng || !trackLatLng.feature) {
+                continue;
+            }
+
+            if (this.wayTagsMatchesData(trackLatLng, dataType, dataName, trackType)) {
                 const matchedEdgeIndexStart = i > 0 ? this.trackEdges.edges[i - 1] : 0;
-                const matchedEdgeIndexEnd = this.trackEdges.edges[i] + 1;
-                polylines.push(
-                    L.polyline(
-                        trackLatLngs.slice(matchedEdgeIndexStart, matchedEdgeIndexEnd),
-                        this.options.overlayStyle
-                    )
-                );
+                const matchedEdgeIndexEnd = edgeIndex + 1;
+                const coordinates = trackLatLngs.slice(matchedEdgeIndexStart, matchedEdgeIndexEnd);
+
+                // Only create polyline if we have valid coordinates
+                if (coordinates && coordinates.length >= 2) {
+                    polylines.push(L.polyline(coordinates, this.options.overlayStyle));
+                }
             }
         }
 
@@ -607,6 +647,13 @@ BR.TrackAnalysis = L.Class.extend({
                 }
 
                 return typeof parsed.highway === 'string' && parsed.highway === dataName;
+            case 'waterway':
+                if (dataName === 'internal-unknown' && typeof parsed.waterway !== 'string') {
+                    return true;
+                }
+                return typeof parsed.waterway === 'string' && parsed.waterway === dataName;
+            case 'paddlemap_primarytag':
+                return typeof parsed.paddlemap_primarytag === 'string' && parsed.paddlemap_primarytag === dataName;
             case 'surface':
                 return this.singleWayTagMatchesData('surface', parsed, dataName);
             case 'smoothness':
@@ -670,6 +717,12 @@ BR.TrackAnalysis = L.Class.extend({
      */
     wayTagsToObject(wayTags) {
         let result = {};
+
+        // Check if wayTags and its feature property exist
+        if (!wayTags || !wayTags.feature || !wayTags.feature.wayTags) {
+            return result;
+        }
+
         const wayTagPairs = wayTags.feature.wayTags.split(' ');
 
         for (let j = 0; j < wayTagPairs.length; j++) {
