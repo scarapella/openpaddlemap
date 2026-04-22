@@ -291,6 +291,108 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
             }
         },
 
+        _createChart(idx) {
+            // Call parent implementation first
+            L.Control.Heightgraph.prototype._createChart.call(this, idx);
+
+            // Now override the tick formats with our unit-aware versions and re-render
+            const distUnit = BR.UnitSystem.getDistanceUnit();
+            const elevUnit = BR.UnitSystem.getElevationUnit();
+            const isImperial = BR.UnitSystem.isImperial();
+            const kmToMiles = BR.UnitSystem.KILOMETERS_TO_MILES;
+            const metersToFeet = BR.UnitSystem.METERS_TO_FEET;
+
+            // Override x-axis (distance) formatting
+            if (this._xAxis && this._svg) {
+                const shortDist = this._totalDistance < 10;
+                if (shortDist === true) {
+                    this._xAxis.tickFormat((d) => {
+                        const converted = isImperial ? d * kmToMiles : d;
+                        return L.Util.formatNum(converted, 2) + ' ' + distUnit;
+                    });
+                } else {
+                    this._xAxis.tickFormat((d) => {
+                        const converted = isImperial ? d * kmToMiles : d;
+                        return L.Util.formatNum(converted, 0) + ' ' + distUnit;
+                    });
+                }
+                // Re-render the x-axis with new format
+                this._svg.select('.x.axis').call(this._xAxis);
+            }
+
+            // Override y-axis (elevation) formatting
+            if (this._yAxis && this._svg) {
+                this._yAxis.tickFormat((d) => {
+                    const converted = isImperial ? d * metersToFeet : d;
+                    return Math.round(converted) + ' ' + elevUnit;
+                });
+                // Re-render the y-axis with new format
+                this._svg.select('.y.axis').call(this._yAxis);
+            }
+        },
+
+        _internalMousemoveHandler(item, showMapMarker = true) {
+            // Get unit system settings
+            const isImperial = BR.UnitSystem.isImperial();
+            const kmToMiles = BR.UnitSystem.KILOMETERS_TO_MILES;
+            const metersToFeet = BR.UnitSystem.METERS_TO_FEET;
+            const distUnit = BR.UnitSystem.getDistanceUnit();
+            const elevUnit = BR.UnitSystem.getElevationUnit();
+
+            // Calculate values (item has position in km, altitude in m from parent)
+            let areaLength;
+            const alt = this._defined(item) ? item.altitude : '-';
+            const dist = item.position;
+            const ll = item.latlng;
+            const areaIdx = item.areaIdx;
+            const type = item.type;
+            const boxWidth = this._dynamicBoxSize('.focusbox text')[1] + 10;
+
+            if (areaIdx === 0) {
+                areaLength = this._categories[this.options.selectedAttributeIdx].distances[areaIdx];
+            } else {
+                areaLength =
+                    this._categories[this.options.selectedAttributeIdx].distances[areaIdx] -
+                    this._categories[this.options.selectedAttributeIdx].distances[areaIdx - 1];
+            }
+
+            if (showMapMarker) {
+                this._showMapMarker(ll, alt, type);
+            }
+
+            // Convert and display distance (dist is in km)
+            const convertedDist = isImperial ? dist * kmToMiles : dist;
+            this._distTspan.text(' ' + convertedDist.toFixed(1) + ' ' + distUnit);
+
+            // Convert and display altitude (alt is in meters)
+            const convertedAlt = alt !== '-' && isImperial ? alt * metersToFeet : alt;
+            const altText = convertedAlt !== '-' ? Math.round(convertedAlt) : '-';
+            this._altTspan.text(' ' + altText + ' ' + elevUnit);
+
+            // Convert and display area length (areaLength is in km)
+            const convertedArea = isImperial ? areaLength * kmToMiles : areaLength;
+            this._areaTspan.text(' ' + convertedArea.toFixed(1) + ' ' + distUnit);
+
+            this._typeTspan.text(' ' + type);
+            this._focusRect.attr('width', boxWidth);
+            this._focusLine.style('display', 'block').attr('x1', this._x(dist)).attr('x2', this._x(dist));
+
+            const xPositionBox = this._x(dist) - (boxWidth + 5);
+            const totalWidth = this._width - this._margin.left - this._margin.right;
+
+            if (this._x(dist) + boxWidth < totalWidth) {
+                this._focus
+                    .style('display', 'initial')
+                    .attr('transform', 'translate(' + this._x(dist) + ',' + this._y(this._elevationBounds.min) + ')');
+            } else {
+                this._focus
+                    .style('display', 'initial')
+                    .attr('transform', 'translate(' + xPositionBox + ',' + this._y(this._elevationBounds.min) + ')');
+            }
+
+            this._selectionText.attr('y', -5 - (this._y(item.altitude) - this._y(this._elevationBounds.max)));
+        },
+
         _createLegend() {
             if (this._categories.length > 0) {
                 // find the min and the max gradients for the current profile

@@ -372,7 +372,8 @@
             onUpdate: function () {
                 // Refresh displays when unit system changes
                 var track = routing.toPolyline(),
-                    segments = routing.getSegments();
+                    segments = routing.getSegments(),
+                    segmentsLayer = routing._segments;
 
                 if (BR.conf.transit) {
                     itinerary.update(track, segments);
@@ -380,6 +381,12 @@
                     stats.update(track, segments);
                 }
                 trackAnalysis.update(track, segments);
+
+                // Update elevation chart with current units
+                elevation.update(track, segmentsLayer);
+
+                // Update distance markers on the route
+                routing._updateDistanceMarkers();
             },
         });
 
