@@ -135,6 +135,27 @@ gulp.task('scripts', function () {
         .src(paths.scripts, { base: '.' })
         .pipe(sourcemaps.init())
         .pipe(cached('scripts'))
+        .pipe(
+            through.obj(function (file, enc, cb) {
+                // Ensure toGeoJSON is exposed to window for leaflet-filelayer
+                if (file.path.includes('togeojson.js') && !file.path.includes('node_modules/@mapbox')) {
+                    cb(null, file);
+                    return;
+                }
+                if (file.path.includes('@mapbox/togeojson/togeojson.js')) {
+                    let contents = file.contents.toString();
+                    // Add window.toGeoJSON assignment after the toGeoJSON definition
+                    if (!contents.includes('window.toGeoJSON')) {
+                        contents =
+                            contents +
+                            '\n' +
+                            "if (typeof window !== 'undefined' && typeof toGeoJSON !== 'undefined') { window.toGeoJSON = toGeoJSON; }\n";
+                        file.contents = Buffer.from(contents);
+                    }
+                }
+                cb(null, file);
+            })
+        )
         .pipe(gulpif(!debug, babel({ caller: { supportsDynamicImport: true } })))
         .pipe(gulpif(!debug, uglify()))
         .pipe(remember('scripts'))
@@ -209,7 +230,7 @@ gulp.task('reload', function (done) {
 
 gulp.task('watch', function () {
     debug = true;
-    var watcher = gulp.watch(paths.scripts, gulp.series('scripts', 'reload', 'layers'));
+    var watcher = gulp.watch(paths.scripts, gulp.series('scripts', 'layers', 'reload'));
     watcher.on('change', function (event) {
         if (event.type === 'deleted') {
             delete cached.caches.scripts[event.path];
