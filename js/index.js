@@ -297,7 +297,7 @@
             requestUpdate,
         });
 
-        routingPathQuality = new BR.RoutingPathQuality(map, layersControl);
+        // routingPathQuality = new BR.RoutingPathQuality(map, layersControl); // Hidden for now - uncomment to re-enable
 
         routing = new BR.Routing(profile, {
             routing: {
@@ -355,7 +355,7 @@
                 segmentsLayer = routing._segments;
 
             elevation.update(track, segmentsLayer);
-            routingPathQuality.update(track, segmentsLayer);
+            // routingPathQuality.update(track, segmentsLayer); // Hidden for now - uncomment to re-enable
             if (BR.conf.transit) {
                 itinerary.update(track, segments);
             } else {
@@ -372,7 +372,8 @@
             onUpdate: function () {
                 // Refresh displays when unit system changes
                 var track = routing.toPolyline(),
-                    segments = routing.getSegments();
+                    segments = routing.getSegments(),
+                    segmentsLayer = routing._segments;
 
                 if (BR.conf.transit) {
                     itinerary.update(track, segments);
@@ -380,6 +381,12 @@
                     stats.update(track, segments);
                 }
                 trackAnalysis.update(track, segments);
+
+                // Update elevation chart with current units
+                elevation.update(track, segmentsLayer);
+
+                // Update distance markers on the route
+                routing._updateDistanceMarkers();
             },
         });
 
@@ -415,28 +422,25 @@
         L.easyBar(buttons).addTo(map);
         nogos.preventRoutePointOnCreate(routing);
 
-        if (BR.keys.strava) {
-            BR.stravaSegments(map, layersControl);
-        }
-
         BR.tracksLoader(map, layersControl, routing, pois);
 
         BR.routeLoader(map, layersControl, routing, pois);
 
         pois.addTo(map);
-        routingPathQuality.addTo(map);
+        // routingPathQuality.addTo(map); // Hidden for now - uncomment to re-enable
 
-        map.addControl(
-            new BR.OpacitySliderControl({
-                id: 'route',
-                title: i18next.t('map.opacity-slider-shortcut', {
-                    action: '$t(map.opacity-slider)',
-                    key: 'M',
-                }),
-                muteKeyCode: 77, // m
-                callback: L.bind(routing.setOpacity, routing),
-            })
-        );
+        // Route track transparency slider hidden for now - uncomment to re-enable
+        // map.addControl(
+        //     new BR.OpacitySliderControl({
+        //         id: 'route',
+        //         title: i18next.t('map.opacity-slider-shortcut', {
+        //             action: '$t(map.opacity-slider)',
+        //             key: 'M',
+        //         }),
+        //         muteKeyCode: 77, // m
+        //         callback: L.bind(routing.setOpacity, routing),
+        //     })
+        // );
 
         // initial option settings (after controls are added and initialized with onAdd)
         router.setOptions(nogos.getOptions());

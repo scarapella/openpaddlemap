@@ -20,7 +20,7 @@ cp keys.template.js config/keys.js
 Modify the files:
 
 -   `config/config.js`-> cofirm URL of Brouter server, see `BR.conf.host`
--   `config/keys.js` add your API keys
+-   `config/keys.js` add your API keys (currently not used - all configured layers are free/open)
 
 ## Get Brouter Profiles
 
@@ -119,10 +119,11 @@ yarn test --verbose -t="2-locus"
         -   suggested file naming convention: `<layer-id>-style.json`  
             (stored next to description `<layer-id>.geojson`)
     -   URL to remote style
--   access token for tile URLs
+-   access token for tile URLs (optional - not currently used)
     -   configure in `config/keys.js` / `keys.template.js`:  
         `<provider>: 'mykey'`
     -   add template to tile url in style source, e.g.:  
         `...?access_token={keys_<provider>}`
     -   when also appended after `?` to local style url, the layer is not added when key is not defined:  
         `"url": "<layer-id>-style?{keys_<provider>}"`
+    -   **Note:** Currently all configured layers use free/open tile sources and do not require API keys

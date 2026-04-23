@@ -24,7 +24,8 @@ BR.Routing = L.Routing.extend({
             iconSize: [6, 18],
             offset: 5000,
             textFunction(distance) {
-                return distance / 1000;
+                // Use the unit system to convert distance
+                return Math.round(BR.UnitSystem.convertDistance(distance));
             },
         },
         shortcut: {

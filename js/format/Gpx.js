@@ -54,7 +54,7 @@ BR.Gpx = {
         const gpxTransform = new GpxTransform(voiceHintsTransform);
 
         let gpx = togpx(geoJson, {
-            creator: (BR.conf.appName || 'paddlemap') + ' ' + BR.version,
+            creator: BR.conf.appName || 'paddlemap',
             featureTitle() {},
             featureDescription() {},
             featureCoordTimes() {},

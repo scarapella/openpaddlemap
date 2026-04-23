@@ -34,15 +34,12 @@
     ],
     "dependencies": {
         "@bagage/leaflet.restoreview": "1.0.1",
-        "@fortawesome/fontawesome-free": "6.4.0",
-        "@ideditor/temaki": "5.2.0",
-        "@mapbox/maki": "8.0.1",
-        "@mapbox/polyline": "1.1.1",
+        "@mapbox/polyline": "^1.1.1",
         "@mapbox/togeojson": "0.16.2",
-        "@maplibre/maplibre-gl-leaflet": "0.0.20",
+        "@maplibre/maplibre-gl-leaflet": "^0.0.20",
         "@turf/turf": "6.5.0",
         "Leaflet.vector-markers": "nrenner/Leaflet.vector-markers#2ef80c9",
-        "abortcontroller-polyfill": "1.7.5",
+        "abortcontroller-polyfill": "^1.7.5",
         "async": "2.6.4",
         "bootbox": "5.5.3",
         "bootstrap": "4.6.2",
@@ -50,49 +47,43 @@
         "bootstrap-slider": "11.0.2",
         "codemirror": "5.65.13",
         "compare-versions": "^6.0.0",
-        "core-js-bundle": "3.29.1",
+        "core-js-bundle": "^3.29.1",
         "datatables": "1.10.18",
         "fit-file-writer": "tbsmark86/fit-file-writer#3eebe13",
         "font-awesome": "4.7.0",
         "geo-data-exchange": "alexcojocaru/geo-data-exchange#v2.2.0",
-        "i18next": "19.9.2",
-        "i18next-browser-languagedetector": "7.0.2",
+        "i18next": "^19.9.2",
+        "i18next-browser-languagedetector": "^7.0.2",
         "i18next-xhr-backend": "3.2.2",
-        "jquery": "3.6.4",
+        "jquery": "^3.6.4",
         "jquery-i18next": "1.2.1",
-        "jstree": "3.3.12",
-        "leaflet": "1.7.1",
-        "leaflet-control-geocoder": "2.4.0",
+        "leaflet": "^1.7.1",
+        "leaflet-control-geocoder": "^2.4.0",
         "leaflet-easybutton": "*",
-        "leaflet-editable": "1.2.0",
+        "leaflet-editable": "^1.2.0",
         "leaflet-filelayer": "1.2.0",
-        "leaflet-geometryutil": "0.10.2",
+        "leaflet-geometryutil": "^0.10.2",
         "leaflet-hotline": "tbsmark86/Leaflet.hotline#25b2457",
-        "leaflet-osm-notes": "osmlab/leaflet-osm-notes#af2aa811",
-        "leaflet-plugins": "3.4.0",
         "leaflet-providers": "1.13.0",
         "leaflet-routing": "nrenner/leaflet-routing#2ad0176",
         "leaflet-sidebar-v2": "nrenner/leaflet-sidebar-v2#dev",
-        "leaflet-triangle-marker": "1.0.2",
         "leaflet.heightgraph": "nrenner/Leaflet.Heightgraph#0757b2a",
-        "leaflet.locatecontrol": "0.79.0",
+        "leaflet.locatecontrol": "^0.79.0",
         "leaflet.snogylop": "0.4.0",
-        "leaflet.stravasegments": "2.3.2",
         "mapbbcode": "MapBBCode/mapbbcode#v1.2.0",
-        "maplibre-gl": "2.4.0",
-        "overpass-layer": "3.4.0",
+        "maplibre-gl": "^2.4.0",
         "popper.js": "1.16.1",
         "qrcodejs": "^1.0.0",
-        "regenerator-runtime": "0.13.11",
+        "regenerator-runtime": "^0.13.11",
         "togpx": "nrenner/togpx#722d291",
         "tokml": "0.4.0",
         "whatwg-fetch": "^3.6.2"
     },
     "devDependencies": {
-        "@babel/cli": "7.22.5",
-        "@babel/core": "7.22.5",
-        "@babel/preset-env": "7.22.5",
-        "autoprefixer": "10.4.14",
+        "@babel/cli": "^7.22.5",
+        "@babel/core": "^7.22.5",
+        "@babel/preset-env": "^7.22.5",
+        "autoprefixer": "^10.4.14",
         "browser-sync": "2.29.3",
         "del": "6.1.1",
         "eslint": "8.43.0",
@@ -105,7 +96,7 @@
         "gulp-concat": "2.6.1",
         "gulp-confirm": "1.0.8",
         "gulp-debug": "4.0.0",
-        "gulp-git": "2.10.1",
+        "gulp-git": "^2.10.1",
         "gulp-github-release": "1.2.1",
         "gulp-if": "3.0.0",
         "gulp-inject": "5.0.5",
@@ -113,35 +104,35 @@
         "gulp-modify-css-urls": "2.0.0",
         "gulp-postcss": "9.0.1",
         "gulp-remember": "1.0.1",
-        "gulp-rename": "2.0.0",
+        "gulp-rename": "^2.0.0",
         "gulp-replace": "1.1.4",
         "gulp-sourcemaps": "3.0.0",
         "gulp-uglify": "3.0.2",
         "gulp-util": "3.0.8",
         "gulp-zip": "5.1.0",
-        "husky": "8.0.3",
-        "i18next-scanner": "4.2.0",
+        "husky": "^8.0.3",
+        "i18next-scanner": "^4.2.0",
         "jest": "29.1.2",
         "jest-environment-jsdom": "29.1.2",
-        "marked": "4.1.1",
+        "marked": "^4.1.1",
         "merge-stream": "2.0.0",
-        "node-fetch": "3.2.10",
+        "node-fetch": "^3.2.10",
         "npmfiles": "0.1.3",
-        "postcss": "8.4.31",
-        "prettier": "2.7.1",
-        "pretty-quick": "3.1.3"
+        "postcss": "^8.4.31",
+        "prettier": "^2.7.1",
+        "pretty-quick": "^3.1.3"
     },
     "overrides": {
+        "@mapbox/togeojson": {
+            "main": [
+                "togeojson.js"
+            ]
+        },
         "leaflet": {
             "main": [
                 "dist/leaflet-src.js",
                 "dist/leaflet.css",
                 "dist/images/*.png"
-            ]
-        },
-        "leaflet-plugins": {
-            "main": [
-                "layer/tile/Bing.js"
             ]
         },
         "leaflet-routing": {
@@ -206,16 +197,8 @@
                 "images/*.+(png|gif)"
             ]
         },
-        "leaflet-osm-notes": {
-            "main": [
-                "leaflet-osm-notes.js"
-            ]
-        },
         "url-search-params": {
             "main": "build/url-search-params.js"
-        },
-        "leaflet.stravasegments": {
-            "main": "dist/index.js"
         },
         "font-awesome": {
             "main": [
@@ -262,13 +245,6 @@
                 "dist/umd/jquery-i18next.js"
             ]
         },
-        "jstree": {
-            "main": [
-                "dist/jstree.js",
-                "dist/themes/default/style.css",
-                "dist/themes/default/*.png"
-            ]
-        },
         "Leaflet.vector-markers": {
             "main": [
                 "dist/leaflet-vector-markers.js",
@@ -295,11 +271,6 @@
                 "tokml.js"
             ]
         },
-        "overpass-layer": {
-            "main": [
-                "dist/overpass-layer.js"
-            ]
-        },
         "qrcodejs": {
             "main": [
                 "qrcode.js"
@@ -313,78 +284,6 @@
         "compare-versions": {
             "main": [
                 "lib/umd/index.js"
-            ]
-        },
-        "@mapbox/maki": {
-            "main": [
-                "icons/art-gallery.svg",
-                "icons/bakery.svg",
-                "icons/bank.svg",
-                "icons/bar.svg",
-                "icons/bbq.svg",
-                "icons/beer.svg",
-                "icons/bicycle.svg",
-                "icons/cafe.svg",
-                "icons/campsite.svg",
-                "icons/car.svg",
-                "icons/car-rental.svg",
-                "icons/drinking-water.svg",
-                "icons/entrance-alt1.svg",
-                "icons/fast-food.svg",
-                "icons/fuel.svg",
-                "icons/grocery.svg",
-                "icons/hospital.svg",
-                "icons/information.svg",
-                "icons/lodging.svg",
-                "icons/picnic-site.svg",
-                "icons/restaurant.svg",
-                "icons/shelter.svg",
-                "icons/shop.svg",
-                "icons/star.svg",
-                "icons/toilet.svg",
-                "icons/water.svg"
-            ]
-        },
-        "@ideditor/temaki": {
-            "main": [
-                "icons/bench.svg",
-                "icons/shower.svg",
-                "icons/bicycle_rental.svg",
-                "icons/bicycle_repair.svg",
-                "icons/boat_rental.svg",
-                "icons/bus.svg",
-                "icons/sign_and_car.svg",
-                "icons/car_wash.svg",
-                "icons/ferry.svg",
-                "icons/car_parked.svg",
-                "icons/parking_space.svg",
-                "icons/bottles.svg",
-                "icons/cleaver.svg",
-                "icons/coffee.svg",
-                "icons/camper_trailer.svg",
-                "icons/cabin.svg",
-                "icons/bunk_beds.svg",
-                "icons/museum.svg",
-                "icons/spotting_scope.svg",
-                "icons/cabin.svg",
-                "icons/picnic_shelter.svg",
-                "icons/train.svg"
-            ]
-        },
-        "@fortawesome/fontawesome-free": {
-            "main": [
-                "svgs/solid/basket-shopping.svg",
-                "svgs/solid/cart-shopping.svg",
-                "svgs/solid/ice-cream.svg",
-                "svgs/solid/carrot.svg",
-                "svgs/solid/cheese.svg",
-                "svgs/solid/bell-concierge.svg",
-                "svgs/solid/motorcycle.svg",
-                "svgs/solid/charging-station.svg",
-                "svgs/solid/box.svg",
-                "svgs/solid/taxi.svg",
-                "svgs/solid/phone-flip.svg",
-                "svgs/solid/beer.svg"
             ]
         },
         "maplibre-gl": {

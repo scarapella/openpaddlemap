@@ -1,5 +1,5 @@
 BR.LayersConfig = L.Class.extend({
-    overpassFrontend: new OverpassFrontend(BR.conf.overpassBaseUrl || '//overpass-api.de/api/interpreter'),
+    // overpassFrontend: new OverpassFrontend(BR.conf.overpassBaseUrl || '//overpass-api.de/api/interpreter'),
     permanentBaseLayers: BR.confLayers.permanentBaseLayers,
     defaultBaseLayers: BR.confLayers.permanentBaseLayers.concat(BR.confLayers.defaultBaseLayers),
     permanentOverlays: BR.confLayers.permanentOverlays,
@@ -7,12 +7,13 @@ BR.LayersConfig = L.Class.extend({
     defaultActiveOverlays: BR.confLayers.defaultActiveOverlays,
     legacyNameToIdMap: BR.confLayers.legacyNameToIdMap,
     // hardcoded, built-in layers with an id set (for URL hash)
-    builtInLayers: ['route-quality'],
+    // builtInLayers: ['route-quality'], // Hidden for now - uncomment to re-enable route quality overlay
+    builtInLayers: [],
 
     initialize(map) {
         this._map = map;
-        this._overpassLoadingIndicator = new BR.Message('overpass_loading_indicator', { alert: false });
-        this._overpassActiveRequestCount = 0;
+        // this._overpassLoadingIndicator = new BR.Message('overpass_loading_indicator', { alert: false });
+        // this._overpassActiveRequestCount = 0;
 
         this._addLeafletProvidersLayers();
         this._customizeLayers();
@@ -82,19 +83,6 @@ BR.LayersConfig = L.Class.extend({
                 console.error('Layer not found: ' + id);
             }
         }
-
-        BR.layerIndex['MtbMap'].geometry = BR.confLayers.europeGeofabrik;
-        BR.layerIndex['1069'].geometry = BR.confLayers.europeGeofabrik;
-
-        BR.layerIndex['OpenStreetMap.CH'].geometry = BR.confLayers.switzerlandPadded;
-        BR.layerIndex['swisstopo-landeskarte'].geometry = BR.confLayers.switzerlandPadded;
-        BR.layerIndex['swisstopo-aerial'].geometry = BR.confLayers.switzerlandPadded;
-
-        BR.layerIndex['1017'].geometry = BR.confLayers.osmapaPl;
-
-        BR.layerIndex['ignf-aerial'].geometry = BR.confLayers.franceBbox;
-        BR.layerIndex['ignf-map'].geometry = BR.confLayers.franceBbox;
-        BR.layerIndex['ignf-scan25'].geometry = BR.confLayers.franceBbox;
     },
 
     _addLanguageDefaultLayer() {
@@ -196,124 +184,117 @@ BR.LayersConfig = L.Class.extend({
         return result;
     },
 
-    _showOverpassLoadingIndicator() {
-        this._overpassActiveRequestCount++;
-        this._overpassLoadingIndicator.showLoading(i18next.t('layers.overpass-loading-indicator'));
-    },
+    // _showOverpassLoadingIndicator() {
+    //     this._overpassActiveRequestCount++;
+    //     this._overpassLoadingIndicator.showLoading(i18next.t('layers.overpass-loading-indicator'));
+    // },
 
-    _hideOverpassLoadingIndicator() {
-        if (--this._overpassActiveRequestCount === 0) {
-            this._overpassLoadingIndicator.hide();
-        }
-    },
+    // _hideOverpassLoadingIndicator() {
+    //     if (--this._overpassActiveRequestCount === 0) {
+    //         this._overpassLoadingIndicator.hide();
+    //     }
+    // },
 
     getOverpassIconUrl(icon) {
-        const iconPrefix = /^(maki|temaki|fas)-/;
-        let iconUrl = null;
-
-        if (icon && iconPrefix.test(icon)) {
-            const iconName = icon.replace(iconPrefix, '');
-            iconUrl = `dist/images/${iconName}.svg`;
-        }
-
-        return iconUrl;
+        // Overpass functionality removed - return null
+        return null;
     },
 
-    createOverpassLayer(query, icon) {
-        let markerSign = '<i class="fa fa-search icon-white" style="width: 25px;"></i>';
+    // createOverpassLayer(query, icon) {
+    //     let markerSign = '<i class="fa fa-search icon-white" style="width: 25px;"></i>';
 
-        const iconUrl = this.getOverpassIconUrl(icon);
-        if (iconUrl) {
-            markerSign = `<img class="icon-invert" src="${iconUrl}" width="11" />`;
-        }
+    //     const iconUrl = this.getOverpassIconUrl(icon);
+    //     if (iconUrl) {
+    //         markerSign = `<img class="icon-invert" src="${iconUrl}" width="11" />`;
+    //     }
 
-        return Object.assign(
-            new OverpassLayer({
-                overpassFrontend: this.overpassFrontend,
-                query,
-                minZoom: 12,
-                feature: {
-                    title: '{{ tags.name }}',
-                    body: this.renderOverpassPopupBody,
-                    markerSymbol:
-                        '<svg width="25px" height="41px" anchorX="12" anchorY="41" viewBox="0 0 32 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M16,1 C7.7146,1 1,7.65636364 1,15.8648485 C1,24.0760606 16,51 16,51 C16,51 31,24.0760606 31,15.8648485 C31,7.65636364 24.2815,1 16,1 L16,1 Z" fill="#436978"></path></svg>',
-                    markerSign,
-                    style: function (overpassObject) {
-                        return {
-                            // nodeFeature: 'Marker' isn't currently working well, hence use transparent circle color for nodes
-                            color:
-                                overpassObject.type === 'node'
-                                    ? '#00000000'
-                                    : this.defaultBaseLayers?.[0] === 'cyclosm'
-                                    ? 'darkorange'
-                                    : '#3388ff',
-                        };
-                    }.bind(this),
-                },
-            }),
-            {
-                onLoadStart: this._showOverpassLoadingIndicator.bind(this),
-                onLoadEnd: this._hideOverpassLoadingIndicator.bind(this),
-            }
-        );
-    },
+    //     return Object.assign(
+    //         new OverpassLayer({
+    //             overpassFrontend: this.overpassFrontend,
+    //             query,
+    //             minZoom: 12,
+    //             feature: {
+    //                 title: '{{ tags.name }}',
+    //                 body: this.renderOverpassPopupBody,
+    //                 markerSymbol:
+    //                     '<svg width="25px" height="41px" anchorX="12" anchorY="41" viewBox="0 0 32 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M16,1 C7.7146,1 1,7.65636364 1,15.8648485 C1,24.0760606 16,51 16,51 C16,51 31,24.0760606 31,15.8648485 C31,7.65636364 24.2815,1 16,1 L16,1 Z" fill="#436978"></path></svg>',
+    //                 markerSign,
+    //                 style: function (overpassObject) {
+    //                     return {
+    //                         // nodeFeature: 'Marker' isn't currently working well, hence use transparent circle color for nodes
+    //                         color:
+    //                             overpassObject.type === 'node'
+    //                                 ? '#00000000'
+    //                                 : this.defaultBaseLayers?.[0] === 'cyclosm'
+    //                                 ? 'darkorange'
+    //                                 : '#3388ff',
+    //                     };
+    //                 }.bind(this),
+    //             },
+    //         }),
+    //         {
+    //             onLoadStart: this._showOverpassLoadingIndicator.bind(this),
+    //             onLoadEnd: this._hideOverpassLoadingIndicator.bind(this),
+    //         }
+    //     );
+    // },
 
-    renderOverpassPopupBody(overpassData) {
-        let output = '';
+    // renderOverpassPopupBody(overpassData) {
+    //     let output = '';
 
-        output += '<table class="overpass-tags">';
+    //     output += '<table class="overpass-tags">';
 
-        output += '<thead>';
-        output +=
-            '<tr><th class="overpass-label-key">' +
-            i18next.t('layers.overpass-table-key') +
-            '</th><th class="overpass-label-value">' +
-            i18next.t('layers.overpass-table-value') +
-            '</th></tr>';
-        output += '</thead>';
+    //     output += '<thead>';
+    //     output +=
+    //         '<tr><th class="overpass-label-key">' +
+    //         i18next.t('layers.overpass-table-key') +
+    //         '</th><th class="overpass-label-value">' +
+    //         i18next.t('layers.overpass-table-value') +
+    //         '</th></tr>';
+    //     output += '</thead>';
 
-        output += '<tbody>';
-        for (let key in overpassData.tags) {
-            if (key.substring(0, 5) === 'addr:') {
-                continue;
-            }
+    //     output += '<tbody>';
+    //     for (let key in overpassData.tags) {
+    //         if (key.substring(0, 5) === 'addr:') {
+    //             continue;
+    //         }
 
-            let value = BR.Util.sanitizeHTMLContent(overpassData.tags[key]);
-            key = BR.Util.sanitizeHTMLContent(key);
+    //         let value = BR.Util.sanitizeHTMLContent(overpassData.tags[key]);
+    //         key = BR.Util.sanitizeHTMLContent(key);
 
-            if (key.match(/email/)) {
-                value = '<a href="mailto:' + value + '">' + value + '</a>';
-            }
-            if (value.match(/^https?:\/\//)) {
-                value = '<a href="' + value + '">' + value + '</a>';
-            }
-            if (value.match(/^www/)) {
-                value = '<a href="https://' + value + '">' + value + '</a>';
-            }
-            output += '<tr>';
-            output += '<th>' + key + '</th>';
-            output += '<td>' + value + '</td>';
-            output += '</tr>';
-        }
-        output += '</tbody>';
+    //         if (key.match(/email/)) {
+    //             value = '<a href="mailto:' + value + '">' + value + '</a>';
+    //         }
+    //         if (value.match(/^https?:\/\//)) {
+    //             value = '<a href="' + value + '">' + value + '</a>';
+    //         }
+    //         if (value.match(/^www/)) {
+    //             value = '<a href="https://' + value + '">' + value + '</a>';
+    //         }
+    //         output += '<tr>';
+    //         output += '<th>' + key + '</th>';
+    //         output += '<td>' + value + '</td>';
+    //         output += '</tr>';
+    //     }
+    //     output += '</tbody>';
 
-        output += '</table>';
+    //     output += '</table>';
 
-        output += '<div class="overpass-osm-link">';
-        output +=
-            '<a href="https://www.openstreetmap.org/' +
-            overpassData.type +
-            '/' +
-            overpassData.osm_id +
-            '" target="_blank" title="' +
-            i18next.t('layers.overpass-inspect-at-openstreetmap') +
-            '">';
-        output += i18next.t('layers.overpass-osm');
-        output += '</a>';
-        output += '</div>';
+    //     output += '<div class="overpass-osm-link">';
+    //     output +=
+    //         '<a href="https://www.openstreetmap.org/' +
+    //         overpassData.type +
+    //         '/' +
+    //         overpassData.osm_id +
+    //         '" target="_blank" title="' +
+    //         i18next.t('layers.overpass-inspect-at-openstreetmap') +
+    //         '">';
+    //     output += i18next.t('layers.overpass-osm');
+    //     output += '</a>';
+    //     output += '</div>';
 
-        return output;
-    },
+    //     return output;
+    // },
 
     createOpenStreetMapNotesLayer() {
         return new leafletOsmNotes();
@@ -453,8 +434,8 @@ BR.LayersConfig = L.Class.extend({
             if (props.subdomains) {
                 layer.subdomains = props.subdomains;
             }
-        } else if (props.dataSource === 'OverpassAPI') {
-            layer = this.createOverpassLayer(props.query, props.icon);
+            // } else if (props.dataSource === 'OverpassAPI') {
+            //     layer = this.createOverpassLayer(props.query, props.icon);
         } else if (props.dataSource === 'OpenStreetMapNotesAPI') {
             layer = this.createOpenStreetMapNotesLayer();
         } else if (props.type === 'mvt') {

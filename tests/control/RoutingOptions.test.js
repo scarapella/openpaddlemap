@@ -28,7 +28,7 @@ beforeEach(() => {
 });
 
 describe('Profile selection', () => {
-    test('sets default profile (trekking) when no hash and no localStorage entry', () => {
+    test('sets default profile (paddle) when no hash and no localStorage entry', () => {
         let routingOptions = new BR.RoutingOptions();
         routingOptions.setOptions({});
         const profile = routingOptions.getOptions().profile;
@@ -36,9 +36,9 @@ describe('Profile selection', () => {
     });
 
     // defaults are not set in hash, see BRouter.getUrlParams
-    test('sets default profile (trekking) when hash without `profile` param regardless of localStorage', () => {
+    test('sets default profile (paddle) when hash without `profile` param regardless of localStorage', () => {
         location.hash = '#map=5/50.986/9.822/standard';
-        localStorage.routingprofile = 'shortest';
+        localStorage.routingprofile = 'river';
 
         let routingOptions = new BR.RoutingOptions();
         routingOptions.setOptions({});
@@ -47,21 +47,21 @@ describe('Profile selection', () => {
     });
 
     test('sets profile from hash', () => {
-        location.hash = '#map=5/50.986/9.822/standard&profile=fastbike';
-        localStorage.routingprofile = 'shortest';
+        location.hash = '#map=5/50.986/9.822/standard&profile=river';
+        localStorage.routingprofile = 'paddle';
 
         let routingOptions = new BR.RoutingOptions();
-        routingOptions.setOptions({ profile: 'fastbike' });
+        routingOptions.setOptions({ profile: 'river' });
         const profile = routingOptions.getOptions().profile;
-        expect(profile).toEqual('fastbike');
+        expect(profile).toEqual('river');
     });
 
     test('sets profile from localStorage when no hash', () => {
-        localStorage.routingprofile = 'shortest';
+        localStorage.routingprofile = 'paddle';
 
         let routingOptions = new BR.RoutingOptions();
         routingOptions.setOptions({});
         const profile = routingOptions.getOptions().profile;
-        expect(profile).toEqual('shortest');
+        expect(profile).toEqual('paddle');
     });
 });

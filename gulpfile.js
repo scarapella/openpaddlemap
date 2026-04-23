@@ -135,10 +135,31 @@ gulp.task('scripts', function () {
         .src(paths.scripts, { base: '.' })
         .pipe(sourcemaps.init())
         .pipe(cached('scripts'))
+        .pipe(
+            through.obj(function (file, enc, cb) {
+                // Ensure toGeoJSON is exposed to window for leaflet-filelayer
+                if (file.path.includes('togeojson.js') && !file.path.includes('node_modules/@mapbox')) {
+                    cb(null, file);
+                    return;
+                }
+                if (file.path.includes('@mapbox/togeojson/togeojson.js')) {
+                    let contents = file.contents.toString();
+                    // Add window.toGeoJSON assignment after the toGeoJSON definition
+                    if (!contents.includes('window.toGeoJSON')) {
+                        contents =
+                            contents +
+                            '\n' +
+                            "if (typeof window !== 'undefined' && typeof toGeoJSON !== 'undefined') { window.toGeoJSON = toGeoJSON; }\n";
+                        file.contents = Buffer.from(contents);
+                    }
+                }
+                cb(null, file);
+            })
+        )
         .pipe(gulpif(!debug, babel({ caller: { supportsDynamicImport: true } })))
         .pipe(gulpif(!debug, uglify()))
         .pipe(remember('scripts'))
-        .pipe(concat(paths.destName + '.js'))
+        .pipe(concat(paths.destName + '.js', { newLine: ';\n' }))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(paths.dest));
 });
@@ -147,7 +168,7 @@ gulp.task('scripts', function () {
 gulp.task('concat', function () {
     return gulp
         .src(paths.scripts)
-        .pipe(concat(paths.destName + '.src.js'))
+        .pipe(concat(paths.destName + '.src.js', { newLine: ';\n' }))
         .pipe(gulp.dest(paths.dest));
 });
 
@@ -209,7 +230,7 @@ gulp.task('reload', function (done) {
 
 gulp.task('watch', function () {
     debug = true;
-    var watcher = gulp.watch(paths.scripts, gulp.series('scripts', 'reload', 'layers'));
+    var watcher = gulp.watch(paths.scripts, gulp.series('scripts', 'layers', 'reload'));
     watcher.on('change', function (event) {
         if (event.type === 'deleted') {
             delete cached.caches.scripts[event.path];
@@ -352,7 +373,6 @@ gulp.task('layers', function () {
                             // Clear node's require cache to pick up latest changes
                             delete require.cache[require.resolve(file.path)];
                             const style = require(file.path);
-                            gutil.log(file.path);
 
                             // Overwrite contents with stringified JSON
                             file.contents = Buffer.from(JSON.stringify(style, null, 2));
@@ -420,18 +440,18 @@ gulp.task(
 );
 
 gulp.task('release:zip', function () {
-    gutil.log(gutil.colors.green('Build brouter-web.' + nextVersion + '.zip'));
+    gutil.log(gutil.colors.green('Build paddlemap.' + nextVersion + '.zip'));
     return gulp
         .src(paths.zip, {
             base: '.',
         })
-        .pipe(zip('brouter-web.' + nextVersion + '.zip'))
+        .pipe(zip('paddlemap.' + nextVersion + '.zip'))
         .pipe(gulp.dest('.'));
 });
 
 gulp.task('release:zip_standalone', function () {
     var version = pkg.version;
-    var destName = 'brouter-web-standalone.' + version + '.zip';
+    var destName = 'paddlemap-standalone.' + version + '.zip';
 
     gutil.log(gutil.colors.green('Build ' + destName));
 
@@ -441,7 +461,7 @@ gulp.task('release:zip_standalone', function () {
         })
         .pipe(
             rename(function (path) {
-                path.dirname = 'brouter-web/' + path.dirname;
+                path.dirname = 'paddlemap/' + path.dirname;
             })
         );
 

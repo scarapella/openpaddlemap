@@ -15,9 +15,9 @@ BR.LayersTab = BR.ControlLayers.extend({
 
         L.DomUtil.get('layers-control-wrapper').appendChild(this._section);
 
-        this.initOpacitySlider(map);
+        // this.initOpacitySlider(map); // Overlay transparency slider hidden for now - uncomment to re-enable
         this.initButtons();
-        this.initJsTree();
+        // this.initJsTree(); // Optional layers removed
 
         return this;
     },
@@ -26,14 +26,14 @@ BR.LayersTab = BR.ControlLayers.extend({
         BR.ControlLayers.prototype.onAdd.call(this, map);
 
         map.on('baselayerchange overlayadd overlayremove', this.storeActiveLayers, this);
-        map.on('overlayadd overlayremove', this.updateOpacityLabel, this);
+        // map.on('overlayadd overlayremove', this.updateOpacityLabel, this); // Disabled since opacity slider is hidden
     },
 
     onRemove(map) {
         BR.ControlLayers.prototype.onRemove.call(this, map);
 
         map.off('baselayerchange overlayadd overlayremove', this.storeActiveLayers, this);
-        map.off('overlayadd overlayremove', this.updateOpacityLabel, this);
+        // map.off('overlayadd overlayremove', this.updateOpacityLabel, this); // Disabled since opacity slider is hidden
     },
 
     initOpacitySlider(map) {
@@ -62,123 +62,99 @@ BR.LayersTab = BR.ControlLayers.extend({
     },
 
     initButtons() {
-        var expandTree = function (e) {
-            this.jstree.open_all();
-        };
-        var collapseTree = function (e) {
-            this.jstree.close_all();
-        };
-
-        var toggleOptionalLayers = function (e) {
-            var button = L.DomUtil.get('optional_layers_button');
-            var treeButtons = L.DomUtil.get('tree-button-group');
-            var div = L.DomUtil.get('optional-layers');
-
-            div.hidden = !div.hidden;
-            treeButtons.hidden = !treeButtons.hidden;
-            button.classList.toggle('active');
-
-            if (div.hidden) {
-                this.deselectNode();
-            }
-        };
-
-        L.DomUtil.get('expand_tree_button').onclick = L.bind(expandTree, this);
-        L.DomUtil.get('collapse_tree_button').onclick = L.bind(collapseTree, this);
-
-        L.DomUtil.get('optional_layers_button').onclick = L.bind(toggleOptionalLayers, this);
+        // Optional layers functionality removed
     },
 
-    initJsTree() {
-        var layerIndex = BR.layerIndex;
-        var treeData = this.toJsTree(BR.confLayers.tree);
-        var oldSelected = null;
+    // initJsTree() {
+    //     var layerIndex = BR.layerIndex;
+    //     var treeData = this.toJsTree(BR.confLayers.tree);
+    //     var oldSelected = null;
 
-        var onSelectNode = function (e, data) {
-            var layerData = layerIndex[data.node.id];
-            var selected = data.selected[0];
+    //     var onSelectNode = function (e, data) {
+    //         var layerData = layerIndex[data.node.id];
+    //         var selected = data.selected[0];
 
-            if (selected !== oldSelected) {
-                this.showPreview(layerData);
-                oldSelected = selected;
-            } else {
-                data.instance.deselect_node(data.node);
-            }
-        };
+    //         if (selected !== oldSelected) {
+    //             this.showPreview(layerData);
+    //             oldSelected = selected;
+    //         } else {
+    //             data.instance.deselect_node(data.node);
+    //         }
+    //     };
 
-        var onDeselectNode = function (e, data) {
-            this.hidePreview();
-            oldSelected = null;
-        };
+    //     var onDeselectNode = function (e, data) {
+    //         this.hidePreview();
+    //         oldSelected = null;
+    //     };
 
-        var onCheckNode = function (e, data) {
-            var layerData = layerIndex[data.node.id];
-            var layer = this.createLayer(layerData);
-            var name = layerData.properties.name;
-            var overlay = layerData.properties.overlay;
+    //     var onCheckNode = function (e, data) {
+    //         var layerData = layerIndex[data.node.id];
+    //         var layer = this.createLayer(layerData);
+    //         var name = layerData.properties.name;
+    //         var overlay = layerData.properties.overlay;
 
-            if (overlay) {
-                this.addOverlay(layer, name);
-            } else {
-                this.addBaseLayer(layer, name);
-            }
+    //         if (overlay) {
+    //             this.addOverlay(layer, name);
+    //         } else {
+    //             this.addBaseLayer(layer, name);
+    //         }
 
-            this.storeDefaultLayers();
+    //         this.storeDefaultLayers();
 
-            var ele = document.getElementById(data.node.a_attr.id);
-            ele.classList.add('added');
-            setTimeout(function () {
-                ele.classList.remove('added');
-            }, 1000);
-        };
+    //         var ele = document.getElementById(data.node.a_attr.id);
+    //         ele.classList.add('added');
+    //         setTimeout(function () {
+    //             ele.classList.remove('added');
+    //         }, 1000);
+    //     };
 
-        var onUncheckNode = function (e, data) {
-            var obj = this.getLayerById(data.node.id);
-            if (!obj) return;
+    //     var onUncheckNode = function (e, data) {
+    //         var obj = this.getLayerById(data.node.id);
+    //         if (!obj) return;
 
-            this.removeLayer(obj.layer);
+    //         this.removeLayer(obj.layer);
 
-            if (this._map.hasLayer(obj.layer)) {
-                this._map.removeLayer(obj.layer);
-                if (!obj.overlay) {
-                    this.activateFirstLayer();
-                }
-            }
+    //         if (this._map.hasLayer(obj.layer)) {
+    //             this._map.removeLayer(obj.layer);
+    //             if (!obj.overlay) {
+    //                 this.activateFirstLayer();
+    //             }
+    //         }
 
-            this.storeDefaultLayers();
+    //         this.storeDefaultLayers();
 
-            var ele = document.getElementById(data.node.a_attr.id);
-            ele.classList.add('removed');
-            setTimeout(function () {
-                ele.classList.remove('removed');
-            }, 1000);
-        };
+    //         var ele = document.getElementById(data.node.a_attr.id);
+    //         ele.classList.add('removed');
+    //         setTimeout(function () {
+    //             ele.classList.remove('removed');
+    //         }, 1000);
+    //     };
 
-        $('#optional-layers-tree')
-            .on('select_node.jstree', L.bind(onSelectNode, this))
-            .on('deselect_node.jstree', L.bind(onDeselectNode, this))
-            .on('check_node.jstree', L.bind(onCheckNode, this))
-            .on('uncheck_node.jstree', L.bind(onUncheckNode, this))
-            .on('ready.jstree', function (e, data) {
-                data.instance.open_all();
-            })
-            .jstree({
-                plugins: ['checkbox'],
-                checkbox: {
-                    whole_node: false,
-                    tie_selection: false,
-                },
-                core: {
-                    multiple: false,
-                    themes: {
-                        icons: true,
-                        dots: false,
-                    },
-                    data: treeData,
-                },
-            });
-        this.jstree = $('#optional-layers-tree').jstree(true);
-    },
+    //     $('#optional-layers-tree')
+    //         .on('select_node.jstree', L.bind(onSelectNode, this))
+    //         .on('deselect_node.jstree', L.bind(onDeselectNode, this))
+    //         .on('check_node.jstree', L.bind(onCheckNode, this))
+    //         .on('uncheck_node.jstree', L.bind(onUncheckNode, this))
+    //         .on('ready.jstree', function (e, data) {
+    //             data.instance.open_all();
+    //         })
+    //         .jstree({
+    //             plugins: ['checkbox'],
+    //             checkbox: {
+    //                 whole_node: false,
+    //                 tie_selection: false,
+    //             },
+    //             core: {
+    //                 multiple: false,
+    //                 themes: {
+    //                     icons: true,
+    //                     dots: false,
+    //                 },
+    //                 data: treeData,
+    //             },
+    //         });
+    //     this.jstree = $('#optional-layers-tree').jstree(true);
+    // },
 
     toJsTree(layerTree) {
         var data = {
