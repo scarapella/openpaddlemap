@@ -2,9 +2,9 @@ name: build
 
 on:
     push:
-        branches: ['none']
+        branches: ['branches']
     pull_request:
-        branches: ['none']
+        branches: ['branches']
 
 concurrency:
     group: ${{ github.head_ref || github.ref_name }}
@@ -24,3 +24,4 @@ jobs:
             - run: yarn lint
             - run: yarn pretty-quick --check
             - run: yarn build
+            - run: docker build . --file Dockerfile --tag paddlemap:$(date +%s)
