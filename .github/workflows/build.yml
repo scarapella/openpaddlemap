@@ -21,5 +21,4 @@ jobs:
             - run: yarn test
             - run: yarn lint
             - run: yarn pretty-quick --check
-            - run: yarn build
             - run: docker build . --file Dockerfile --tag paddlemap:$(date +%s)
